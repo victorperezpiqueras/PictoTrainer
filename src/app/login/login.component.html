@@ -1,0 +1,69 @@
+<div fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1.5rem" class="mat-typography">
+  <div>
+    <mat-card class="title-card" fxLayoutAlign="center">
+      <mat-card-header>
+        <mat-card-title class="mat-card-title">
+          TEMPO
+        </mat-card-title>
+      </mat-card-header>
+    </mat-card>
+<!--     <h1 fxLayoutAlign="center" translate>Tempo</h1>
+ -->    <!-- <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
+      <h4 class="version">v{{ version }}</h4>
+      <div class="language-selector">
+        <button mat-raised-button color="primary" [matMenuTriggerFor]="languageMenu">
+          {{ currentLanguage }}
+        </button>
+        <mat-menu #languageMenu="matMenu">
+          <button mat-menu-item *ngFor="let language of languages" (click)="setLanguage(language)">
+            {{ language }}
+          </button>
+        </mat-menu>
+      </div>
+    </div> -->
+  </div>
+  <div class="login-container" fxLayout="row" fxLayoutAlign="center">
+    <mat-card fxFlex="90%" fxFlex.sm="66%" fxFlex.md="50%" fxFlex.gt-md="33%" class="login-box">
+      <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+        <div class="login-error" [hidden]="!error || isLoading" translate>
+          {{ error }}
+        </div>
+        <br />
+        <div class="login-fields" fxLayout="column">
+          <mat-form-field [hideRequiredMarker]="true">
+            <input
+              type="text"
+              matInput
+              formControlName="username"
+              autocomplete="username"
+              [placeholder]="'Usuario' | translate"
+              required
+            />
+            <mat-error *ngIf="loginForm.controls.username.invalid && loginForm.controls.username.touched">
+              <span translate>Se requiere un nombre de usuario</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field [hideRequiredMarker]="true">
+            <input
+              type="password"
+              matInput
+              formControlName="password"
+              autocomplete="current-password"
+              [placeholder]="'Contraseña' | translate"
+              required
+            />
+            <mat-error *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+              <span translate>Se requiere una contraseña</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-slide-toggle color="primary" formControlName="remember" translate>Recordarme</mat-slide-toggle>
+          <br />
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || isLoading">
+            <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
+            <span translate>Iniciar sesión</span>
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

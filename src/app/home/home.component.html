@@ -1,0 +1,13 @@
+<div class="container">
+  <mat-card>
+    <p>
+      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo" />
+    </p>
+    <mat-card-content>
+      <mat-card-title>{{ title }}</mat-card-title>
+      <mat-card-subtitle>{{ message }}</mat-card-subtitle>
+    </mat-card-content>
+    <button mat-raised-button color="primary" (click)="clickButton()">Recibir mensaje</button>
+    &nbsp;<button mat-raised-button color="primary" (click)="resetButton()">Borrar mensaje</button>
+  </mat-card>
+</div>

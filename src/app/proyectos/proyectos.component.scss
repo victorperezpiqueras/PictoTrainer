@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+h1{
+  font-family: 'Roboto', sans-serif;
+}
+.container {
+  text-align: left;
+  padding: 1rem;
+}
+.loader{
+  position: relative;
+    margin-left: 50%;
+}
+.mat-icon {
+  vertical-align: middle;
+}
+
+.proyectos-card{
+  background-color: #ffffff;
+}
+
+.proyecto-card{
+  background-color: #dfeeff;
+}
+
+table {
+  width: 50%;
+}
+
+.mat-button-create {
+  font-size: 25px;
+  float: right;
+  margin-bottom: 20px;
+}

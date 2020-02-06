@@ -1,0 +1,63 @@
+<div class="container">
+  <app-loader class="loader" [isLoading]="isLoading"></app-loader>
+
+  <mat-card class="proyectos-card">
+    <div>
+      <button class="mat-button-create" mat-fab color="primary" (click)="crearProyectoDialog()">+</button>
+    </div>
+    <h1>
+      <mat-card-title class="title">Proyectos</mat-card-title>
+    </h1>
+    <!-- <mat-divider></mat-divider> -->
+    <br />
+    <mat-accordion>
+      <div *ngFor="let proyecto of proyectos">
+        <!-- <mat-card class="proyecto-card">
+        
+          <mat-card-title>Proyecto: {{ proyecto.nombre }}</mat-card-title>
+        
+        <mat-card-content>
+          <p>
+            Descripcion:{{proyecto.descripcion}}
+          </p>
+        </mat-card-content>
+      </mat-card> -->
+        <mat-expansion-panel class="proyecto-card" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ proyecto.nombre }}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ proyecto.descripcion }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <br />
+          Usuarios
+          <br />
+          <table mat-table [dataSource]="proyecto.usuarios" class="mat-elevation-z8">
+            <ng-container matColumnDef="Rol">
+              <th mat-header-cell *matHeaderCellDef>Rol</th>
+              <td mat-cell *matCellDef="let usuario">{{ usuario.rol }}</td>
+            </ng-container>
+            <ng-container matColumnDef="Nombre">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let usuario">{{ usuario.nombre }}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+
+          <!-- <mat-list>
+            <mat-list-item *ngFor="let usuario of proyecto.usuarios">
+              <h3 matLine> {{usuario.nombre}} </h3>
+              <h3 matLine> {{usuario.rol}} </h3>
+            </mat-list-item>
+          </mat-list> -->
+          <br />
+          <button mat-raised-button color="primary" class="abrir-btn">Abrir proyecto</button>
+        </mat-expansion-panel>
+        <br />
+      </div>
+    </mat-accordion>
+  </mat-card>
+</div>
