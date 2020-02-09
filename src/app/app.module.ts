@@ -25,6 +25,7 @@ import { ProyectosModule } from './proyectos/proyectos.module';
 import { UsuariosService } from './services/usuarios-service';
 import { ProyectosService } from './services/proyectos-service';
 import { ProyectoDialogComponent } from './proyectos/proyectoDialog/proyectoDialog.component';
+import { OpcionesModule } from './opciones/opciones.module';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { ProyectoDialogComponent } from './proyectos/proyectoDialog/proyectoDial
     HomeModule,
     LoginModule,
     ProyectosModule,
+    OpcionesModule,
 
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
