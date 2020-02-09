@@ -301,39 +301,4 @@ router.get('/proyectos/usuarios/roles', function(req, res, next) {
     });
 });
 
-//Proyectos
-/*  body: 
-    nombre, 
-    descripcion, 
-    idusuario
- */
-router.post('/proyectos', function(req, res, next) {
-  console.log('crearProyecto');
-  controllerProyectos
-    .crearProyecto(req.body)
-    .then(function(proyecto) {
-      res.json(proyecto);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-
-/* :id=idproyecto 
-    body: 
-    rol="desarrollador || productOwner || stakeholder"
-    idusuario = idusuario a agregar
- */
-router.post('/proyectos/:id/agregarUsuario', function(req, res, next) {
-  console.log('proyectoAgregarUsuario');
-  controllerProyectos
-    .proyectoAgregarUsuario(req.params.id, req.body)
-    .then(function(proyecto) {
-      res.json(proyecto);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-
 module.exports = router;
