@@ -1,0 +1,176 @@
+<div class="container mat-typography" fxFill fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="60" fxFill>
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex="20">
+      <h1 class="titulo">NOMBRE DE LA TAREA:</h1>
+      &nbsp;&nbsp;&nbsp;
+      <mat-form-field>
+        <mat-label class="input">Lavarme los dientes</mat-label>
+        <input matInput [(ngModel)]="nombreSecuencia" />
+      </mat-form-field>
+    </div>
+
+    <div class="bottom-div" fxLayout="column" fxLayoutAlign="end" fxFlex="80" fxLayoutGap="7%">
+      <div class="bottom-div-card" fxLayout="row" fxLayoutAlign="center center">
+        <!--  <mat-card class="card" *ngFor="let res of resultado" fxFlex="{{100/resultado.length}}" >
+          <img mat-card-image src="../../assets/pictos/{{res.src}}">
+          <mat-card-subtitle>{{res.nombre}}</mat-card-subtitle>
+        </mat-card> -->
+        <button class="boton-flecha" mat-fab [color]="'accent'" (click)="clickLeft()" [disabled]="actualIndex == 0">
+          &lt;
+        </button>
+        <mat-card class="selected-card" fxFlex="50">
+          <img *ngIf="selected" mat-card-image src="../../assets/pictos/{{ selected.src }}" />
+          <!--  <mat-card-subtitle>Pictograma: {{pictos[0].nombre}}</mat-card-subtitle><br>
+          <mat-card-subtitle>Tiempo: {{pictos[0].tiempo}}</mat-card-subtitle><br>
+          <mat-card-subtitle>Orden: {{index}}</mat-card-subtitle><br> -->
+          <mat-card-content style="text-align: start;" *ngIf="selected">
+            Pictograma: {{ selected.nombre }}<br />Tiempo: {{ (selected.tiempo / 60).toFixed() }}min y
+            {{ selected.tiempo % 60 }}seg<br />Orden: {{ actualIndex + 1 }}
+          </mat-card-content>
+        </mat-card>
+        <button
+          class="boton-flecha"
+          mat-fab
+          [color]="'accent'"
+          (click)="clickRight()"
+          [disabled]="resultado.length == 0 || actualIndex == resultado.length - 1"
+        >
+          &gt;
+        </button>
+      </div>
+      <br />
+      <!--   <div id="container" class="bar"></div>   
+      <br> -->
+      <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="50px">
+        <button class="mat-display-2 boton" mat-raised-button [color]="'warn'" (click)="clickButton()">
+          CANCELAR
+        </button>
+        <button
+          class="mat-display-2 boton"
+          mat-raised-button
+          [color]="'success'"
+          (click)="guardar()"
+          [disabled]="!nombreSecuencia"
+        >
+          GUARDAR
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="start end" fxFlex="40" fxFill>
+    <div fxLayout="row">
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Buscar</mat-label>
+          <input matInput placeholder="Buscar" />
+        </mat-form-field>
+      </form>
+    </div>
+
+    <mat-tab-group
+      backgroundColor="accent"
+      style="height: calc(100% - 100px); min-height: calc(100% - 100px); min-width: 50%; width: 80%; margin: 0px;"
+    >
+      <mat-tab label="Básicos">
+        <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10px">
+          <!--  <mat-grid-tile>
+            <div fxLayout="column" fxFlex="70">
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              Texto
+            </div>
+              
+          </mat-grid-tile> -->
+          <mat-grid-tile *ngFor="let picto of pictos">
+            <mat-card class="card" (click)="seleccionarPicto(picto)">
+              <img mat-card-image src="../../assets/pictos/{{ picto.src }}" />
+              <mat-card-subtitle>{{ picto.nombre }}</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile>
+
+          <!--     <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile> 
+          <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card>
+              <img mat-card-image src="../../assets/pictos/test.PNG">
+              <mat-card-subtitle>Texto</mat-card-subtitle>
+            </mat-card>
+          </mat-grid-tile> -->
+        </mat-grid-list>
+
+        <!--  <mat-card fxFlex="50">
+          <img mat-card-image src="../../assets/pictos/test.PNG">
+          <mat-card-subtitle>Texto</mat-card-subtitle>
+        </mat-card>
+        <mat-card fxFlex="50">
+          <img mat-card-image src="../../assets/pictos/test.PNG">
+        </mat-card>
+        <mat-card fxFlex="50">
+          <img mat-card-image src="../../assets/pictos/test.PNG">
+        </mat-card>
+        <mat-card fxFlex="50">
+          <img mat-card-image src="../../assets/pictos/test.PNG">
+        </mat-card> -->
+      </mat-tab>
+      <mat-tab label="Propios"> </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

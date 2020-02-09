@@ -26,6 +26,8 @@ import { UsuariosService } from './services/usuarios-service';
 import { ProyectosService } from './services/proyectos-service';
 import { ProyectoDialogComponent } from './proyectos/proyectoDialog/proyectoDialog.component';
 import { OpcionesModule } from './opciones/opciones.module';
+import { CreadorModule } from './creador/creador.module';
+import { PictoDialogComponent } from './creador/pictoDialog/pictoDialog.component';
 
 @NgModule({
   imports: [
@@ -47,12 +49,13 @@ import { OpcionesModule } from './opciones/opciones.module';
     LoginModule,
     ProyectosModule,
     OpcionesModule,
+    CreadorModule,
 
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent, ProyectoDialogComponent],
+  declarations: [AppComponent, ProyectoDialogComponent, PictoDialogComponent],
   providers: [HolaMundoService, LoginService, UsuariosService, ProyectosService],
-  entryComponents: [ProyectoDialogComponent],
+  entryComponents: [ProyectoDialogComponent, PictoDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

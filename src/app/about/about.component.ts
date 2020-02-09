@@ -15,7 +15,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.barColor = localStorage.getItem('bar-color');
-    if (!this.barColor) this.barColor = '#FFEA82';
+    if (!this.barColor || this.barColor != undefined || this.barColor != null) this.barColor = '#FFEA82';
     //var ProgressBar = require('progressbar.js')
     var line = new ProgressBar.Line('#container');
     var bar = new ProgressBar.Line('#container', {
