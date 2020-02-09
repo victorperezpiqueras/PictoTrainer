@@ -1,13 +1,19 @@
-<div class="container">
-  <mat-card>
-    <p>
-      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo" />
-    </p>
-    <mat-card-content>
-      <mat-card-title>{{ title }}</mat-card-title>
-      <mat-card-subtitle>{{ message }}</mat-card-subtitle>
-    </mat-card-content>
-    <button mat-raised-button color="primary" (click)="clickButton()">Recibir mensaje</button>
-    &nbsp;<button mat-raised-button color="primary" (click)="resetButton()">Borrar mensaje</button>
-  </mat-card>
+<div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="3rem">
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutAlign="center center" fxLayoutGap="10rem">
+    <div fxLayout="column" fxLayoutAlign="center" fxFlex="50">
+      <button class="mat-display-2 boton-main" mat-raised-button color="primary" (click)="resetButton()">
+        CREAR ACCIÓN
+      </button>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center" fxFlex="50">
+      <button class="mat-display-2 boton-main" mat-raised-button color="warn" (click)="clickButton()">
+        CREAR SECUENCIA
+      </button>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center">
+    <button class="mat-display-3 boton-main boton-play" mat-raised-button [color]="'success'" (click)="clickButton()">
+      PLAY
+    </button>
+  </div>
 </div>

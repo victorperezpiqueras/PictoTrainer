@@ -74,8 +74,8 @@ ControllerUsuarios.registroUsuario = function(usuario) {
       } else {
         console.log(result);
         if (result.length <= 0) {
-          var sql = 'insert into usuarios(nombre,password,email) values ?';
-          var values = [[usuario.nombre, bcrypt.hashSync(usuario.password), usuario.email]];
+          var sql = 'insert into usuarios(nombre,password) values ?';
+          var values = [[usuario.nombre, bcrypt.hashSync(usuario.password)]];
           connection.query(sql, [values], function(err, result) {
             if (err) throw err;
             console.log(result);
