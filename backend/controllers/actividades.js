@@ -1,11 +1,11 @@
-var controllerSecuencias = {};
+var controllerActividades = {};
 var connection = require('../db/connection');
 var bcrypt = require('bcryptjs');
 var mysql = require('mysql');
 
-controllerSecuencias.getSecuencias = function() {
+controllerActividades.getActividades = function() {
   return new Promise(function(resolve, reject) {
-    var sql = 'select * from secuencias';
+    var sql = 'select * from actividades';
     connection.query(sql, function(err, result) {
       if (err) {
         /* connection.end(function(err) {
@@ -23,9 +23,9 @@ controllerSecuencias.getSecuencias = function() {
   });
 };
 
-controllerSecuencias.getSecuencias = function() {
+controllerActividades.getActividades = function() {
   return new Promise(function(resolve, reject) {
-    var sql = 'select a.* from secuencias a where a.idsecuencia = ?';
+    var sql = 'select a.* from actividades a where a.idactividad = ?';
     connection.query(sql, [id], function(err, result) {
       if (err) {
         /* connection.end(function(err) {
@@ -43,9 +43,9 @@ controllerSecuencias.getSecuencias = function() {
   });
 };
 
-controllerSecuencias.deleteSecuencias = function() {
+controllerActividades.deleteActividades = function() {
   return new Promise(function(resolve, reject) {
-    var sql = 'delete from secuencias';
+    var sql = 'delete from actividades';
     connection.query(sql, function(err, result) {
       if (err) {
         /* connection.end(function(err) {
@@ -63,9 +63,9 @@ controllerSecuencias.deleteSecuencias = function() {
   });
 };
 
-controllerSecuencias.deleteSecuencias = function() {
+controllerActividades.deleteActividades = function() {
   return new Promise(function(resolve, reject) {
-    var sql = 'delete from secuencias a where a.idsecuencia = ?';
+    var sql = 'delete from actividades a where a.idactividad = ?';
     connection.query(sql, [id], function(err, result) {
       if (err) {
         /* connection.end(function(err) {
@@ -83,4 +83,4 @@ controllerSecuencias.deleteSecuencias = function() {
   });
 };
 
-module.exports = controllerSecuencias;
+module.exports = controllerActividades;
