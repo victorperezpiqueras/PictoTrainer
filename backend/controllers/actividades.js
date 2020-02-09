@@ -23,7 +23,7 @@ controllerActividades.getActividades = function() {
   });
 };
 
-controllerActividades.getActividades = function() {
+controllerActividades.getActividadesId = function(id) {
   return new Promise(function(resolve, reject) {
     var sql = 'select a.* from actividades a where a.idactividad = ?';
     connection.query(sql, [id], function(err, result) {
@@ -63,7 +63,7 @@ controllerActividades.deleteActividades = function() {
   });
 };
 
-controllerActividades.deleteActividades = function() {
+controllerActividades.deleteActividadesId = function(id) {
   return new Promise(function(resolve, reject) {
     var sql = 'delete from actividades a where a.idactividad = ?';
     connection.query(sql, [id], function(err, result) {

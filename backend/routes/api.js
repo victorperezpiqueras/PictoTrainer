@@ -148,10 +148,11 @@ router.get('/secuencias', function(req, res, next) {
       res.status(500).json(err);
     });
 });
+
 router.get('/secuencias/:id', function(req, res, next) {
   console.log('getsecuenciassid');
   controllerSecuencias
-    .getSecuencias(req.params.id)
+    .getSecuenciasId(req.params.id)
     .then(function(secuencias) {
       res.json(secuencias);
     })
@@ -173,7 +174,7 @@ router.delete('/secuencias/delete', function(req, res, next) {
 router.delete('/secuencias/delete/:id', function(req, res, next) {
   console.log('deletesecuenciasid');
   controllerSecuencias
-    .deleteSecuencias(req.params.id)
+    .deleteSecuenciasId(req.params.id)
     .then(function(secuencias) {
       res.json(secuencias);
     })
@@ -197,7 +198,7 @@ router.get('/acciones', function(req, res, next) {
 router.get('/acciones/:id', function(req, res, next) {
   console.log('getAccionesid');
   controllerAcciones
-    .getAcciones(req.params.id)
+    .getAccionesId(req.params.id)
     .then(function(acciones) {
       res.json(acciones);
     })
@@ -219,7 +220,7 @@ router.delete('/acciones/delete', function(req, res, next) {
 router.delete('/acciones/delete/:id', function(req, res, next) {
   console.log('deleteAccionesid');
   controllerAcciones
-    .deleteAcciones(req.params.id)
+    .deleteAccionesId(req.params.id)
     .then(function(acciones) {
       res.json(acciones);
     })
@@ -244,7 +245,7 @@ router.get('/actividades', function(req, res, next) {
 router.get('/actividades/:id', function(req, res, next) {
   console.log('getActividadesid');
   controllerActividades
-    .getActividades(req.params.id)
+    .getActividadesId(req.params.id)
     .then(function(actividades) {
       res.json(actividades);
     })
@@ -266,35 +267,9 @@ router.delete('/actividades/delete', function(req, res, next) {
 router.delete('/actividades/delete/:id', function(req, res, next) {
   console.log('deleteActividadesid');
   controllerActividades
-    .deleteActividades(req.params.id)
+    .deleteActividadesId(req.params.id)
     .then(function(actividades) {
       res.json(actividades);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-
-//proyectos
-
-router.get('/proyectos/:id/usuarios', function(req, res, next) {
-  console.log('getProyectosUsuarios');
-  controllerProyectos
-    .getProyectosUsuarios(req.params.id)
-    .then(function(usuarios) {
-      res.json(usuarios);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-
-router.get('/proyectos/usuarios/roles', function(req, res, next) {
-  console.log('getProyectosUsuariosRoles');
-  controllerProyectos
-    .getProyectosUsuariosRoles()
-    .then(function(usuariosRoles) {
-      res.json(usuariosRoles);
     })
     .catch(function(err) {
       res.status(500).json(err);

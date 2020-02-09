@@ -23,7 +23,7 @@ controllerSecuencias.getSecuencias = function() {
   });
 };
 
-controllerSecuencias.getSecuencias = function() {
+controllerSecuencias.getSecuenciasId = function(id) {
   return new Promise(function(resolve, reject) {
     var sql = 'select a.* from secuencias a where a.idsecuencia = ?';
     connection.query(sql, [id], function(err, result) {
@@ -63,7 +63,7 @@ controllerSecuencias.deleteSecuencias = function() {
   });
 };
 
-controllerSecuencias.deleteSecuencias = function() {
+controllerSecuencias.deleteSecuenciasId = function(id) {
   return new Promise(function(resolve, reject) {
     var sql = 'delete from secuencias a where a.idsecuencia = ?';
     connection.query(sql, [id], function(err, result) {

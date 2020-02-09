@@ -23,7 +23,7 @@ controllerAcciones.getAcciones = function() {
   });
 };
 
-controllerAcciones.getAcciones = function() {
+controllerAcciones.getAccionesId = function(id) {
   return new Promise(function(resolve, reject) {
     var sql = 'select a.* from acciones a where a.idaccion = ?';
     connection.query(sql, [id], function(err, result) {
@@ -63,7 +63,7 @@ controllerAcciones.deleteAcciones = function() {
   });
 };
 
-controllerAcciones.deleteAcciones = function() {
+controllerAcciones.deleteAccionesId = function(id) {
   return new Promise(function(resolve, reject) {
     var sql = 'delete from acciones a where a.idaccion = ?';
     connection.query(sql, [id], function(err, result) {
