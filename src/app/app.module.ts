@@ -28,6 +28,7 @@ import { ProyectoDialogComponent } from './proyectos/proyectoDialog/proyectoDial
 import { OpcionesModule } from './opciones/opciones.module';
 import { CreadorModule } from './creador/creador.module';
 import { PictoDialogComponent } from './creador/pictoDialog/pictoDialog.component';
+import { PictoService } from './services/picto-service';
 
 @NgModule({
   imports: [
@@ -54,7 +55,7 @@ import { PictoDialogComponent } from './creador/pictoDialog/pictoDialog.componen
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent, ProyectoDialogComponent, PictoDialogComponent],
-  providers: [HolaMundoService, LoginService, UsuariosService, ProyectosService],
+  providers: [HolaMundoService, LoginService, UsuariosService, ProyectosService, PictoService],
   entryComponents: [ProyectoDialogComponent, PictoDialogComponent],
   bootstrap: [AppComponent]
 })

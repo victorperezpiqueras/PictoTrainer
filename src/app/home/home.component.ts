@@ -21,11 +21,4 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
   }
-
-  clickButton() {
-    this.holaMundoService.getHolaMundo().subscribe((m: any) => (this.message = m.holamundo));
-  }
-  resetButton() {
-    this.message = 'Sin mensaje';
-  }
 }

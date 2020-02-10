@@ -1,27 +1,21 @@
-<div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="3rem">
-  <div fxLayout="row" fxLayoutAlign="center" fxLayoutAlign="center center" fxLayoutGap="10rem">
-    <div fxLayout="column" fxLayoutAlign="center" fxFlex="50">
-      <button class="mat-display-2 boton-main" mat-raised-button color="primary" (click)="resetButton()">
-        CREAR ACCIÓN
-      </button>
-    </div>
-    <div fxLayout="column" fxLayoutAlign="center" fxFlex="50">
-      <button
-        class="mat-display-2 boton-main"
-        mat-raised-button
-        color="warn"
-        (click)="clickButton()"
-        routerLink="/creador"
-        routerLinkActive="active"
-      >
-        CREAR SECUENCIA
-      </button>
-    </div>
+<div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1rem">
+  <div fxLayout="row" fxLayoutAlign="center" fxFlex="50">
+    <button
+      class="mat-display-2 boton"
+      mat-raised-button
+      color="primary"
+      fxFlex="70"
+      routerLink="/creador"
+      routerLinkActive="active"
+    >
+      PROGRAMAR TAREA
+    </button>
+    <!-- </div> -->
   </div>
-  <div fxLayout="row" fxLayoutAlign="center">
-    <button class="mat-display-3 boton-main boton-play" mat-raised-button [color]="'success'" (click)="clickButton()">
+
+  <div fxLayout="row" fxLayoutAlign="center" fxFlex="50">
+    <button class="mat-display-1 boton-play" mat-raised-button [color]="'success'" fxFlex="70">
       PLAY
     </button>
   </div>
-  <div id="container"></div>
 </div>

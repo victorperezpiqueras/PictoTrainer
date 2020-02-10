@@ -6,6 +6,7 @@ import { ProyectoDialogComponent } from '@app/proyectos/proyectoDialog/proyectoD
 import { PictoDialogComponent } from './pictoDialog/pictoDialog.component';
 import { CredentialsService } from '@app/core';
 import { UsuariosService } from '@app/services/usuarios-service';
+import { PictoService } from '@app/services/picto-service';
 
 export interface Pictograma {
   nombre: string;
@@ -21,6 +22,7 @@ export class CreadorComponent implements OnInit {
   dialogRef: MatDialogRef<any>;
   pictos: Pictograma[] = [];
 
+  palabraBuscar: string = '';
   resultado: Pictograma[] = [];
   selected: Pictograma;
   index: number = 0;
@@ -32,10 +34,13 @@ export class CreadorComponent implements OnInit {
   tiempoTotal: number = 100;
   tiempoActual: number = 0;
 
+  busqueda: any;
+
   constructor(
     public dialog: MatDialog,
     public credentialsService: CredentialsService,
-    public usuariosService: UsuariosService
+    public usuariosService: UsuariosService,
+    public pictoService: PictoService
   ) {}
 
   ngOnInit() {
@@ -73,6 +78,7 @@ export class CreadorComponent implements OnInit {
       pictograma: picto
     };
     this.dialogRef = this.dialog.open(PictoDialogComponent, dialogConfig);
+
     this.dialogRef.afterClosed().subscribe(data => {
       if (data != undefined) {
         this.resultado.push(data.picto);
@@ -111,6 +117,13 @@ export class CreadorComponent implements OnInit {
 
   guardar() {
     this.usuariosService.crearSecuencia({ idusuario: this.idusuario, secuencia: this.resultado });
+  }
+
+  buscar(palabra: string) {
+    console.log('palabra:', palabra);
+    this.pictoService.buscarPicto(palabra).subscribe(picto => {
+      this.busqueda = picto;
+    });
   }
 
   get idusuario(): number | null {

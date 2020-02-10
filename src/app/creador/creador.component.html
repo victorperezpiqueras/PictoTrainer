@@ -1,10 +1,10 @@
 <div class="container mat-typography" fxFill fxLayout="row" fxLayoutAlign="center center">
-  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="60" fxFill>
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="50" fxFill>
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex="20">
-      <h1 class="titulo">NOMBRE DE LA TAREA:</h1>
+      <h1 class="titulo">TAREA:</h1>
       &nbsp;&nbsp;&nbsp;
       <mat-form-field>
-        <mat-label class="input">Lavarme los dientes</mat-label>
+        <mat-label class="input">Introduce un nombre</mat-label>
         <input matInput [(ngModel)]="nombreSecuencia" />
       </mat-form-field>
     </div>
@@ -19,7 +19,7 @@
           &lt;
         </button>
         <mat-card class="selected-card" fxFlex="50">
-          <img *ngIf="selected" mat-card-image src="../../assets/pictos/{{ selected.src }}" />
+          <img *ngIf="selected" mat-card-image src="{{ selected.src }}" />
           <!--  <mat-card-subtitle>Pictograma: {{pictos[0].nombre}}</mat-card-subtitle><br>
           <mat-card-subtitle>Tiempo: {{pictos[0].tiempo}}</mat-card-subtitle><br>
           <mat-card-subtitle>Orden: {{index}}</mat-card-subtitle><br> -->
@@ -58,35 +58,46 @@
     </div>
   </div>
 
-  <div fxLayout="column" fxLayoutAlign="start end" fxFlex="40" fxFill>
-    <div fxLayout="row">
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label>Buscar</mat-label>
-          <input matInput placeholder="Buscar" />
-        </mat-form-field>
-      </form>
-    </div>
-
+  <div fxLayout="column" fxLayoutAlign="start end" fxFlex="50" fxFill>
     <mat-tab-group
       backgroundColor="accent"
       style="height: calc(100% - 100px); min-height: calc(100% - 100px); min-width: 50%; width: 80%; margin: 0px;"
     >
       <mat-tab label="Básicos">
         <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10px">
+          <div fxLayout="row">
+            <!-- <form class="example-form"> -->
+            <!--  <mat-form-field class="example-full-width">
+                <mat-label>Buscar</mat-label>
+                <input matInput placeholder="Buscar" [(ngModel)]="palabraBuscar"/>
+              </mat-form-field> -->
+            <mat-form-field class="input-buscar">
+              <mat-label class="input">Buscar</mat-label>
+              <input matInput [(ngModel)]="palabraBuscar" />
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="buscar(palabraBuscar)" class="boton-buscar">
+              <mat-icon>search</mat-icon>
+            </button>
+            <!--  </form> -->
+          </div>
           <!--  <mat-grid-tile>
             <div fxLayout="column" fxFlex="70">
               <img mat-card-image src="../../assets/pictos/test.PNG">
               Texto
             </div>
-              
           </mat-grid-tile> -->
-          <mat-grid-tile *ngFor="let picto of pictos">
+          <!--  <mat-grid-tile *ngIf="busqueda"> -->
+          <mat-card class="card" (click)="seleccionarPicto(busqueda)" *ngIf="busqueda">
+            <img mat-card-image src="{{ busqueda.src }}" />
+            <mat-card-subtitle>{{ busqueda.nombre }}</mat-card-subtitle>
+          </mat-card>
+          <!-- </mat-grid-tile> -->
+          <!--  <mat-grid-tile *ngFor="let picto of pictos">
             <mat-card class="card" (click)="seleccionarPicto(picto)">
               <img mat-card-image src="../../assets/pictos/{{ picto.src }}" />
               <mat-card-subtitle>{{ picto.nombre }}</mat-card-subtitle>
             </mat-card>
-          </mat-grid-tile>
+          </mat-grid-tile> -->
 
           <!--     <mat-grid-tile>
             <mat-card>
