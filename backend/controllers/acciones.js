@@ -23,7 +23,7 @@ controllerAcciones.getAcciones = function() {
   });
 };
 
-controllerAcciones.getAcciones = function() {
+controllerAcciones.getAccionesId = function(id) {
   return new Promise(function(resolve, reject) {
     var sql = 'select a.* from acciones a where a.idaccion = ?';
     connection.query(sql, [id], function(err, result) {
@@ -40,6 +40,24 @@ controllerAcciones.getAcciones = function() {
         resolve(result);
       }
     });
+  });
+};
+
+controllerAcciones.postAcciones = function(data) {
+  return new Promise(function(resolve, reject) {
+    var sql = 'insert into acciones(idaccion,nombre, duracion, idusuario, idsecuencia,foto,src) values(?,?,?,?,?,?,?)';
+    connection.query(
+      sql,
+      [data.idaccion, data.nombre, data.duracion, data.idusuario, data.idsecuencia, data.foto, data.src],
+      function(err, result) {
+        if (err) {
+          reject('Ya existe la accion o ha habido algun problema');
+        } else {
+          console.log('insertado accion');
+          resolve(result);
+        }
+      }
+    );
   });
 };
 
@@ -63,7 +81,7 @@ controllerAcciones.deleteAcciones = function() {
   });
 };
 
-controllerAcciones.deleteAcciones = function() {
+controllerAcciones.deleteAccionesId = function(id) {
   return new Promise(function(resolve, reject) {
     var sql = 'delete from acciones a where a.idaccion = ?';
     connection.query(sql, [id], function(err, result) {

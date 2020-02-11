@@ -17,33 +17,24 @@ connection.query(
     if (err) throw err;
     console.log('Tabla USUARIOS creada');
     connection.query(
-      'CREATE TABLE actividades(idactividad INT AUTO_INCREMENT PRIMARY KEY,nombre VARCHAR(255) NOT NULL, archivo blob NOT NULL, filename varchar(255) NOT NULL,' +
-        'idusuario INT , foreign key(idusuario) REFERENCES usuarios(idusuario) );',
+      'CREATE TABLE secuencias (idsecuencia int AUTO_INCREMENT PRIMARY KEY, nombre VARCHAR(255) NOT NULL, idusuario INT NOT NULL, foreign key(idusuario) REFERENCES usuarios(idusuario) );',
       function(err, result) {
         if (err) throw err;
-        console.log('Tabla ACTIVIDADES creada');
+        console.log('Tabla SECUENCIAS creada');
         connection.query(
-          'CREATE TABLE secuencias (idsecuencia int AUTO_INCREMENT PRIMARY KEY, nombre VARCHAR(255) NOT NULL, idusuario INT NOT NULL, foreign key(idusuario) REFERENCES usuarios(idusuario) );',
+          'CREATE TABLE acciones(idaccion INT AUTO_INCREMENT PRIMARY KEY,nombre VARCHAR(255) NOT NULL, duracion INT,idusuario INT NOT NULL, idsecuencia INT, foto BLOB, src VARCHAR(100)' +
+            ', foreign key(idusuario) REFERENCES usuarios(idusuario), foreign key(idsecuencia) REFERENCES secuencias(idsecuencia) );',
           function(err, result) {
             if (err) throw err;
-            console.log('Tabla SECUENCIAS creada');
-
+            console.log('Tabla ACCIONES creada');
             connection.query(
-              'CREATE TABLE acciones(idaccion INT AUTO_INCREMENT PRIMARY KEY,nombre VARCHAR(255) NOT NULL, duracion INT, idactividad INT NOT NULL,idusuario INT NOT NULL, idsecuencia INT' +
-                ',foreign key(idactividad) REFERENCES actividades(idactividad), foreign key(idusuario) REFERENCES usuarios(idusuario), foreign key(idsecuencia) REFERENCES secuencias(idsecuencia) );',
+              'CREATE TABLE registros (idregistro int AUTO_INCREMENT PRIMARY KEY, fecha DATETIME NOT NULL, duracionTotal INT,idusuario INT NOT NULL,idsecuencia INT NOT NULL,' +
+                ' foreign key(idusuario) REFERENCES usuarios(idusuario),foreign key(idsecuencia) REFERENCES secuencias(idsecuencia));',
               function(err, result) {
                 if (err) throw err;
-                console.log('Tabla ACCIONES creada');
-                connection.query(
-                  'CREATE TABLE registros (idregistro int AUTO_INCREMENT PRIMARY KEY, fecha DATETIME NOT NULL, duracionTotal INT,idusuario INT NOT NULL,idsecuencia INT NOT NULL,' +
-                    ' foreign key(idusuario) REFERENCES usuarios(idusuario),foreign key(idsecuencia) REFERENCES secuencias(idsecuencia));',
-                  function(err, result) {
-                    if (err) throw err;
-                    console.log('Tabla REGISTROS creada');
-                    //connection.end();
-                    //console.log('Desconectado de MYSQL');
-                  }
-                );
+                console.log('Tabla REGISTROS creada');
+                //connection.end();
+                //console.log('Desconectado de MYSQL');
               }
             );
           }
