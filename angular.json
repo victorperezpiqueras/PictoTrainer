@@ -30,7 +30,7 @@
               "src/assets"
             ],
             "styles": ["src/main.scss"],
-            "scripts": []
+            "scripts": ["node_modules/progressbar.js/dist/progressbar.js"]
           },
           "configurations": {
             "production": {

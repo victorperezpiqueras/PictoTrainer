@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Configura la actividad</h2>
+<mat-card class="card" (click)="seleccionarPicto(picto)">
+  <img mat-card-image src="{{ src }}" class="imagen" />
+  <mat-card-subtitle>{{ nombre }}</mat-card-subtitle>
+</mat-card>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Minutos</mat-label>
+    <mat-select [(value)]="minutos">
+      <mat-option *ngFor="let min of listaMin" value="{{ min }}">{{ min }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-label>Segundos</mat-label>
+    <mat-select [(value)]="segundos">
+      <mat-option *ngFor="let seg of listaSeg" value="{{ seg }}">{{ seg }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button class="close-button" mat-raised-button (click)="close()" color="warn">Cancelar</button>
+  <button class="save-button" mat-raised-button (click)="save()" [color]="'success'" [disabled]="!segundos || !minutos">
+    Añadir
+  </button>
+</div>

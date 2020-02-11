@@ -47,31 +47,6 @@ ControllerUsuarios.getUsuariosAcciones = function(id) {
   });
 };
 
-//post acciones
-
-ControllerUsuarios.accionesUsuario = function(data) {
-  return new Promise(function(resolve, reject) {
-    var sql =
-      'insert into acciones(idaccion,nombre, duracion, idactividad, idusuario, idsecuencia) values(?,?,?,?,?,?)';
-    connection.query(
-      sql,
-      [data.idaccion, data.nombre, data.duracion, data.idactividad, data.idusuario, data.idsecuencia],
-      function(err, result) {
-        if (err) {
-          /* connection.end(function(err) {
-          console.log('Error DB');
-        }); */
-          reject('Ya existe la accion o ha habido algun problema');
-          //throw err;
-        } else {
-          console.log('insertado accion');
-          resolve(result);
-        }
-      }
-    );
-  });
-};
-
 /*SECUENCIAS*/
 
 //get secuencias
@@ -89,70 +64,6 @@ ControllerUsuarios.getUsuariosSecuencias = function(id) {
         /* connection.end(function(err) {
           console.log('Close the database connection.');
         }); */
-        resolve(result);
-      }
-    });
-  });
-};
-
-//post de secuenciaUsuario
-ControllerUsuarios.secuenciaUsuario = function(data) {
-  return new Promise(function(resolve, reject) {
-    var sql = 'insert into secuencias(idsecuencia,nombre, idusuario) values(?,?,?)';
-    connection.query(sql, [data.idsecuencia, data.nombre, data.idusuario], function(err, result) {
-      if (err) {
-        /* connection.end(function(err) {
-          console.log('Error DB');
-        }); */
-        reject('Ya existe la accion o ha habido algun problema');
-        //throw err;
-      } else {
-        console.log('insertado secuencia');
-        resolve(result);
-      }
-    });
-  });
-};
-
-/*ACTIVIDADES*/
-
-//get secuencias
-ControllerUsuarios.getUsuariosActividades = function(id) {
-  return new Promise(function(resolve, reject) {
-    var sql = 'select a.*, u.* from actividades a, usuarios u where u.idusuario = ? and u.idusuario = a.idusuario;';
-    connection.query(sql, [id], function(err, result) {
-      if (err) {
-        /* connection.end(function(err) {
-          console.log('Error DB');
-        }); */
-        reject({ error: 'Error inesperado' });
-      } else {
-        console.log(result);
-        /* connection.end(function(err) {
-          console.log('Close the database connection.');
-        }); */
-        resolve(result);
-      }
-    });
-  });
-};
-
-//post de secuenciaUsuario
-ControllerUsuarios.actividadesUsuario = function(data) {
-  return new Promise(function(resolve, reject) {
-    var sql = 'insert into actividades(idactividad,nombre,archivo,filename,idusuario) values(?,?,?,?,?)';
-    connection.query(sql, [data.idactividad, data.nombre, data.archivo, data.filename, data.idusuario], function(
-      err,
-      result
-    ) {
-      if (err) {
-        /* connection.end(function(err) {
-          console.log('Error DB');
-        }); */
-        reject('Ya existe la accion o ha habido algun problema');
-        //throw err;
-      } else {
-        console.log('insertado actividad');
         resolve(result);
       }
     });
@@ -242,5 +153,4 @@ ControllerUsuarios.loginUsuario = function(usuario) {
     });
   });
 };
-
 module.exports = ControllerUsuarios;

@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
-
+var request = require('request');
 var controllerUsuarios = require('../controllers/usuarios');
 var controllerSecuencias = require('../controllers/secuencias');
 var controllerAcciones = require('../controllers/acciones');
-var controllerActividades = require('../controllers/actividades');
 
 /* CONTROLLER USUARIOS */
 
@@ -20,23 +19,11 @@ router.get('/usuarios', function(req, res, next) {
     });
 });
 
-//Acciones
+//Acciones por usuarios
 router.get('/usuarios/:id/acciones', function(req, res, next) {
   console.log('getUsuariosAcciones');
   controllerUsuarios
     .getUsuariosAcciones(req.params.id)
-    .then(function(acciones) {
-      res.json(acciones);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-
-router.post('/usuarios/acciones', function(req, res, next) {
-  console.log('acciones');
-  controllerUsuarios
-    .accionesUsuario(req.body)
     .then(function(acciones) {
       res.json(acciones);
     })
@@ -52,44 +39,6 @@ router.get('/usuarios/:id/secuencias', function(req, res, next) {
     .getUsuariosSecuencias(req.params.id)
     .then(function(secuencias) {
       res.json(secuencias);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-
-router.post('/usuarios/secuencias', function(req, res, next) {
-  console.log('secuencias');
-  //        if(usuario.nombre && usuario.password && usuario.email){} EN EL FRONT
-  controllerUsuarios
-    .secuenciaUsuario(req.body)
-    .then(function(secuencias) {
-      res.json(secuencias);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-
-//Actividades
-router.get('/usuarios/:id/actividades', function(req, res, next) {
-  console.log('getUsuariosActividades');
-  controllerUsuarios
-    .getUsuariosActividades(req.params.id)
-    .then(function(actividades) {
-      res.json(actividades);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-
-router.post('/usuarios/actividades', function(req, res, next) {
-  console.log('actividades');
-  controllerUsuarios
-    .actividadesUsuario(req.body)
-    .then(function(actividades) {
-      res.json(actividades);
     })
     .catch(function(err) {
       res.status(500).json(err);
@@ -160,6 +109,29 @@ router.get('/secuencias/:id', function(req, res, next) {
       res.status(500).json(err);
     });
 });
+router.post('/postsecuencias', function(req, res, next) {
+  console.log('secuencias');
+  controllerSecuencias
+    .postSecuencias(req.body)
+    .then(function(secuencias) {
+      res.json(secuencias);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+router.post('/postSecuenciasacciones', function(req, res, next) {
+  console.log('postSecuenciasacciones');
+  controllerSecuencias
+    .postSecuenciasAcciones(req.body)
+    .then(function(secuencias) {
+      res.json(secuencias);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+
 router.delete('/secuencias/delete', function(req, res, next) {
   console.log('deletesecuencias');
   controllerSecuencias
@@ -206,6 +178,19 @@ router.get('/acciones/:id', function(req, res, next) {
       res.status(500).json(err);
     });
 });
+
+router.post('/postacciones', function(req, res, next) {
+  console.log('acciones');
+  controllerAcciones
+    .postAcciones(req.body)
+    .then(function(acciones) {
+      res.json(acciones);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+
 router.delete('/acciones/delete', function(req, res, next) {
   console.log('deleteAcciones');
   controllerAcciones
@@ -229,51 +214,19 @@ router.delete('/acciones/delete/:id', function(req, res, next) {
     });
 });
 
-/* CONTROLLER ACTIVIDADES */
-
-router.get('/actividades', function(req, res, next) {
-  console.log('getactividades');
-  controllerActividades
-    .getActividades()
-    .then(function(actividades) {
-      res.json(actividades);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-router.get('/actividades/:id', function(req, res, next) {
-  console.log('getActividadesid');
-  controllerActividades
-    .getActividadesId(req.params.id)
-    .then(function(actividades) {
-      res.json(actividades);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-router.delete('/actividades/delete', function(req, res, next) {
-  console.log('deleteactividades');
-  controllerActividades
-    .deleteActividades()
-    .then(function(actividades) {
-      res.json(actividades);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
-});
-router.delete('/actividades/delete/:id', function(req, res, next) {
-  console.log('deleteActividadesid');
-  controllerActividades
-    .deleteActividadesId(req.params.id)
-    .then(function(actividades) {
-      res.json(actividades);
-    })
-    .catch(function(err) {
-      res.status(500).json(err);
-    });
+router.get('/picto/:nombre', function(req, res) {
+  request('http://sesat.fdi.ucm.es:8080/servicios/rest/pictograma/palabra/' + req.params.nombre, function(
+    error,
+    response,
+    body
+  ) {
+    console.log('error:', error); // Print the error if one occurred and handle it
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    console.log(body);
+    var cadena1 = body.slice(22, -16);
+    console.log(cadena1);
+    res.send({ nombre: req.params.nombre, src: cadena1 });
+  });
 });
 
 module.exports = router;

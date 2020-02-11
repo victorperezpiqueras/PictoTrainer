@@ -1,0 +1,8 @@
+<div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="3rem">
+  <br />
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutAlign="center center" fxLayoutGap="10rem">
+    <h1>Color del temporizador</h1>
+    <input [(colorPicker)]="color" [style.background]="color" />
+  </div>
+  <h1>{{ color }}</h1>
+</div>
