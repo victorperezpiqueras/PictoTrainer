@@ -69,7 +69,7 @@ export class ProyectosComponent implements OnInit, OnDestroy {
   }
 
   actualizarDatos() {
-    this.isLoading = true;
+    /* this.isLoading = true;
     this.proyectos = [];
     var proyectos$ = this.usuariosService.getUsuariosProyectos(this.idusuario);
     var usuariosTotales$ = this.proyectosService.getProyectosUsuariosRoles();
@@ -89,7 +89,7 @@ export class ProyectosComponent implements OnInit, OnDestroy {
         }
       }
       this.isLoading = false;
-    });
+    }); */
   }
 
   get username(): string | null {

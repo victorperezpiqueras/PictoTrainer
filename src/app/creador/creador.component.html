@@ -11,7 +11,7 @@
 
     <div class="bottom-div" fxLayout="column" fxLayoutAlign="end" fxFlex="80" fxLayoutGap="7%" class="right-div">
       <div class="bottom-div-card" fxLayout="row" fxLayoutAlign="center center">
-        <!--  <mat-card class="card" *ngFor="let res of resultado" fxFlex="{{100/resultado.length}}" >
+        <!--  <mat-card class="card" *ngFor="let res of listaAcciones" fxFlex="{{100/listaAcciones.length}}" >
           <img mat-card-image src="../../assets/pictos/{{res.src}}">
           <mat-card-subtitle>{{res.nombre}}</mat-card-subtitle>
         </mat-card> -->
@@ -26,14 +26,18 @@
           &lt;
         </button>
         <mat-card class="selected-card" fxFlex="50" *ngIf="selected">
-          <img mat-card-image src="{{ selected.src }}" />
+          <img mat-card-image src="{{ selected.src }}" class="card-imagen" />
           <!--  <mat-card-subtitle>Pictograma: {{pictos[0].nombre}}</mat-card-subtitle><br>
-          <mat-card-subtitle>Tiempo: {{pictos[0].tiempo}}</mat-card-subtitle><br>
+          <mat-card-subtitle>Tiempo: {{pictos[0].duracion}}</mat-card-subtitle><br>
           <mat-card-subtitle>Orden: {{index}}</mat-card-subtitle><br> -->
           <mat-card-content style="text-align: start;">
-            Pictograma: {{ selected.nombre }}<br />Tiempo: {{ (selected.tiempo / 60).toFixed() }}min y
-            {{ selected.tiempo % 60 }}seg<br />Orden: {{ actualIndex + 1 }}
+            Pictograma: {{ selected.nombre }}<br />Tiempo: {{ (selected.duracion / 60).toFixed() }}min y
+            {{ selected.duracion % 60 }}seg<br />Orden: {{ actualIndex + 1 }}
           </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="editarAccion(selected)">Editar</button>
+            <button mat-raised-button color="warn" (click)="borrarAccion(selected)">Borrar</button>
+          </mat-card-actions>
         </mat-card>
 
         <button
@@ -41,17 +45,22 @@
           mat-fab
           [color]="'accent'"
           (click)="clickRight()"
-          [disabled]="resultado.length == 0 || actualIndex == resultado.length - 1"
+          [disabled]="listaAcciones.length == 0 || actualIndex == listaAcciones.length - 1"
           *ngIf="selected"
         >
           &gt;
         </button>
       </div>
       <br />
-      <!--   <div id="container" class="bar"></div>   
-      <br> -->
+
       <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="50px">
-        <button class="mat-display-2 boton" mat-raised-button [color]="'warn'" (click)="clickButton()">
+        <button
+          class="mat-display-2 boton"
+          mat-raised-button
+          [color]="'warn'"
+          routerLink="/home"
+          routerLinkActive="active"
+        >
           CANCELAR
         </button>
         <button
@@ -60,6 +69,8 @@
           [color]="'success'"
           (click)="guardar()"
           [disabled]="!nombreSecuencia"
+          routerLink="/home"
+          routerLinkActive="active"
         >
           GUARDAR
         </button>

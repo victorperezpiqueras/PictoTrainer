@@ -26,8 +26,9 @@ export class BibliotecaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.secuenciaService.getSecuenciasUsuario(this.idusuario).subscribe(secuencias => {
+    this.usuariosService.getSecuenciasAcciones(this.idusuario).subscribe(secuencias => {
       this.secuencias = secuencias;
+      console.log(secuencias);
     });
   }
 

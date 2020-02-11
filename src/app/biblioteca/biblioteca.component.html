@@ -1,11 +1,19 @@
-<div class="container mat-typography" fxFill fxLayout="row" fxLayoutAlign="center center">
-  <mat-list role="list">
+<div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="3%">
+  <mat-card *ngFor="let sec of secuencias" class="card">
+    {{ sec.nombre }}
+    <div class="acciones" *ngFor="let acc of sec.acciones" fxLayout="row">
+      {{ acc.nombre }}
+      <!-- <img mat-card-image class="card" src="{{ acc.src }}" />
+      <mat-icon>arrow_forward</mat-icon> -->
+    </div>
+  </mat-card>
+
+  <!--  <mat-list role="list">
     <mat-list-item role="listitem" *ngFor="let sec of secuencias">
       {{ sec.nombre }}
-      <div class="acciones" fxLayout="row">
-        <img mat-card-image *ngFor="let acc of sec.acciones" src="{{ acc.src }}" />
-        <mat-icon>arrow_forward</mat-icon>
+      <div class="acciones" *ngFor="let acc of sec.acciones" fxLayout="row">
+        {{acc.nombre}}
       </div>
     </mat-list-item>
-  </mat-list>
+  </mat-list> -->
 </div>

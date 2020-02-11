@@ -45,6 +45,18 @@ router.get('/usuarios/:id/secuencias', function(req, res, next) {
     });
 });
 
+router.get('/usuarios/:id/secuencias/acciones', function(req, res, next) {
+  console.log('getUsuariosSecuenciasAcciones');
+  controllerUsuarios
+    .getUsuariosSecuenciasAcciones(req.params.id)
+    .then(function(secuencias) {
+      res.json(secuencias);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+
 //Registro
 router.get('/usuarios/:id/registros', function(req, res, next) {
   console.log('getUsuariosRegistros');

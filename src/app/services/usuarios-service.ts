@@ -11,8 +11,8 @@ export class UsuariosService {
   private url = '/usuarios';
   constructor(private http: HttpClient) {}
 
-  getUsuariosProyectos(idusuario: any): Observable<any> {
-    return this.http.get<any>(this.url + '/' + idusuario + '/proyectos', httpOptions);
+  getSecuenciasAcciones(idusuario: any): Observable<any> {
+    return this.http.get<any>(this.url + '/' + idusuario + '/secuencias/acciones', httpOptions);
   }
 
   crearSecuencia(data: any): Observable<any> {

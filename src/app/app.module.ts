@@ -30,6 +30,7 @@ import { CreadorModule } from './creador/creador.module';
 import { PictoDialogComponent } from './creador/pictoDialog/pictoDialog.component';
 import { PictoService } from './services/picto-service';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
+import { SecuenciaService } from './services/secuencia-service';
 
 @NgModule({
   imports: [
@@ -57,7 +58,7 @@ import { BibliotecaModule } from './biblioteca/biblioteca.module';
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent, ProyectoDialogComponent, PictoDialogComponent],
-  providers: [HolaMundoService, LoginService, UsuariosService, ProyectosService, PictoService],
+  providers: [HolaMundoService, LoginService, UsuariosService, ProyectosService, PictoService, SecuenciaService],
   entryComponents: [ProyectoDialogComponent, PictoDialogComponent],
   bootstrap: [AppComponent]
 })

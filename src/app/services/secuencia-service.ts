@@ -14,4 +14,9 @@ export class SecuenciaService {
   getSecuenciasUsuario(idusuario: any): Observable<any> {
     return this.http.get<any>(this.url + '/' + idusuario, httpOptions);
   }
+
+  crearSecuenciaUsuario(secuencia: any): Observable<any> {
+    console.log(secuencia);
+    return this.http.post<any>(this.url, secuencia, httpOptions);
+  }
 }

@@ -13,12 +13,15 @@ export class PictoDialogComponent implements OnInit {
   minutos: number;
   segundos: number;
 
+  mode: string;
+  nombreBoton: string;
+
   listaMin: number[] = [];
   listaSeg: number[] = [];
 
   nombre: string;
   src: string;
-  tiempo: number;
+  duracion: number;
 
   constructor(
     public dialogRef: MatDialogRef<PictoDialogComponent>,
@@ -27,13 +30,27 @@ export class PictoDialogComponent implements OnInit {
   ) {
     this.nombre = data.pictograma.nombre;
     this.src = data.pictograma.src;
-    this.tiempo = data.pictograma.tiempo;
+    this.duracion = data.pictograma.duracion;
+    this.mode = data.mode;
+
+    if (this.duracion) {
+      this.minutos = Number((this.duracion / 60).toFixed());
+      this.segundos = this.duracion % 60;
+      console.log(this.minutos);
+    }
   }
 
   ngOnInit() {
     for (var i = 0; i < 60; i++) {
       this.listaMin.push(i);
       this.listaSeg.push(i);
+    }
+    if (this.mode == 'edit') {
+      this.mode = 'Edita';
+      this.nombreBoton = 'Guardar';
+    } else if (this.mode == 'create') {
+      this.mode = 'Crea';
+      this.nombreBoton = 'Crear';
     }
   }
 
@@ -44,9 +61,10 @@ export class PictoDialogComponent implements OnInit {
   }
 
   save() {
-    this.tiempo = Number(this.minutos * 60) + Number(this.segundos);
+    this.duracion = Number(this.minutos * 60) + Number(this.segundos);
+    console.log(this.duracion);
     this.dialogRef.close({
-      picto: new Pictograma(this.nombre, this.src, this.tiempo)
+      picto: new Pictograma(this.nombre, this.src, this.duracion)
     });
     //show snackbar on success:
     this.openSnackBar('Pictograma configurado correctamente', 'Cerrar');
