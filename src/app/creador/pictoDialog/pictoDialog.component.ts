@@ -31,7 +31,7 @@ export class PictoDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    for (var i = 1; i < 60; i++) {
+    for (var i = 0; i < 60; i++) {
       this.listaMin.push(i);
       this.listaSeg.push(i);
     }

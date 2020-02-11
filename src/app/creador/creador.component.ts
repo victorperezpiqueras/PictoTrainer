@@ -13,6 +13,7 @@ export interface Pictograma {
   src: string;
   tiempo: number;
 }
+
 @Component({
   selector: 'app-creador',
   templateUrl: './creador.component.html',
@@ -35,6 +36,7 @@ export class CreadorComponent implements OnInit {
   tiempoActual: number = 0;
 
   busqueda: any;
+  found: number = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -74,6 +76,7 @@ export class CreadorComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     //dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.width = '300px';
     dialogConfig.data = {
       pictograma: picto
     };
@@ -122,7 +125,14 @@ export class CreadorComponent implements OnInit {
   buscar(palabra: string) {
     console.log('palabra:', palabra);
     this.pictoService.buscarPicto(palabra).subscribe(picto => {
-      this.busqueda = picto;
+      console.log('picto:', picto);
+      if (picto.src == 'x;font-size:120px;margin-top:80px;margin-bottom:80px; text-align:center"><font>ER') {
+        this.busqueda = false;
+        this.found = 1;
+      } else {
+        this.busqueda = picto;
+        this.found = 2;
+      }
     });
   }
 

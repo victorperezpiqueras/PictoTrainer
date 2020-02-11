@@ -1,0 +1,11 @@
+<div class="container mat-typography" fxFill fxLayout="row" fxLayoutAlign="center center">
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let sec of secuencias">
+      {{ sec.nombre }}
+      <div class="acciones" fxLayout="row">
+        <img mat-card-image *ngFor="let acc of sec.acciones" src="{{ acc.src }}" />
+        <mat-icon>arrow_forward</mat-icon>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
