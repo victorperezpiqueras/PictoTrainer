@@ -97,10 +97,11 @@ router.get('/secuencias', function(req, res, next) {
       res.status(500).json(err);
     });
 });
+
 router.get('/secuencias/:id', function(req, res, next) {
   console.log('getsecuenciassid');
   controllerSecuencias
-    .getSecuencias(req.params.id)
+    .getSecuenciasId(req.params.id)
     .then(function(secuencias) {
       res.json(secuencias);
     })
@@ -108,7 +109,7 @@ router.get('/secuencias/:id', function(req, res, next) {
       res.status(500).json(err);
     });
 });
-router.post('/postsecuencias/', function(req, res, next) {
+router.post('/postsecuencias', function(req, res, next) {
   console.log('secuencias');
   controllerSecuencias
     .postSecuencias(req.body)
@@ -119,6 +120,18 @@ router.post('/postsecuencias/', function(req, res, next) {
       res.status(500).json(err);
     });
 });
+router.post('/postSecuenciasacciones', function(req, res, next) {
+  console.log('postSecuenciasacciones');
+  controllerSecuencias
+    .postSecuenciasAcciones(req.body)
+    .then(function(secuencias) {
+      res.json(secuencias);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+
 router.delete('/secuencias/delete', function(req, res, next) {
   console.log('deletesecuencias');
   controllerSecuencias
@@ -133,7 +146,7 @@ router.delete('/secuencias/delete', function(req, res, next) {
 router.delete('/secuencias/delete/:id', function(req, res, next) {
   console.log('deletesecuenciasid');
   controllerSecuencias
-    .deleteSecuencias(req.params.id)
+    .deleteSecuenciasId(req.params.id)
     .then(function(secuencias) {
       res.json(secuencias);
     })
@@ -157,7 +170,7 @@ router.get('/acciones', function(req, res, next) {
 router.get('/acciones/:id', function(req, res, next) {
   console.log('getAccionesid');
   controllerAcciones
-    .getAcciones(req.params.id)
+    .getAccionesId(req.params.id)
     .then(function(acciones) {
       res.json(acciones);
     })
@@ -192,7 +205,7 @@ router.delete('/acciones/delete', function(req, res, next) {
 router.delete('/acciones/delete/:id', function(req, res, next) {
   console.log('deleteAccionesid');
   controllerAcciones
-    .deleteAcciones(req.params.id)
+    .deleteAccionesId(req.params.id)
     .then(function(acciones) {
       res.json(acciones);
     })
