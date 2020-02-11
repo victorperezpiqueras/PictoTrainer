@@ -109,10 +109,11 @@ router.get('/secuencias/:id', function(req, res, next) {
       res.status(500).json(err);
     });
 });
-router.post('/postsecuencias', function(req, res, next) {
-  console.log('secuencias');
+
+router.get('/secuencias/:id/acciones', function(req, res, next) {
+  console.log('getsecuenciasAccionesid');
   controllerSecuencias
-    .postSecuencias(req.body)
+    .getSecuenciasAccionesId(req.params.id)
     .then(function(secuencias) {
       res.json(secuencias);
     })
@@ -120,7 +121,8 @@ router.post('/postsecuencias', function(req, res, next) {
       res.status(500).json(err);
     });
 });
-router.post('/postSecuenciasacciones', function(req, res, next) {
+
+router.post('/secuencias', function(req, res, next) {
   console.log('postSecuenciasacciones');
   controllerSecuencias
     .postSecuenciasAcciones(req.body)
@@ -132,7 +134,7 @@ router.post('/postSecuenciasacciones', function(req, res, next) {
     });
 });
 
-router.delete('/secuencias/delete', function(req, res, next) {
+router.delete('/secuencias', function(req, res, next) {
   console.log('deletesecuencias');
   controllerSecuencias
     .deleteSecuencias()
@@ -143,7 +145,7 @@ router.delete('/secuencias/delete', function(req, res, next) {
       res.status(500).json(err);
     });
 });
-router.delete('/secuencias/delete/:id', function(req, res, next) {
+router.delete('/secuencias/:id', function(req, res, next) {
   console.log('deletesecuenciasid');
   controllerSecuencias
     .deleteSecuenciasId(req.params.id)
@@ -179,7 +181,7 @@ router.get('/acciones/:id', function(req, res, next) {
     });
 });
 
-router.post('/postacciones', function(req, res, next) {
+router.post('/acciones', function(req, res, next) {
   console.log('acciones');
   controllerAcciones
     .postAcciones(req.body)
@@ -191,7 +193,7 @@ router.post('/postacciones', function(req, res, next) {
     });
 });
 
-router.delete('/acciones/delete', function(req, res, next) {
+router.delete('/acciones', function(req, res, next) {
   console.log('deleteAcciones');
   controllerAcciones
     .deleteAcciones()
@@ -202,7 +204,7 @@ router.delete('/acciones/delete', function(req, res, next) {
       res.status(500).json(err);
     });
 });
-router.delete('/acciones/delete/:id', function(req, res, next) {
+router.delete('/acciones/:id', function(req, res, next) {
   console.log('deleteAccionesid');
   controllerAcciones
     .deleteAccionesId(req.params.id)
