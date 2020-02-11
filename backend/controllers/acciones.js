@@ -11,6 +11,7 @@ controllerAcciones.getAcciones = function() {
         /* connection.end(function(err) {
           console.log('Error DB');
         }); */
+        console.log(err);
         reject({ error: 'Error inesperado' });
       } else {
         console.log(result);
@@ -45,12 +46,13 @@ controllerAcciones.getAccionesId = function(id) {
 
 controllerAcciones.postAcciones = function(data) {
   return new Promise(function(resolve, reject) {
-    var sql = 'insert into acciones(idaccion,nombre, duracion, idusuario, idsecuencia,foto,src) values(?,?,?,?,?,?,?)';
+    var sql = 'insert into acciones(idaccion,nombre, duracion, idusuario, idsecuencia,src) values(?,?,?,?,?,?)';
     connection.query(
       sql,
-      [data.idaccion, data.nombre, data.duracion, data.idusuario, data.idsecuencia, data.foto, data.src],
+      [data.idaccion, data.nombre, data.duracion, data.idusuario, data.idsecuencia, data.src],
       function(err, result) {
         if (err) {
+          console.log(err);
           reject('Ya existe la accion o ha habido algun problema');
         } else {
           console.log('insertado accion');
