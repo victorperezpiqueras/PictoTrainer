@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { extract } from '@app/core';
 import { Shell } from '@app/shell/shell.service';
-import { BibliotecaComponent } from './Biblioteca.component';
+import { BibliotecaComponent } from './biblioteca.component';
 
 const routes: Routes = [
   Shell.childRoutes([{ path: 'biblioteca', component: BibliotecaComponent, data: { title: extract('Biblioteca') } }])

@@ -162,7 +162,7 @@ controllerSecuencias.deleteSecuencias = function() {
 
 controllerSecuencias.deleteSecuenciasId = function(id) {
   return new Promise(function(resolve, reject) {
-    var sql = 'delete from secuencias a where a.idsecuencia = ?';
+    var sql = 'delete from secuencias where idsecuencia = ?';
     connection.query(sql, [id], function(err, result) {
       if (err) {
         /* connection.end(function(err) {

@@ -26,9 +26,19 @@ export class BibliotecaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.actualizarSecuencias();
+  }
+
+  actualizarSecuencias() {
     this.usuariosService.getSecuenciasAcciones(this.idusuario).subscribe(secuencias => {
       this.secuencias = secuencias;
-      console.log(secuencias);
+      //console.log(secuencias);
+    });
+  }
+
+  borrarSecuencia(secuencia: any) {
+    this.secuenciaService.borrarSecuencia(secuencia.idsecuencia).subscribe(res => {
+      this.actualizarSecuencias();
     });
   }
 

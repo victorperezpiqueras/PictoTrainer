@@ -7,7 +7,7 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { FormsModule } from '@angular/forms';
-import { BibliotecaComponent } from './Biblioteca.component';
+import { BibliotecaComponent } from './biblioteca.component';
 import { BibliotecaRoutingModule } from './biblioteca-routing.module';
 
 @NgModule({

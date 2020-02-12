@@ -19,4 +19,8 @@ export class SecuenciaService {
     console.log(secuencia);
     return this.http.post<any>(this.url, secuencia, httpOptions);
   }
+
+  borrarSecuencia(idsecuencia: any): Observable<any> {
+    return this.http.delete<any>(this.url + '/' + idsecuencia, httpOptions);
+  }
 }

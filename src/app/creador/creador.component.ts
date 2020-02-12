@@ -21,6 +21,7 @@ export interface Pictograma {
   styleUrls: ['./creador.component.scss']
 })
 export class CreadorComponent implements OnInit {
+  isLoading = false;
   dialogRef: MatDialogRef<any>;
   pictos: Pictograma[] = [];
 
@@ -115,8 +116,10 @@ export class CreadorComponent implements OnInit {
   }
 
   buscar(palabra: string) {
+    this.isLoading = true;
     console.log('palabra:', palabra);
     this.pictoService.buscarPicto(palabra).subscribe(picto => {
+      this.isLoading = false;
       console.log('picto:', picto);
       if (picto.src == 'x;font-size:120px;margin-top:80px;margin-bottom:80px; text-align:center"><font>ER') {
         this.busqueda = false;

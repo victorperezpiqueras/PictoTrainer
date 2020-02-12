@@ -82,7 +82,7 @@
     <mat-tab-group
       backgroundColor="accent"
       style="height: calc(100% - 100px); min-height: calc(100% - 100px); min-width: 50%; width: 80%; margin: 0px;"
-    >
+      ><!-- class="mat-elevation-z1" -->
       <mat-tab label="Básicos">
         <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10px">
           <div fxLayout="row">
@@ -100,6 +100,7 @@
             </button>
             <!--  </form> -->
           </div>
+          <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
           <!--  <mat-grid-tile>
             <div fxLayout="column" fxFlex="70">
               <img mat-card-image src="../../assets/pictos/test.PNG">

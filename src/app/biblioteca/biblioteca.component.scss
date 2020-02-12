@@ -1,16 +1,55 @@
 @import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
 
 .container {
-  margin-top: 3%;
-  margin-left: 3%;
+  padding-top: 3%;
+  padding-left: 3%;
 }
 h1,
 .boton,
 .boton-flecha {
   font-family: "Luckiest Guy", cursive;
 }
-
-/* .card{
-  margin-bottom: 3%;
+.titulo {
+  font-size: xxx-large;
 }
- */
+.acciones {
+  padding-left: 20px;
+}
+.card-text {
+  font-size: small;
+}
+.card {
+  width: 800px;
+  height: 150px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.icon-card {
+  height: 100px;
+  width: 100px;
+}
+
+.icon-imagen {
+  max-width: 70%;
+  max-height: 70%;
+  margin: 10px;
+}
+.boton {
+  width: 100px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.boton-play {
+  height: 40%;
+  width: 80%;
+  margin-left: 50px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.mat-success {
+  background-color: rgb(0, 187, 0);
+  color: #fff;
+}

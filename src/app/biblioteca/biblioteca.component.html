@@ -1,19 +1,31 @@
 <div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="3%">
-  <mat-card *ngFor="let sec of secuencias" class="card">
-    {{ sec.nombre }}
-    <div class="acciones" *ngFor="let acc of sec.acciones" fxLayout="row">
-      {{ acc.nombre }}
-      <!-- <img mat-card-image class="card" src="{{ acc.src }}" />
-      <mat-icon>arrow_forward</mat-icon> -->
-    </div>
-  </mat-card>
-
-  <!--  <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let sec of secuencias">
-      {{ sec.nombre }}
-      <div class="acciones" *ngFor="let acc of sec.acciones" fxLayout="row">
-        {{acc.nombre}}
+  <h1 class="titulo">MIS TAREAS:</h1>
+  <mat-divider></mat-divider>
+  <div *ngFor="let sec of secuencias" fxLayout="row">
+    <mat-card class="card" fxLayout="row">
+      <div fxLayoutAlign="center center">
+        <h1>{{ sec.nombre | uppercase }}</h1>
       </div>
-    </mat-list-item>
-  </mat-list> -->
+      <div class="acciones" fxLayout="row" fxLayoutAlign="end center" *ngFor="let acc of sec.acciones" fxFlex>
+        <mat-card class="icon-card">
+          <img mat-card-image src="{{ acc.src }}" class="icon-imagen" />
+          <mat-card-subtitle class="card-text">{{ acc.nombre }}</mat-card-subtitle>
+          <img />
+        </mat-card>
+        <br />
+        <mat-icon>arrow_forward</mat-icon>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="end end" fxFlex="20">
+        <button mat-raised-button color="primary" class="boton">Editar</button>
+        <button mat-raised-button color="warn" class="boton" (click)="borrarSecuencia(sec)">Borrar</button>
+      </div>
+    </mat-card>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <button mat-fab [color]="'success'" class="boton-play">
+        <mat-icon class="icon">
+          play_arrow
+        </mat-icon>
+      </button>
+    </div>
+  </div>
 </div>
