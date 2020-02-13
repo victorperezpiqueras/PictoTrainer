@@ -15,14 +15,20 @@ h1,
 .acciones {
   padding-left: 20px;
 }
+.div-cards {
+  padding-bottom: 50px;
+  width: 100%;
+}
 .card-text {
   font-size: small;
 }
 .card {
+  background-color: #f58fd6;
   width: 800px;
   height: 150px;
   overflow-x: auto;
   overflow-y: hidden;
+  margin-bottom: 2%;
 }
 .icon-card {
   height: 100px;
@@ -42,7 +48,7 @@ h1,
 }
 
 .boton-play {
-  height: 40%;
+  height: 35%;
   width: 80%;
   margin-left: 50px;
   margin-bottom: 10px;
@@ -52,4 +58,12 @@ h1,
 .mat-success {
   background-color: rgb(0, 187, 0);
   color: #fff;
+}
+.boton-crear {
+  font-family: "Luckiest Guy", cursive;
+  font-size: xx-large;
+  margin-right: 2%;
+  margin-left: 2%;
+  width: 200px;
+  height: 70px;
 }

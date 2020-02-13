@@ -67,7 +67,7 @@ export class PictoDialogComponent implements OnInit {
       picto: new Pictograma(this.nombre, this.src, this.duracion)
     });
     //show snackbar on success:
-    this.openSnackBar('Pictograma configurado correctamente', 'Cerrar');
+    //this.openSnackBar('Pictograma configurado correctamente', 'Cerrar');
   }
 
   close() {

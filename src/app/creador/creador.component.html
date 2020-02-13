@@ -68,7 +68,7 @@
           mat-raised-button
           [color]="'success'"
           (click)="guardar()"
-          [disabled]="!nombreSecuencia"
+          [disabled]="!nombreSecuencia || !listaAcciones.length > 0"
           routerLink="/home"
           routerLinkActive="active"
         >

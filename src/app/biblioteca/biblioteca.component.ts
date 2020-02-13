@@ -41,6 +41,10 @@ export class BibliotecaComponent implements OnInit {
       this.actualizarSecuencias();
     });
   }
+  calcularFlecha(secuencia: any, accion: any) {
+    if (secuencia.acciones.indexOf(accion) < secuencia.acciones.length - 1) return true;
+    else return false;
+  }
 
   get idusuario(): number | null {
     const credentials = this.credentialsService.credentials;
