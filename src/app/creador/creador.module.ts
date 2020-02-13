@@ -9,6 +9,7 @@ import { MaterialModule } from '@app/material.module';
 import { CreadorRoutingModule } from './creador-routing.module';
 import { CreadorComponent } from './creador.component';
 import { FormsModule } from '@angular/forms';
+import { ImageUploadModule } from 'angular2-image-upload';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     FlexLayoutModule,
     MaterialModule,
     CreadorRoutingModule,
-    FormsModule
+    FormsModule,
+    ImageUploadModule.forRoot()
   ],
   declarations: [CreadorComponent]
 })

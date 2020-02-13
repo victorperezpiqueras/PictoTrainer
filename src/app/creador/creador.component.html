@@ -203,7 +203,29 @@
           <img mat-card-image src="../../assets/pictos/test.PNG">
         </mat-card> -->
       </mat-tab>
-      <mat-tab label="Propios"> </mat-tab>
+      <mat-tab label="Propios">
+        <image-upload (uploadFinished)="onUploadFinish($event)"> </image-upload>
+        <button class="boton-guardar-imagen" mat-raised-button [color]="'success'" (click)="sendImage(selectedImage)">
+          Guardar imagen
+        </button>
+        <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10px">
+          <div fxLayout="row">
+            <mat-form-field class="input-buscar">
+              <mat-label class="input">Buscar</mat-label>
+              <input matInput [(ngModel)]="palabraPropiaBuscar" />
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="buscarPropia(palabraPropiaBuscar)" class="boton-buscar">
+              <mat-icon>search</mat-icon>
+            </button>
+          </div>
+          <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
+          <mat-card class="card" (click)="seleccionarPicto(busqueda)" *ngIf="found == 2">
+            <img mat-card-image src="{{ busqueda.src }}" />
+            <mat-card-subtitle>{{ busqueda.nombre }}</mat-card-subtitle>
+          </mat-card>
+          <h4 *ngIf="found == 1">No encontrado</h4>
+        </mat-grid-list>
+      </mat-tab>
     </mat-tab-group>
   </div>
 </div>

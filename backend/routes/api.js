@@ -4,6 +4,7 @@ var request = require('request');
 var controllerUsuarios = require('../controllers/usuarios');
 var controllerSecuencias = require('../controllers/secuencias');
 var controllerAcciones = require('../controllers/acciones');
+var controllerImagenes = require('../controllers/imagenes');
 
 /* CONTROLLER USUARIOS */
 
@@ -241,6 +242,65 @@ router.get('/picto/:nombre', function(req, res) {
     console.log(cadena1);
     res.send({ nombre: req.params.nombre, src: cadena1 });
   });
+});
+
+//Controller imagenes
+router.get('/imagenes', function(req, res, next) {
+  console.log('getImagenes');
+  controllerImagenes
+    .getImagenes()
+    .then(function(imagenes) {
+      res.json(imagenes);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+router.get('/imagenes/:nombre', function(req, res, next) {
+  console.log('getImagenesid');
+  controllerImagenes
+    .getImagenesId(req.params.nombre)
+    .then(function(imagenes) {
+      res.json(imagenes);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+
+router.post('/imagenes', function(req, res, next) {
+  console.log('postImagenes');
+  controllerImagenes
+    .postImagenes(req.body)
+    .then(function(imagenes) {
+      res.json(imagenes);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+
+router.delete('/imagenes', function(req, res, next) {
+  console.log('deleteImagenes');
+  controllerImagenes
+    .deleteImagenes()
+    .then(function(imagenes) {
+      res.json(imagenes);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+router.delete('/imagenes/:nombre', function(req, res, next) {
+  console.log('deleteImagenesid');
+  controllerImagenes
+    .deleteImagenesId(req.params.nombre)
+    .then(function(imagenes) {
+      res.json(imagenes);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;

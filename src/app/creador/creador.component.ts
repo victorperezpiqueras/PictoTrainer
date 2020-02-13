@@ -8,6 +8,7 @@ import { CredentialsService } from '@app/core';
 import { UsuariosService } from '@app/services/usuarios-service';
 import { PictoService } from '@app/services/picto-service';
 import { SecuenciaService } from '@app/services/secuencia-service';
+import { ImagenService } from '@app/services/imagenes-service';
 
 export interface Pictograma {
   nombre: string;
@@ -26,6 +27,7 @@ export class CreadorComponent implements OnInit {
   pictos: Pictograma[] = [];
 
   palabraBuscar: string = '';
+  palabraPropiaBuscar: string = '';
   listaAcciones: Pictograma[] = [];
   selected: Pictograma;
   index: number = 0;
@@ -40,12 +42,15 @@ export class CreadorComponent implements OnInit {
   busqueda: any;
   found: number = 0;
 
+  private image: ImageSelected = null;
+
   constructor(
     public dialog: MatDialog,
     public credentialsService: CredentialsService,
     public usuariosService: UsuariosService,
     public secuenciasService: SecuenciaService,
-    public pictoService: PictoService
+    public pictoService: PictoService,
+    public imagenService: ImagenService
   ) {}
 
   ngOnInit() {
@@ -130,6 +135,22 @@ export class CreadorComponent implements OnInit {
       }
     });
   }
+
+  buscarPropia(palabra: string) {
+    this.isLoading = true;
+    console.log('palabra:', palabra);
+    this.imagenService.buscarImagen(palabra).subscribe(imagen => {
+      this.isLoading = false;
+      console.log('imagen:', imagen);
+      if (imagen.src == 'x;font-size:120px;margin-top:80px;margin-bottom:80px; text-align:center"><font>ER') {
+        this.busqueda = false;
+        this.found = 1;
+      } else {
+        this.busqueda = imagen;
+        this.found = 2;
+      }
+    });
+  }
   borrarAccion(selected: Pictograma) {
     const index = this.listaAcciones.indexOf(selected, 0);
     if (index > -1) {
@@ -171,4 +192,24 @@ export class CreadorComponent implements OnInit {
     const credentials = this.credentialsService.credentials;
     return credentials ? credentials.id : null;
   }
+
+  onUploadFinish(event: any) {
+    console.log(event);
+    this.image = new ImageSelected();
+    this.image.src = event.src;
+    this.image.nombre = event.file.name;
+    this.image.idusuario = this.idusuario;
+  }
+
+  sendImage() {
+    console.log(this.image);
+    this.imagenService.subirImagen(this.image).subscribe(result => {
+      console.log('subscribe', result);
+    });
+  }
+}
+class ImageSelected {
+  public nombre: String;
+  public src: String;
+  public idusuario: number;
 }

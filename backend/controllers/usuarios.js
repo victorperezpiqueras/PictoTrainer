@@ -23,6 +23,21 @@ ControllerUsuarios.getUsuarios = function() {
   });
 };
 
+ControllerUsuarios.postUpload = function(data) {
+  return new Promise(function(resolve, reject) {
+    var sql = 'insert into imagenes(nombre,src,idusuario) values(?,?,?)';
+    connection.query(sql, [data.nombre, data.src, data.idusuario], function(err, result) {
+      if (err) {
+        console.log(err);
+        reject('Ya existe la imagen o ha habido algun problema');
+      } else {
+        console.log('insertado imagen');
+        resolve(result);
+      }
+    });
+  });
+};
+
 /*ACCIONES*/
 
 //get acciones

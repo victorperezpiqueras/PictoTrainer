@@ -31,6 +31,7 @@ import { PictoDialogComponent } from './creador/pictoDialog/pictoDialog.componen
 import { PictoService } from './services/picto-service';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
 import { SecuenciaService } from './services/secuencia-service';
+import { ImagenService } from './services/imagenes-service';
 
 @NgModule({
   imports: [
@@ -58,7 +59,15 @@ import { SecuenciaService } from './services/secuencia-service';
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent, ProyectoDialogComponent, PictoDialogComponent],
-  providers: [HolaMundoService, LoginService, UsuariosService, ProyectosService, PictoService, SecuenciaService],
+  providers: [
+    HolaMundoService,
+    LoginService,
+    UsuariosService,
+    ProyectosService,
+    PictoService,
+    SecuenciaService,
+    ImagenService
+  ],
   entryComponents: [ProyectoDialogComponent, PictoDialogComponent],
   bootstrap: [AppComponent]
 })
