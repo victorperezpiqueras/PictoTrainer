@@ -147,6 +147,18 @@ router.post('/secuencias', function(req, res, next) {
     });
 });
 
+router.put('/secuencias', function(req, res, next) {
+  console.log('putSecuenciasacciones');
+  controllerSecuencias
+    .putSecuenciasAcciones(req.body)
+    .then(function(secuencias) {
+      res.json(secuencias);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+
 router.delete('/secuencias', function(req, res, next) {
   console.log('deletesecuencias');
   controllerSecuencias

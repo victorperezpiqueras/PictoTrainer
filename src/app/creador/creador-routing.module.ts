@@ -6,7 +6,10 @@ import { Shell } from '@app/shell/shell.service';
 import { CreadorComponent } from './creador.component';
 
 const routes: Routes = [
-  Shell.childRoutes([{ path: 'creador', component: CreadorComponent, data: { title: extract('Creador') } }])
+  Shell.childRoutes([
+    { path: 'creador', component: CreadorComponent, data: { title: extract('Creador') } },
+    { path: 'creador/:id', component: CreadorComponent, data: { title: extract('Creador') } }
+  ])
 ];
 
 @NgModule({

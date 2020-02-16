@@ -138,6 +138,67 @@ controllerSecuencias.postSecuenciasAcciones = function(data) {
   });
 };
 
+controllerSecuencias.putSecuenciasAcciones = function(data) {
+  return new Promise(function(resolve, reject) {
+    var sql = 'delete from secuencias where idsecuencia=?';
+    console.log(data.secuencia);
+    connection.query(sql, [data.secuencia.idsecuencia], function(err, result) {
+      if (err) {
+        reject('No existe la secuencia o hay algun error');
+      } else {
+        var sql = 'select * from secuencias s where s.nombre = ? AND s.idusuario=?';
+        connection.query(sql, [data.secuencia.nombre, data.idusuario], function(err, result) {
+          if (err) {
+            reject('Ya existe la accion o ha habido algun problema');
+          } else {
+            if (result.length > 0) {
+              reject('El nombre de la secuencia ya existe');
+            } else {
+              var sql = 'insert into secuencias(nombre, idusuario) values(?,?)';
+              connection.query(sql, [data.secuencia.nombre, data.idusuario], function(err, result) {
+                if (err) {
+                  reject('Ya existe una secuencia asi');
+                } else {
+                  console.log('insertado secuencia');
+                  var sql = 'select * from secuencias s where s.nombre = ? AND s.idusuario=?';
+                  connection.query(sql, [data.secuencia.nombre, data.idusuario], function(err, result) {
+                    if (err) {
+                      reject('Error al buscar la secuencia');
+                    } else {
+                      var idSecuencia = result[0].idsecuencia;
+                      var idUsuario = result[0].idusuario;
+
+                      var sql = 'insert into acciones(nombre,duracion,idusuario,idsecuencia,src) values';
+                      var sqlData = [];
+                      for (var x = 0; x < data.secuencia.acciones.length; x++) {
+                        if (x > 0) sql += ',';
+                        sql += '(?, ?, ?, ?, ?)';
+                        sqlData.push(data.secuencia.acciones[x].nombre);
+                        sqlData.push(data.secuencia.acciones[x].duracion);
+                        sqlData.push(idUsuario);
+                        sqlData.push(idSecuencia);
+                        sqlData.push(data.secuencia.acciones[x].src);
+                      }
+                      connection.query(sql, sqlData, function(err, result) {
+                        if (err) {
+                          reject('Ya existe la accion o ha habido algun problema');
+                        } else {
+                          console.log('insertado accion');
+                          resolve(result);
+                        }
+                      });
+                    }
+                  });
+                }
+              });
+            }
+          }
+        });
+      }
+    });
+  });
+};
+
 //Fin super post
 
 controllerSecuencias.deleteSecuencias = function() {

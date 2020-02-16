@@ -9,6 +9,8 @@ import { UsuariosService } from '@app/services/usuarios-service';
 import { PictoService } from '@app/services/picto-service';
 import { SecuenciaService } from '@app/services/secuencia-service';
 import { ImagenService } from '@app/services/imagenes-service';
+import { ActivatedRoute } from '@angular/router';
+import { Secuencia } from '@app/models/secuencias';
 
 export interface Pictograma {
   nombre: string;
@@ -22,6 +24,9 @@ export interface Pictograma {
   styleUrls: ['./creador.component.scss']
 })
 export class CreadorComponent implements OnInit {
+  editMode: boolean;
+  idSec: number;
+
   isLoading = false;
   dialogRef: MatDialogRef<any>;
   pictos: Pictograma[] = [];
@@ -50,14 +55,27 @@ export class CreadorComponent implements OnInit {
     public usuariosService: UsuariosService,
     public secuenciasService: SecuenciaService,
     public pictoService: PictoService,
-    public imagenService: ImagenService
+    public imagenService: ImagenService,
+    private activeRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.editMode = false;
     var picto: Pictograma = { nombre: 'nombre', src: 'test.PNG', duracion: 100 };
     for (var i = 0; i < 10; i++) {
       this.pictos.push(picto);
       //this.listaAcciones.push(picto);
+    }
+    console.log(this.activeRoute.snapshot.params);
+    if (this.activeRoute.snapshot.params['id']) {
+      this.idSec = this.activeRoute.snapshot.params['id'];
+      this.secuenciasService.getSecuenciaAccionesId(this.activeRoute.snapshot.params['id']).subscribe(sec => {
+        console.log(sec);
+        this.listaAcciones = sec.acciones;
+        this.selected = this.listaAcciones[0];
+        this.nombreSecuencia = sec.nombre;
+      });
+      this.editMode = true;
     }
   }
 
@@ -112,12 +130,21 @@ export class CreadorComponent implements OnInit {
     var secuencia = {
       idusuario: this.idusuario,
       nombre: this.nombreSecuencia,
-      acciones: this.listaAcciones
+      acciones: this.listaAcciones,
+      idsecuencia: this.idSec
     };
     console.log(secuencia);
-    this.secuenciasService.crearSecuenciaUsuario(secuencia).subscribe(result => {
-      console.log('subscribe', result);
-    });
+    if (!this.editMode) {
+      this.secuenciasService.crearSecuenciaUsuario(secuencia).subscribe(result => {
+        console.log('create secuencia', result);
+      });
+    } else {
+      this.secuenciasService
+        .actualizarSecuenciaUsuario({ secuencia: secuencia, idusuario: this.idusuario })
+        .subscribe(result => {
+          console.log('edit secuencia', result);
+        });
+    }
   }
 
   buscar(palabra: string) {

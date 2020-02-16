@@ -24,6 +24,11 @@ export class SecuenciaService {
     return this.http.post<any>(this.url, secuencia, httpOptions);
   }
 
+  actualizarSecuenciaUsuario(data: any): Observable<any> {
+    console.log(data);
+    return this.http.put<any>(this.url, data, httpOptions);
+  }
+
   borrarSecuencia(idsecuencia: any): Observable<any> {
     return this.http.delete<any>(this.url + '/' + idsecuencia, httpOptions);
   }
