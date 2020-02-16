@@ -5,7 +5,7 @@
       <mat-icon>add_circle</mat-icon>&nbsp;CREAR
     </button>
   </mat-card>
-
+  <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
   <div class="div-cards" style="overflow-y: auto;">
     <div *ngFor="let sec of secuencias" fxLayout="row">
       <mat-card class="card" fxLayout="row" fxLayoutGap="10px">

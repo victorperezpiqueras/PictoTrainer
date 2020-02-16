@@ -79,11 +79,12 @@
   </div>
 
   <div fxLayout="column" fxLayoutAlign="start end" fxFlex="50" fxFill>
+    <h1>Agrega Actividades</h1>
     <mat-tab-group
       backgroundColor="accent"
       style="height: calc(100% - 100px); min-height: calc(100% - 100px); min-width: 50%; width: 80%; margin: 0px;"
       ><!-- class="mat-elevation-z1" -->
-      <mat-tab label="Básicos">
+      <mat-tab label="Pictogramas">
         <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10px">
           <div fxLayout="row">
             <!-- <form class="example-form"> -->
@@ -203,7 +204,7 @@
           <img mat-card-image src="../../assets/pictos/test.PNG">
         </mat-card> -->
       </mat-tab>
-      <mat-tab label="Propios">
+      <mat-tab label="Mis imágenes">
         <image-upload (uploadFinished)="onUploadFinish($event)"> </image-upload>
         <button class="boton-guardar-imagen" mat-raised-button [color]="'success'" (click)="sendImage()">
           Guardar imagen

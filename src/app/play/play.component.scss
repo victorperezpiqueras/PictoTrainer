@@ -2,7 +2,7 @@
 
 .container {
   background-color: rgba(0, 0, 0, 0.705);
-  padding: 2%;
+  padding: 4%;
 }
 
 h1 {
@@ -34,7 +34,7 @@ h4 {
   padding-top: 2%;
 }
 
-.mat-success {
+.mat-done {
   background-color: rgb(0, 187, 0);
   color: #fff;
 }
@@ -44,7 +44,18 @@ h4 {
   color: #fff;
 }
 
+.mat-success {
+  background-color: rgb(33, 82, 241);
+  color: #fff;
+}
+
 .play-button {
+  height: 100px;
+  width: 100px;
+}
+
+.done-button {
+  margin-right: 20%;
   height: 100px;
   width: 100px;
 }

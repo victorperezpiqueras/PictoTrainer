@@ -18,7 +18,7 @@ import { ImageExpandComponent } from '@app/play/image-expand/imageExpand.compone
 })
 export class BibliotecaComponent implements OnInit {
   secuencias: Secuencia[] = [];
-
+  isLoading: boolean = false;
   dialogRef: MatDialogRef<any>;
 
   constructor(
@@ -34,8 +34,10 @@ export class BibliotecaComponent implements OnInit {
   }
 
   actualizarSecuencias() {
+    this.isLoading = true;
     this.usuariosService.getSecuenciasAcciones(this.idusuario).subscribe(secuencias => {
       this.secuencias = secuencias;
+      this.isLoading = false;
       //console.log(secuencias);
     });
   }

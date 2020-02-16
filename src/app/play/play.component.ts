@@ -115,6 +115,8 @@ export class PlayComponent implements OnInit {
     this.loadBar.forEach(loadBar => loadBar.reset());
   }
 
+  done() {}
+
   ampliarPicto(accion: Pictograma) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
