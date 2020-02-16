@@ -34,7 +34,7 @@ export class LoadBarComponent implements OnInit {
   nombreAccion: string;
 
   bar: any;
-  barColor: string;
+  barColor: any;
 
   constructor() {}
 
@@ -49,6 +49,7 @@ export class LoadBarComponent implements OnInit {
     //console.log("longitud",this.longitud)
 
     this.barColor = localStorage.getItem('bar-color');
+    this.barColor = JSON.parse(this.barColor);
     this.bar = new ProgressBar.Line(document.getElementById('container'), {
       strokeWidth: this.width,
       duration: this.duracion,
@@ -56,8 +57,8 @@ export class LoadBarComponent implements OnInit {
       trailColor: '#eee',
       trailWidth: this.width,
       svgStyle: { width: '100%', height: '100%' },
-      from: { color: this.barColor },
-      to: { color: '#ED6A5A' },
+      from: { color: this.barColor.colorInicial },
+      to: { color: this.barColor.colorFinal },
       step: (state: any, bar: any) => {
         bar.path.setAttribute('stroke', state.color);
       }

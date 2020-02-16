@@ -1,8 +1,25 @@
-<div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="3rem">
-  <br />
-  <div fxLayout="row" fxLayoutAlign="center" fxLayoutAlign="center center" fxLayoutGap="10rem">
-    <h1>Color del temporizador</h1>
-    <input [(colorPicker)]="color" [style.background]="color" />
+<div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10%">
+  <h1>Temporizador</h1>
+  <div>
+    <h1 class="subt">Color inicial</h1>
+    <!-- [style.color]="colorInicial" -->
+    <input [(colorPicker)]="colorInicial" [style.background-color]="colorInicial" />
   </div>
-  <h1>{{ color }}</h1>
+
+  <div>
+    <h1 class="subt">Color final</h1>
+    <!-- [style.color]="colorFinal" -->
+    <input [(colorPicker)]="colorFinal" [style.background-color]="colorFinal" />
+  </div>
+
+  <button
+    class="mat-display-2 boton-guardar"
+    mat-raised-button
+    [color]="'success'"
+    (click)="guardar()"
+    routerLink="/home"
+    routerLinkActive="active"
+  >
+    GUARDAR
+  </button>
 </div>

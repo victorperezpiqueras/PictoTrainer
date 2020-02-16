@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { Logger, I18nService, AuthenticationService, untilDestroyed, CredentialsService } from '@app/core';
 
 import { ColorPickerModule } from 'ngx-color-picker';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-opciones',
@@ -13,19 +14,32 @@ import { ColorPickerModule } from 'ngx-color-picker';
   styleUrls: ['./opciones.component.scss']
 })
 export class OpcionesComponent implements OnInit, OnDestroy {
-  color: string = 'empty';
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private i18nService: I18nService,
-    private authenticationService: AuthenticationService,
-    private credentialsService: CredentialsService
-  ) {}
+  colorInicial: string = 'empty';
+  colorFinal: string = 'empty';
+  constructor(private _snackBar: MatSnackBar) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    var color: any;
+    color = localStorage.getItem('bar-color');
+    color = JSON.parse(color);
+    this.colorInicial = color.colorInicial;
+    this.colorFinal = color.colorFinal;
+  }
 
   ngOnDestroy() {
-    localStorage.setItem('bar-color', this.color);
+    /* var ob = { colorInicial: this.colorInicial, colorFinal: this.colorFinal }
+    localStorage.setItem('bar-color',JSON.stringify(ob)); */
+  }
+
+  guardar() {
+    var ob = { colorInicial: this.colorInicial, colorFinal: this.colorFinal };
+    localStorage.setItem('bar-color', JSON.stringify(ob));
+    this.openSnackBar('Configuración guardada correctamente', 'Cerrar');
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000 //miliseconds
+    });
   }
 }

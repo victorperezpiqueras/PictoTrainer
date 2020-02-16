@@ -1,8 +1,30 @@
 @import "src/theme/theme-variables";
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Titillium+Web&display=swap");
-:host {
-  display: flex;
-  flex: 1;
-  background-color: #f5f5f5;
+
+.container {
+  text-align: center;
+  padding: 5%;
+  background-color: rgba(0, 0, 0, 0.705);
+}
+h1 {
+  font-family: "Luckiest Guy", cursive;
+  color: #fff;
+  font-size: xxx-large;
+}
+.subt {
+  font-family: "Luckiest Guy", cursive;
+  color: #fff;
+  font-size: xx-large;
+}
+.mat-success {
+  background-color: rgb(0, 187, 0);
+  color: #fff;
+}
+
+.boton-guardar {
+  font-family: "Luckiest Guy", cursive;
+  margin: 20px;
+  height: 100px;
+  width: 240px;
 }
