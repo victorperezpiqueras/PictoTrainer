@@ -1,0 +1,50 @@
+<div class="container mat-typography" fxFill fxLayout="row" fxLayoutAlign="center center">
+  <div *ngIf="secuencia" fxLayout="column" fxFill fxLayoutAlign="start center" fxLayoutGap="2%">
+    <h1>{{ secuencia.nombre }}</h1>
+    <div fxLayout="row" fxFlex="40" fxFill fxLayoutAlign="center center">
+      <!--  <div class="acciones" fxLayout="row" fxLayoutAlign="center start" *ngFor="let acc of secuencia.acciones" fxFlex> -->
+      <!--  <mat-card class="icon-card"> -->
+      <img mat-card-image class="img-small" src="{{ imagenAnterior }}" />
+      <img
+        mat-card-image
+        class="img"
+        src="{{ imagenActual.src }}"
+        (click)="ampliarPicto(secuencia.acciones[this.index])"
+      />
+      <img mat-card-image class="img-small" src="{{ imagenSiguiente }}" />
+      <!--     <mat-card-subtitle class="card-text">{{ acc.nombre }}</mat-card-subtitle>
+
+        </mat-card>    -->
+      <!-- </div> -->
+    </div>
+
+    <div fxLayout="row" fxFlex="5">
+      <h4>{{ imagenActual.nombre }}</h4>
+    </div>
+
+    <div fxLayout="row" fxFlex="40" fxFill class="container-load">
+      <div *ngFor="let acc of secuencia.acciones">
+        <app-loadBar
+          [width]="width"
+          [accion]="acc"
+          (accionFinalizada)="accionFinalizada($event)"
+          [duracionTotal]="duracionTotal"
+        ></app-loadBar>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxFlex="15" fxFill fxLayoutAlign="center center">
+      <button *ngIf="!isPlayed" class="play-button" mat-raised-button (click)="play()" [color]="'success'">
+        <mat-icon class="icon">
+          play_arrow
+        </mat-icon>
+      </button>
+
+      <button *ngIf="isPlayed" class="play-button" mat-raised-button (click)="stop()" color="warn">
+        <mat-icon class="icon">
+          pause
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

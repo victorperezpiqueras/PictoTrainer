@@ -8,6 +8,8 @@ import { UsuariosService } from '@app/services/usuarios-service';
 import { PictoService } from '@app/services/picto-service';
 import { SecuenciaService } from '@app/services/secuencia-service';
 import { Secuencia } from '@app/models/secuencias';
+import { Pictograma } from '@app/models/pictogramas';
+import { ImageExpandComponent } from '@app/play/image-expand/imageExpand.component';
 
 @Component({
   selector: 'app-biblioteca',
@@ -16,6 +18,8 @@ import { Secuencia } from '@app/models/secuencias';
 })
 export class BibliotecaComponent implements OnInit {
   secuencias: Secuencia[] = [];
+
+  dialogRef: MatDialogRef<any>;
 
   constructor(
     public dialog: MatDialog,
@@ -49,5 +53,20 @@ export class BibliotecaComponent implements OnInit {
   get idusuario(): number | null {
     const credentials = this.credentialsService.credentials;
     return credentials ? credentials.id : null;
+  }
+
+  ampliarPicto(accion: Pictograma) {
+    const dialogConfig = new MatDialogConfig();
+    //dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    // dialogConfig.position = {right:"200px", top: "100px"};
+    dialogConfig.width = '70%';
+    dialogConfig.data = {
+      src: accion.src,
+      nombre: accion.nombre
+    };
+    this.dialogRef = this.dialog.open(ImageExpandComponent, dialogConfig);
+
+    this.dialogRef.afterClosed().subscribe(data => {});
   }
 }

@@ -1,9 +1,9 @@
 <mat-toolbar class="mat-elevation-z6 navbar" [color]="'black'"
   ><!-- color="primary"  -->
   <div fxLayoutAlign="start center">
-    <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
+    <!-- <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
-    </button>
+    </button> -->
     <!-- <span class="title">{{ title }}</span> <div fxHide.gt-sm fxLayoutAlign="start center"> -->
   </div>
   <div>
@@ -39,10 +39,10 @@
   <mat-menu #userMenu="matMenu">
     <mat-list>
       <mat-list-item>
-        <span translate>Logged in as</span>&nbsp;<b>{{ username }}</b>
+        <span translate>Bienvenid@</span>&nbsp;<b>{{ username }}</b>
       </mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
-    <button mat-menu-item (click)="logout()" translate>Logout</button>
+    <button mat-menu-item (click)="logout()" translate>Cerrar sesión</button>
   </mat-menu>
 </mat-toolbar>

@@ -32,6 +32,8 @@ import { PictoService } from './services/picto-service';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
 import { SecuenciaService } from './services/secuencia-service';
 import { ImagenService } from './services/imagenes-service';
+import { PlayModule } from './play/play.module';
+import { ImageExpandComponent } from './play/image-expand/imageExpand.component';
 
 @NgModule({
   imports: [
@@ -55,10 +57,11 @@ import { ImagenService } from './services/imagenes-service';
     OpcionesModule,
     CreadorModule,
     BibliotecaModule,
+    PlayModule,
 
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent, ProyectoDialogComponent, PictoDialogComponent],
+  declarations: [AppComponent, ProyectoDialogComponent, PictoDialogComponent, ImageExpandComponent],
   providers: [
     HolaMundoService,
     LoginService,
@@ -68,7 +71,7 @@ import { ImagenService } from './services/imagenes-service';
     SecuenciaService,
     ImagenService
   ],
-  entryComponents: [ProyectoDialogComponent, PictoDialogComponent],
+  entryComponents: [ProyectoDialogComponent, PictoDialogComponent, ImageExpandComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

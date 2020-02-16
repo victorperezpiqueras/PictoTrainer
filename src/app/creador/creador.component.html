@@ -68,7 +68,7 @@
           mat-raised-button
           [color]="'success'"
           (click)="guardar()"
-          [disabled]="!nombreSecuencia || !listaAcciones.length > 0"
+          [disabled]="!nombreSecuencia || !(listaAcciones.length > 0)"
           routerLink="/home"
           routerLinkActive="active"
         >
@@ -205,7 +205,7 @@
       </mat-tab>
       <mat-tab label="Propios">
         <image-upload (uploadFinished)="onUploadFinish($event)"> </image-upload>
-        <button class="boton-guardar-imagen" mat-raised-button [color]="'success'" (click)="sendImage(selectedImage)">
+        <button class="boton-guardar-imagen" mat-raised-button [color]="'success'" (click)="sendImage()">
           Guardar imagen
         </button>
         <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10px">

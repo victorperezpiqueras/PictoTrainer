@@ -15,6 +15,10 @@ export class SecuenciaService {
     return this.http.get<any>(this.url + '/' + idusuario, httpOptions);
   }
 
+  getSecuenciaAccionesId(idsecuencia: any): Observable<any> {
+    return this.http.get<any>(this.url + '/' + idsecuencia + '/acciones', httpOptions);
+  }
+
   crearSecuenciaUsuario(secuencia: any): Observable<any> {
     console.log(secuencia);
     return this.http.post<any>(this.url, secuencia, httpOptions);
