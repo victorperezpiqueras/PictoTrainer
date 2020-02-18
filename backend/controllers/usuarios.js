@@ -133,8 +133,31 @@ ControllerUsuarios.getUsuariosSecuenciasAcciones = function(id) {
 
 ControllerUsuarios.getUsuariosRegistros = function(id) {
   return new Promise(function(resolve, reject) {
-    var sql = 'select r.*, u.* from registros r, usuarios u where u.idusuario = ? and u.idusuario = r.idusuario;';
+    var sql = 'select r.* from registros r, usuarios u where u.idusuario = ? and u.idusuario = r.idusuario;';
     connection.query(sql, [id], function(err, result) {
+      if (err) {
+        /* connection.end(function(err) {
+          console.log('Error DB');
+        }); */
+        reject({ error: 'Error inesperado' });
+      } else {
+        console.log(result);
+        /* connection.end(function(err) {
+          console.log('Close the database connection.');
+        }); */
+        resolve(result);
+      }
+    });
+  });
+};
+
+ControllerUsuarios.postUsuariosRegistro = function(data) {
+  return new Promise(function(resolve, reject) {
+    var sql = 'insert into registros(fecha,duracionTotal,idusuario,idsecuencia) values(?,?,?,?);';
+    connection.query(sql, [new Date(data.fecha), data.duracionTotal, data.idusuario, data.idsecuencia], function(
+      err,
+      result
+    ) {
       if (err) {
         /* connection.end(function(err) {
           console.log('Error DB');

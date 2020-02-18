@@ -14,16 +14,18 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./opciones.component.scss']
 })
 export class OpcionesComponent implements OnInit, OnDestroy {
-  colorInicial: string = 'empty';
-  colorFinal: string = 'empty';
+  colorInicial: string = '#00ff00';
+  colorFinal: string = '#ff0000';
   constructor(private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
     var color: any;
     color = localStorage.getItem('bar-color');
-    color = JSON.parse(color);
-    this.colorInicial = color.colorInicial;
-    this.colorFinal = color.colorFinal;
+    if (color) {
+      color = JSON.parse(color);
+      this.colorInicial = color.colorInicial;
+      this.colorFinal = color.colorFinal;
+    }
   }
 
   ngOnDestroy() {

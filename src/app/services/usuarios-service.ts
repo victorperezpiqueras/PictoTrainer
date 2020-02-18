@@ -22,4 +22,13 @@ export class UsuariosService {
       httpOptions
     );
   }
+
+  crearRegistro(registro: any): Observable<any> {
+    console.log(registro);
+    return this.http.post<any>(this.url + '/' + registro.idusuario + '/registros', registro, httpOptions);
+  }
+
+  getRegistros(idusuario: any): Observable<any> {
+    return this.http.get<any>(this.url + '/' + idusuario + '/registros', httpOptions);
+  }
 }

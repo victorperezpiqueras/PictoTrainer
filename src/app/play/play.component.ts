@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Secuencia } from '@app/models/secuencias';
 import { LoadBarComponent } from './loadBar/loadBar.component';
 import { ImageExpandComponent } from './image-expand/imageExpand.component';
+import { Registro } from '@app/models/registros';
 
 export interface Pictograma {
   nombre: string;
@@ -30,6 +31,7 @@ export class PlayComponent implements OnInit {
   number: number;
   width: number;
   duracionTotal: number = 0;
+  tiempoActual: number = 0;
 
   dialogRef: MatDialogRef<any>;
 
@@ -43,11 +45,18 @@ export class PlayComponent implements OnInit {
   index: number;
 
   isPlayed: boolean = false;
+  isPaused: boolean = false;
+
+  startTime: any;
+  endTime: any;
+  elapsedTime: any;
 
   constructor(
     public dialog: MatDialog,
+    public credentialsService: CredentialsService,
     public secuenciasService: SecuenciaService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    public usuariosService: UsuariosService
   ) {}
 
   ngOnInit() {
@@ -96,9 +105,18 @@ export class PlayComponent implements OnInit {
 
   accionFinalizada(event: any) {
     console.log(this.secuencia.acciones[this.index].nombre, ' finalizada');
+    console.log('saltada', event.accionSaltada);
     if (this.index < this.secuencia.acciones.length - 1) {
       this.index++;
-      this.loadBar.forEach(loadBar => loadBar.comprobarSiguiente(this.secuencia.acciones[this.index].nombre));
+
+      // if(!event.accionSaltada){
+      this.loadBar.toArray()[this.index].comprobarSiguiente();
+      //  }
+      /*       else{
+             // //this.loadBar.forEach(loadBar => loadBar.comprobarSiguiente(this.secuencia.acciones[this.index].nombre));
+              this.loadBar.toArray()[this.index].comprobarSiguienteSaltada();
+            } */
+
       this.actualizarImagenes();
     } else if (this.index >= this.secuencia.acciones.length - 1) {
       this.stop();
@@ -107,15 +125,41 @@ export class PlayComponent implements OnInit {
 
   play() {
     this.isPlayed = true;
-    this.loadBar.toArray()[0].iniciar();
+    if (!this.isPaused) {
+      this.loadBar.toArray()[0].iniciar();
+      this.startTime = new Date();
+    } else {
+      this.loadBar.toArray()[this.index].unPause();
+    }
   }
 
   stop() {
+    this.generarTiempo();
     this.isPlayed = false;
-    this.loadBar.forEach(loadBar => loadBar.reset());
+    this.isPaused = false;
+    this.index = 0;
+    this.loadBar.toArray().forEach(loadBar => loadBar.reset());
+    this.actualizarImagenes();
   }
 
-  done() {}
+  pause() {
+    this.isPaused = true;
+    this.isPlayed = false;
+    this.loadBar.toArray()[this.index].pause();
+  }
+
+  done() {
+    console.log('done()', this.secuencia.acciones[this.index].nombre);
+    this.loadBar.toArray()[this.index].done();
+  }
+
+  generarTiempo() {
+    this.endTime = new Date();
+    this.elapsedTime = this.endTime - this.startTime;
+    var registro = new Registro(new Date(), this.elapsedTime, this.secuencia.idsecuencia, this.idusuario);
+    console.log(registro);
+    this.usuariosService.crearRegistro(registro).subscribe(c => console.log(c));
+  }
 
   ampliarPicto(accion: Pictograma) {
     const dialogConfig = new MatDialogConfig();
@@ -128,5 +172,10 @@ export class PlayComponent implements OnInit {
     this.dialogRef = this.dialog.open(ImageExpandComponent, dialogConfig);
 
     this.dialogRef.afterClosed().subscribe(data => {});
+  }
+
+  get idusuario(): number | null {
+    const credentials = this.credentialsService.credentials;
+    return credentials ? credentials.id : null;
   }
 }

@@ -18,8 +18,9 @@
       <!-- </div> -->
     </div>
 
-    <div fxLayout="row" fxFlex="5">
+    <div fxLayout="column" fxFlex="5">
       <h4>{{ imagenActual.nombre }}</h4>
+      <!--  <h1>{{tiempoActual}}</h1> -->
     </div>
 
     <div fxLayout="row" fxFlex="40" fxFill class="container-load">
@@ -46,7 +47,7 @@
         </mat-icon>
       </button>
 
-      <button *ngIf="isPlayed" class="play-button" mat-raised-button (click)="stop()" color="warn">
+      <button *ngIf="isPlayed" class="play-button" mat-raised-button (click)="pause()" color="warn">
         <mat-icon class="icon">
           pause
         </mat-icon>

@@ -58,7 +58,7 @@ router.get('/usuarios/:id/secuencias/acciones', function(req, res, next) {
     });
 });
 
-//Registro
+//Registros
 router.get('/usuarios/:id/registros', function(req, res, next) {
   console.log('getUsuariosRegistros');
   controllerUsuarios
@@ -71,6 +71,20 @@ router.get('/usuarios/:id/registros', function(req, res, next) {
     });
 });
 
+router.post('/usuarios/:id/registros', function(req, res, next) {
+  console.log('postUsuariosRegistro');
+  console.log(req.body);
+  controllerUsuarios
+    .postUsuariosRegistro(req.body)
+    .then(function(registro) {
+      res.json(registro);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+
+//Registrarse
 router.post('/usuarios/registro', function(req, res, next) {
   console.log('registro');
   //        if(usuario.nombre && usuario.password && usuario.email){} EN EL FRONT

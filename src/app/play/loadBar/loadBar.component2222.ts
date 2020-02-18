@@ -28,6 +28,7 @@ export class LoadBarComponent implements OnInit {
   @Input() accion: Pictograma;
 
   @Output() accionFinalizada = new EventEmitter();
+  @Output() tiempoActual = new EventEmitter();
 
   duracion: number;
   duracionActual: number;
@@ -48,8 +49,7 @@ export class LoadBarComponent implements OnInit {
 
     //calcular tiempo en ms:
     this.duracion = this.accion.duracion * 1000;
-    //this.duracionActual = this.duracion;
-    this.duracionActual = this.accion.duracion * 10;
+    this.duracionActual = this.duracion;
     //calcular longitud de la barra en funcion del tiempo: NO VA
     //this.longitud=(this.accion.duracion/this.duracionTotal)*100*70;
     //console.log("longitud",this.longitud)
@@ -72,46 +72,51 @@ export class LoadBarComponent implements OnInit {
   }
 
   iniciar() {
+    this.duracionActual = this.duracion;
     console.log('iniciar()', this.duracion);
     this.started = true;
+    // console.log(this.started)
+    // console.log(this.accion.nombre, ' iniciada');
     this.bar.animate(1);
     /* setTimeout(() => {//comprueba si sigue iniciada la cuenta para enviar el evento finished
-          // console.log("timeout",this.started)
-          if (this.started && !this.paused) {
-            this.started = false;
-            this.accionFinalizada.emit({ nombreAccion: this.nombreAccion, accionSaltada: false });
-          }
-        }, this.duracion);
-        this.interval = setInterval(() => {
-          if (this.duracionActual > 0 && !this.paused) {
-            this.duracionActual--;
-          } else {
-            console.log("finish interval", this.duracionActual)
-            clearInterval(this.interval);
-          }
-        }, 1) */
+      // console.log("timeout",this.started)
+      if (this.started && !this.paused) {
+        this.started = false;
+        this.accionFinalizada.emit({ nombreAccion: this.nombreAccion, accionSaltada: false });
+      }
+    }, this.duracion);
 
-    this.interval = null;
+    this.interval = setInterval(() => {
+      if (this.duracionActual > 0 && !this.paused) {
+        this.duracionActual--;
+      } else {
+        console.log("finish interval", this.duracionActual)
+        clearInterval(this.interval);
+      }
+    }, 1) */
+
     this.interval = setInterval(() => {
       if (this.started && !this.paused) {
         if (this.duracionActual > 0) {
           this.duracionActual--;
+          //if(this.duracionActual%100==0){this.tiempoActual.emit({duracionActual:this.duracionActual/100});console.log("emit",this.duracionActual/100)}
         } else {
           console.log('finish interval', this.duracionActual);
           this.started = false;
+
           this.accionFinalizada.emit({ nombreAccion: this.nombreAccion, accionSaltada: false });
           clearInterval(this.interval);
         }
+      } else {
+        clearInterval(this.interval);
       }
-    }, 100);
+    }, 1);
   }
 
   reset() {
     console.log(this.nombreAccion, 'reset()');
     this.started = false;
     this.paused = false;
-    this.duracion = this.accion.duracion * 1000;
-    this.duracionActual = this.accion.duracion * 10;
     this.bar.set(0);
   }
 
@@ -125,25 +130,24 @@ export class LoadBarComponent implements OnInit {
   }
 
   pause() {
-    console.log('paused:', this.nombreAccion, ',duracion', this.duracionActual * 100);
+    console.log('paused:', this.nombreAccion, ',duracion', this.duracionActual);
     this.paused = true;
     this.bar.stop();
-    clearInterval(this.interval);
   }
 
   unPause() {
     this.paused = false;
-    this.bar.animate(1, { duration: this.duracionActual * 100 });
-    console.log('unPause', this.duracionActual * 100);
+    this.bar.animate(1, { duration: this.duracionActual });
+    console.log('unPause', this.duracionActual);
     /*  setTimeout(() => {
-            if(this.started && !this.paused){
-              this.started=false;
-              this.accionFinalizada.emit({ nombreAccion: this.nombreAccion,  accionSaltada:false});
-            }
-          }, this.duracionActual); */
-    this.interval = null;
+        if(this.started && !this.paused){
+          this.started=false;
+          this.accionFinalizada.emit({ nombreAccion: this.nombreAccion,  accionSaltada:false});
+        }
+      }, this.duracionActual); */
+
     this.interval = setInterval(() => {
-      if (this.started && !this.paused) {
+      if (this.started && !this.paused && this.duracionActual > 0) {
         if (this.duracionActual > 0) {
           this.duracionActual--;
         } else {
@@ -152,9 +156,10 @@ export class LoadBarComponent implements OnInit {
           this.accionFinalizada.emit({ nombreAccion: this.nombreAccion, accionSaltada: false });
           clearInterval(this.interval);
         }
+      } else {
+        clearInterval(this.interval);
       }
-    }, 100);
-
+    }, 1);
     //console.log(this.interval)
   }
 

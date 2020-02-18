@@ -1,5 +1,5 @@
 import { Pictograma } from './pictogramas';
 
 export class Secuencia {
-  constructor(public nombre: string, public acciones: Pictograma[]) {}
+  constructor(public idsecuencia: number, public nombre: string, public acciones: Pictograma[]) {}
 }
