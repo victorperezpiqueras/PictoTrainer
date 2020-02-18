@@ -1,14 +1,12 @@
 @import "src/theme/theme-variables";
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
+
 :host {
   display: flex;
   flex: 1;
-  background-color: #f5f5f5;
-}
-.mat-typography {
-  background-image: url(https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-  background-size: 100%;
+  text-align: center;
+  padding: 10%;
+  background-color: rgba(0, 0, 0, 0.705);
 }
 
 .inline-loader {
@@ -18,13 +16,14 @@
 .version {
   margin: 0;
 }
-.title-card{
-  background-color: rgb(206, 156, 206);
-  width: 100%;
+.title-card {
+  background-color: rgb(0, 0, 0);
+  width: 800px;
+  height: 150px;
 }
-.mat-card-title{
-  font-family: 'Titillium Web', sans-serif;
-  font-size: 60px;
+.mat-card-title {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 100px;
   color: rgb(255, 255, 255);
 }
 
@@ -40,3 +39,8 @@
 .login-error {
   color: mat-color($app-warn);
 }
+
+/* .mat-accent{
+  color: #000;
+}
+ */

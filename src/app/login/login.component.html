@@ -1,14 +1,20 @@
 <div fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1.5rem" class="mat-typography">
-  <div>
-    <mat-card class="title-card" fxLayoutAlign="center">
-      <mat-card-header>
-        <mat-card-title class="mat-card-title">
-          TEMPO
-        </mat-card-title>
-      </mat-card-header>
+  <div fxLayoutAlign="center center">
+    <mat-card
+      class="title-card"
+      fxLayoutAlign="center center"
+      fxFlex="90%"
+      fxFlex.sm="66%"
+      fxFlex.md="50%"
+      fxFlex.gt-md="33%"
+    >
+      <mat-card-title class="mat-card-title">
+        TEMPO
+      </mat-card-title>
     </mat-card>
-<!--     <h1 fxLayoutAlign="center" translate>Tempo</h1>
- -->    <!-- <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
+    <!--     <h1 fxLayoutAlign="center" translate>Tempo</h1>
+ -->
+    <!-- <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
       <h4 class="version">v{{ version }}</h4>
       <div class="language-selector">
         <button mat-raised-button color="primary" [matMenuTriggerFor]="languageMenu">

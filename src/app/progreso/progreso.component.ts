@@ -57,7 +57,7 @@ export class ProgresoComponent implements OnInit {
             backgroundColor: '#ffebdb'
           },
           title: {
-            text: 'Progreso de la secuencia: ' + sec.nombre
+            text: 'Progreso de la tarea: ' + sec.nombre
           },
           yAxis: {
             title: {
@@ -74,7 +74,7 @@ export class ProgresoComponent implements OnInit {
           },
           series: [
             {
-              name: sec.nombre,
+              name: sec.nombre.toUpperCase(),
               data: newData,
               type: 'line'
             }
