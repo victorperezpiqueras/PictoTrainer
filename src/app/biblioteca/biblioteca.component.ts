@@ -37,6 +37,11 @@ export class BibliotecaComponent implements OnInit {
     this.isLoading = true;
     this.usuariosService.getSecuenciasAcciones(this.idusuario).subscribe(secuencias => {
       this.secuencias = secuencias;
+      for (var sec of this.secuencias) {
+        for (var ac of sec.acciones) {
+          ac.src = Buffer.from(ac.src, 'base64').toString();
+        }
+      }
       this.isLoading = false;
       //console.log(secuencias);
     });

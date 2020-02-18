@@ -23,6 +23,7 @@ ControllerUsuarios.getUsuarios = function() {
   });
 };
 
+/* IMAGENES */
 ControllerUsuarios.postUpload = function(data) {
   return new Promise(function(resolve, reject) {
     var sql = 'insert into imagenes(nombre,src,idusuario) values(?,?,?)';
@@ -32,6 +33,26 @@ ControllerUsuarios.postUpload = function(data) {
         reject('Ya existe la imagen o ha habido algun problema');
       } else {
         console.log('insertado imagen');
+        resolve(result);
+      }
+    });
+  });
+};
+
+ControllerUsuarios.getUsuariosImagenes = function(idusuario) {
+  return new Promise(function(resolve, reject) {
+    var sql = 'select * from imagenes where idusuario = ? ';
+    connection.query(sql, [idusuario], function(err, result) {
+      if (err) {
+        /* connection.end(function(err) {
+          console.log('Error DB');
+        }); */
+        reject({ error: 'Error inesperado' });
+      } else {
+        console.log(result);
+        /* connection.end(function(err) {
+          console.log('Close the database connection.');
+        }); */
         resolve(result);
       }
     });

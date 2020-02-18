@@ -64,11 +64,13 @@ export class PlayComponent implements OnInit {
     this.activeRoute.params.subscribe(routeParams => {
       this.secuenciasService.getSecuenciaAccionesId(routeParams.idsecuencia).subscribe(secuencia => {
         this.secuencia = secuencia;
+        console.log(this.secuencia);
         this.number = this.secuencia.acciones.length;
 
         //calcular anchura de las barras en funcion del numero total de ellas:
         for (var acc of this.secuencia.acciones) {
           this.duracionTotal += acc.duracion;
+          acc.src = Buffer.from(acc.src, 'base64').toString();
         }
         console.log('duracion total', this.duracionTotal);
         if (this.number == 1) this.width = 15;

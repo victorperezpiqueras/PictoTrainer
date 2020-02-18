@@ -35,4 +35,8 @@ export class UsuariosService {
   getRegistros(idusuario: any): Observable<any> {
     return this.http.get<any>(this.url + '/' + idusuario + '/registros', httpOptions);
   }
+
+  getImagenes(idusuario: any): Observable<any> {
+    return this.http.get<any>(this.url + '/' + idusuario + '/imagenes', httpOptions);
+  }
 }

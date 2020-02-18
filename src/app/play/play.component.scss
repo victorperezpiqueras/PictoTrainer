@@ -18,6 +18,8 @@ h4 {
 
 .img {
   width: 200px;
+  max-height: 200px;
+  max-width: 200px;
   margin-left: 10%;
   margin-right: 10%;
   cursor: pointer;
@@ -25,6 +27,8 @@ h4 {
 
 .img-small {
   width: 100px;
+  max-height: 100px;
+  max-width: 100px;
   opacity: 50%;
 }
 

@@ -22,7 +22,7 @@ connection.query(
         if (err) throw err;
         console.log('Tabla SECUENCIAS creada');
         connection.query(
-          'CREATE TABLE acciones(idaccion INT AUTO_INCREMENT PRIMARY KEY,nombre VARCHAR(255) NOT NULL, duracion INT,idusuario INT NOT NULL, idsecuencia INT, foto BLOB, src VARCHAR(100)' +
+          'CREATE TABLE acciones(idaccion INT AUTO_INCREMENT PRIMARY KEY,nombre VARCHAR(255) NOT NULL, duracion INT,idusuario INT NOT NULL, idsecuencia INT, src LONGBLOB' +
             ', foreign key(idusuario) REFERENCES usuarios(idusuario), foreign key(idsecuencia) REFERENCES secuencias(idsecuencia) ON DELETE CASCADE );',
           function(err, result) {
             if (err) throw err;

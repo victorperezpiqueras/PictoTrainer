@@ -108,7 +108,7 @@ controllerSecuencias.postSecuenciasAcciones = function(data) {
                 } else {
                   var idSecuencia = result[0].idsecuencia;
                   var idUsuario = result[0].idusuario;
-
+                  //if (data.idsecuencia) {
                   var sql = 'insert into acciones(nombre,duracion,idusuario,idsecuencia,src) values';
                   var sqlData = [];
                   for (var x = 0; x < data.acciones.length; x++) {
@@ -119,7 +119,23 @@ controllerSecuencias.postSecuenciasAcciones = function(data) {
                     sqlData.push(idUsuario);
                     sqlData.push(idSecuencia);
                     sqlData.push(data.acciones[x].src);
+                    console.log(data.acciones[x]);
+                    console.log(idSecuencia);
                   }
+                  /* }
+                  else {
+                  var sql = 'insert into acciones(nombre,duracion,idusuario,src) values';
+                  var sqlData = [];
+                  for (var x = 0; x < data.acciones.length; x++) {
+                    if (x > 0) sql += ',';
+                    sql += '(?, ?, ?, ?)';
+                    sqlData.push(data.acciones[x].nombre);
+                    sqlData.push(data.acciones[x].duracion);
+                    sqlData.push(idUsuario);
+                    sqlData.push(data.acciones[x].src);
+                  } */
+                  //}
+
                   connection.query(sql, sqlData, function(err, result) {
                     if (err) {
                       reject('Ya existe la accion o ha habido algun problema');

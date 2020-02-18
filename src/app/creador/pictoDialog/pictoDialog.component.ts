@@ -63,6 +63,7 @@ export class PictoDialogComponent implements OnInit {
   save() {
     this.duracion = Number(this.minutos * 60) + Number(this.segundos);
     console.log(this.duracion);
+    console.log(new Pictograma(this.nombre, this.src, this.duracion));
     this.dialogRef.close({
       picto: new Pictograma(this.nombre, this.src, this.duracion)
     });

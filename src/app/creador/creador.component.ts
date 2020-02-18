@@ -11,6 +11,7 @@ import { SecuenciaService } from '@app/services/secuencia-service';
 import { ImagenService } from '@app/services/imagenes-service';
 import { ActivatedRoute } from '@angular/router';
 import { Secuencia } from '@app/models/secuencias';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export interface Pictograma {
   nombre: string;
@@ -47,8 +48,12 @@ export class CreadorComponent implements OnInit {
   busqueda: any;
   found: number = 0;
 
+  imagenesPropias: any[] = [];
+
   private image: ImageSelected = null;
 
+  imageSrc: any = '';
+  nombreImagen: string;
   constructor(
     public dialog: MatDialog,
     public credentialsService: CredentialsService,
@@ -56,28 +61,61 @@ export class CreadorComponent implements OnInit {
     public secuenciasService: SecuenciaService,
     public pictoService: PictoService,
     public imagenService: ImagenService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    public sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
     this.editMode = false;
-    var picto: Pictograma = { nombre: 'nombre', src: 'test.PNG', duracion: 100 };
-    for (var i = 0; i < 10; i++) {
-      this.pictos.push(picto);
-      //this.listaAcciones.push(picto);
-    }
-    console.log(this.activeRoute.snapshot.params);
     if (this.activeRoute.snapshot.params['id']) {
       this.idSec = this.activeRoute.snapshot.params['id'];
       this.secuenciasService.getSecuenciaAccionesId(this.activeRoute.snapshot.params['id']).subscribe(sec => {
         console.log(sec);
         this.listaAcciones = sec.acciones;
+        for (var ac of this.listaAcciones) {
+          ac.src = Buffer.from(ac.src, 'base64').toString();
+        }
         this.selected = this.listaAcciones[0];
         this.nombreSecuencia = sec.nombre;
       });
       this.editMode = true;
     }
+    this.actualizarImagenes();
+    /* this.isLoading = true;
+    this.usuariosService.getImagenes(this.idusuario).subscribe((imagenes) => {
+      this.imagenesPropias = imagenes;
+      //console.log(imagenes)
+      for (var im of this.imagenesPropias) {
+        console.log("for", im.src);
+
+        var base64Flag = 'data:image/jpeg;base64,';
+        //im.src = this.arrayBufferToBase64(im.src.data);
+        //im.src = this.bufferToBase64(im.src.data);
+
+        im.src = Buffer.from(im.src, 'base64').toString();
+
+        console.log("arraybuffer", im.src)
+        //im.src = base64Flag + im.src;
+
+        //console.log("base64",im.src)
+        //im.src = this.sanitizer.bypassSecurityTrustResourceUrl(im.src);
+        //im.src = this.sanitizer.bypassSecurityTrustResourceUrl(im.src);
+        // console.log(im)
+      }
+      console.log(this.imagenesPropias)
+      this.isLoading = false;
+    }) */
   }
+
+  /*  arrayBufferToBase64(buffer: any) {
+     var binary = '';
+     var bytes = new Uint8Array(buffer);
+     var len = bytes.byteLength;
+     for (var i = 0; i < len; i++) {
+       binary += String.fromCharCode(bytes[i]);
+     }
+     return window.btoa(binary);
+   } */
 
   seleccionarPicto(picto: Pictograma) {
     const dialogConfig = new MatDialogConfig();
@@ -92,6 +130,7 @@ export class CreadorComponent implements OnInit {
 
     this.dialogRef.afterClosed().subscribe(data => {
       if (data != undefined) {
+        console.log(data.picto);
         this.listaAcciones.push(data.picto);
         //if(this.actualIndex>0)this.actualIndex+=1;
         this.actualIndex = this.listaAcciones.length - 1;
@@ -163,7 +202,7 @@ export class CreadorComponent implements OnInit {
     });
   }
 
-  buscarPropia(palabra: string) {
+  /*  buscarPropia(palabra: string) {
     this.isLoading = true;
     console.log('palabra:', palabra);
     this.imagenService.buscarImagen(palabra).subscribe(imagen => {
@@ -177,7 +216,8 @@ export class CreadorComponent implements OnInit {
         this.found = 2;
       }
     });
-  }
+  } */
+
   borrarAccion(selected: Pictograma) {
     const index = this.listaAcciones.indexOf(selected, 0);
     if (index > -1) {
@@ -220,20 +260,83 @@ export class CreadorComponent implements OnInit {
     return credentials ? credentials.id : null;
   }
 
-  onUploadFinish(event: any) {
+  /*  onUploadFinish(event: any) {
     console.log(event);
     this.image = new ImageSelected();
     this.image.src = event.src;
     this.image.nombre = event.file.name;
     this.image.idusuario = this.idusuario;
-  }
+  } */
 
   sendImage() {
-    console.log(this.image);
-    this.imagenService.subirImagen(this.image).subscribe(result => {
-      console.log('subscribe', result);
+    //console.log(this.image);
+    if (this.imageSrc && this.nombreImagen) {
+      var imagen = {
+        idusuario: this.idusuario,
+        nombre: this.nombreImagen,
+        src: this.imageSrc
+      };
+      console.log(imagen);
+      this.imagenService.subirImagen(imagen).subscribe(result => {
+        console.log('subscribe', result);
+        this.nombreImagen = '';
+        this.imageSrc = '';
+        this.actualizarImagenes();
+      });
+    }
+  }
+
+  onFileSelected(event: any) {
+    this.imageSrc = event.target.files[0];
+    console.log(this.imageSrc);
+    const reader = (file: any) => {
+      return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.onload = () => resolve(fileReader.result);
+        fileReader.readAsDataURL(file);
+      });
+    };
+    reader(this.imageSrc).then(result => {
+      console.log(result);
+      this.imageSrc = result;
     });
   }
+
+  actualizarImagenes() {
+    this.isLoading = true;
+    this.usuariosService.getImagenes(this.idusuario).subscribe(imagenes => {
+      this.imagenesPropias = imagenes;
+      //console.log(imagenes)
+      for (var im of this.imagenesPropias) {
+        console.log('for', im.src);
+
+        var base64Flag = 'data:image/jpeg;base64,';
+        //im.src = this.arrayBufferToBase64(im.src.data);
+        //im.src = this.bufferToBase64(im.src.data);
+
+        im.src = Buffer.from(im.src, 'base64').toString();
+
+        console.log('arraybuffer', im.src);
+        //im.src = base64Flag + im.src;
+
+        //console.log("base64",im.src)
+        //im.src = this.sanitizer.bypassSecurityTrustResourceUrl(im.src);
+        //im.src = this.sanitizer.bypassSecurityTrustResourceUrl(im.src);
+        // console.log(im)
+      }
+      console.log(this.imagenesPropias);
+      this.isLoading = false;
+    });
+  }
+
+  /* 
+    bufferToBase64(buf:any) {
+      var binstr = Array.prototype.map.call(buf, function (ch:any) {
+          return String.fromCharCode(ch);
+      }).join('');
+      return btoa(binstr);
+  }
+   */
 }
 class ImageSelected {
   public nombre: String;

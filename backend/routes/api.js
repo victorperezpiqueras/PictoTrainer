@@ -58,6 +58,19 @@ router.get('/usuarios/:id/secuencias/acciones', function(req, res, next) {
     });
 });
 
+//Imagenes
+router.get('/usuarios/:id/imagenes', function(req, res, next) {
+  console.log('getUsuariosImagenes');
+  controllerUsuarios
+    .getUsuariosImagenes(req.params.id)
+    .then(function(imagenes) {
+      res.json(imagenes);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+
 //Registros
 router.get('/usuarios/:id/registros', function(req, res, next) {
   console.log('getUsuariosRegistros');
@@ -308,6 +321,7 @@ router.get('/imagenes/:nombre', function(req, res, next) {
 
 router.post('/imagenes', function(req, res, next) {
   console.log('postImagenes');
+  console.log(req.body);
   controllerImagenes
     .postImagenes(req.body)
     .then(function(imagenes) {

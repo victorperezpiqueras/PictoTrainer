@@ -205,12 +205,16 @@
         </mat-card> -->
       </mat-tab>
       <mat-tab label="Mis imágenes">
-        <image-upload (uploadFinished)="onUploadFinish($event)"> </image-upload>
+        <img [src]="imageSrc" style="max-width:300px;max-height:300px" />
+        <input name="imageUrl" type="file" accept="image/*" (change)="onFileSelected($event)" />
+        <mat-form-field>
+          <input matInput required placeholder="Nombre de la imagen" [(ngModel)]="nombreImagen" />
+        </mat-form-field>
         <button class="boton-guardar-imagen" mat-raised-button [color]="'success'" (click)="sendImage()">
           Guardar imagen
         </button>
         <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10px">
-          <div fxLayout="row">
+          <!-- <div fxLayout="row">
             <mat-form-field class="input-buscar">
               <mat-label class="input">Buscar</mat-label>
               <input matInput [(ngModel)]="palabraPropiaBuscar" />
@@ -218,13 +222,12 @@
             <button mat-raised-button color="primary" (click)="buscarPropia(palabraPropiaBuscar)" class="boton-buscar">
               <mat-icon>search</mat-icon>
             </button>
-          </div>
+          </div> -->
           <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
-          <mat-card class="card" (click)="seleccionarPicto(busqueda)" *ngIf="found == 2">
-            <img mat-card-image src="{{ busqueda.src }}" />
-            <mat-card-subtitle>{{ busqueda.nombre }}</mat-card-subtitle>
+          <mat-card *ngFor="let im of imagenesPropias" class="card" (click)="seleccionarPicto(im)">
+            <img mat-card-image [src]="this.sanitizer.bypassSecurityTrustResourceUrl(im.src)" />
+            <mat-card-subtitle>{{ im.nombre }}</mat-card-subtitle>
           </mat-card>
-          <h4 *ngIf="found == 1">No encontrado</h4>
         </mat-grid-list>
       </mat-tab>
     </mat-tab-group>
