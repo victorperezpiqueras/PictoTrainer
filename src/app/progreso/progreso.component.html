@@ -1,0 +1,26 @@
+<div
+  class="container mat-typography"
+  fxFill
+  fxLayout="column"
+  fxLayoutAlign="start start"
+  fxLayoutGap="1%"
+  style="overflow-y: hidden;"
+>
+  <mat-card fxLayout="row" fxFill fxFlex="20" class="div-titulo mat-elevation-z2">
+    <h1 class="titulo" fxFlex="80">Progreso</h1>
+  </mat-card>
+  <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
+  <div class="div-secuencias" fxFill style="overflow-y: auto;">
+    <div *ngFor="let sec of secuencias">
+      <mat-card *ngIf="sec.options" class="card">
+        <h1>{{ sec.nombre }}</h1>
+        <highcharts-chart
+          *ngIf="sec.options"
+          [Highcharts]="Highcharts"
+          [options]="sec.options"
+          style="width: 100%; height: 400px; display: block;"
+        ></highcharts-chart>
+      </mat-card>
+    </div>
+  </div>
+</div>

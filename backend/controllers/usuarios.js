@@ -131,6 +131,52 @@ ControllerUsuarios.getUsuariosSecuenciasAcciones = function(id) {
     });
 };
 
+ControllerUsuarios.getUsuariosSecuenciasRegistros = function(id) {
+  //obtener las secuencias
+  return new Promise(function(resolve, reject) {
+    var sql = 'select a.* from secuencias a where a.idusuario = ?';
+    connection.query(sql, [id], function(err, result) {
+      if (err) {
+        reject({ error: 'Error inesperado' });
+      } else {
+        resolve(result);
+      }
+    });
+  }) //al resolver la promise con la consulta llamamos al then
+    .then(secuencias => {
+      //creamos la nueva promise que va a devolver las secuencias con acciones
+      return new Promise(function(resolve, reject) {
+        var promises = [];
+        for (var sec of secuencias) {
+          //guardamos una promise por cada lista de acciones que buscamos
+          promises.push(
+            new Promise(function(resolve, reject) {
+              var sql = 'select * from registros where idsecuencia = ?';
+              connection.query(sql, [sec.idsecuencia], function(err, result) {
+                if (err) {
+                  reject({ error: 'Error inesperado' });
+                } else {
+                  resolve(result); //cada promise se resuelve al acabar
+                }
+              });
+            })
+          );
+        } //cuando todas las promises esten resueltas se llama a la funcion
+        Promise.all(promises).then(function(listasRegistros) {
+          console.log(listasRegistros);
+          console.log('FOR');
+          //para cada lista de acciones de cada promise la metemos en la secuencia correspondiente
+          for (var x = 0; x < secuencias.length; x++) {
+            secuencias[x].registros = listasRegistros[x];
+            console.log(secuencias[x]);
+          }
+          //resolvemos la 2a promise con las secuencias
+          resolve(secuencias);
+        });
+      });
+    });
+};
+
 ControllerUsuarios.getUsuariosRegistros = function(id) {
   return new Promise(function(resolve, reject) {
     var sql = 'select r.* from registros r, usuarios u where u.idusuario = ? and u.idusuario = r.idusuario;';

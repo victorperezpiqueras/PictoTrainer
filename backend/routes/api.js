@@ -71,6 +71,18 @@ router.get('/usuarios/:id/registros', function(req, res, next) {
     });
 });
 
+router.get('/usuarios/:id/secuencias/registros', function(req, res, next) {
+  console.log('getUsuariosSecuenciasRegistros');
+  controllerUsuarios
+    .getUsuariosSecuenciasRegistros(req.params.id)
+    .then(function(secuencias) {
+      res.json(secuencias);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+});
+
 router.post('/usuarios/:id/registros', function(req, res, next) {
   console.log('postUsuariosRegistro');
   console.log(req.body);

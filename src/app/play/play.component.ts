@@ -49,7 +49,7 @@ export class PlayComponent implements OnInit {
 
   startTime: any;
   endTime: any;
-  elapsedTime: any;
+  elapsedTime: any = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -127,10 +127,10 @@ export class PlayComponent implements OnInit {
     this.isPlayed = true;
     if (!this.isPaused) {
       this.loadBar.toArray()[0].iniciar();
-      this.startTime = new Date();
     } else {
       this.loadBar.toArray()[this.index].unPause();
     }
+    this.startTime = new Date();
   }
 
   stop() {
@@ -143,6 +143,8 @@ export class PlayComponent implements OnInit {
   }
 
   pause() {
+    this.endTime = new Date();
+    this.elapsedTime += this.endTime - this.startTime;
     this.isPaused = true;
     this.isPlayed = false;
     this.loadBar.toArray()[this.index].pause();
@@ -155,7 +157,7 @@ export class PlayComponent implements OnInit {
 
   generarTiempo() {
     this.endTime = new Date();
-    this.elapsedTime = this.endTime - this.startTime;
+    this.elapsedTime += this.endTime - this.startTime;
     var registro = new Registro(new Date(), this.elapsedTime, this.secuencia.idsecuencia, this.idusuario);
     console.log(registro);
     this.usuariosService.crearRegistro(registro).subscribe(c => console.log(c));

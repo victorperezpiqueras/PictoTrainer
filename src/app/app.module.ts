@@ -34,6 +34,9 @@ import { SecuenciaService } from './services/secuencia-service';
 import { ImagenService } from './services/imagenes-service';
 import { PlayModule } from './play/play.module';
 import { ImageExpandComponent } from './play/image-expand/imageExpand.component';
+import { ProgresoModule } from './progreso/progreso.module';
+
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   imports: [
@@ -47,6 +50,8 @@ import { ImageExpandComponent } from './play/image-expand/imageExpand.component'
 
     DragDropModule,
 
+    HighchartsChartModule,
+
     CoreModule,
     SharedModule,
     ShellModule,
@@ -58,6 +63,7 @@ import { ImageExpandComponent } from './play/image-expand/imageExpand.component'
     CreadorModule,
     BibliotecaModule,
     PlayModule,
+    ProgresoModule,
 
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
