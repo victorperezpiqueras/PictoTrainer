@@ -37,6 +37,7 @@ import { ImageExpandComponent } from './play/image-expand/imageExpand.component'
 import { ProgresoModule } from './progreso/progreso.module';
 
 import { HighchartsChartModule } from 'highcharts-angular';
+import { LoadBarComponent } from './play/loadBar/loadBar.component';
 
 @NgModule({
   imports: [
@@ -77,7 +78,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     SecuenciaService,
     ImagenService
   ],
-  entryComponents: [ProyectoDialogComponent, PictoDialogComponent, ImageExpandComponent],
+  entryComponents: [ProyectoDialogComponent, PictoDialogComponent, ImageExpandComponent, LoadBarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

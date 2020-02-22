@@ -5,6 +5,28 @@
       <mat-icon>add_circle</mat-icon>&nbsp;CREAR
     </button>
   </mat-card>
+  <div>
+    <button mat-raised-button *ngIf="!isPlayed" color="warn" class="boton" (click)="ordenarNombreAsc()">
+      Nombre &#9660;
+    </button>
+    <button mat-raised-button *ngIf="isPlayed" color="warn" class="boton" (click)="ordenarNombreDesc()">
+      Nombre &#9650;
+    </button>
+    <button mat-raised-button *ngIf="!isPlayed1" color="warn" class="boton" (click)="ordenarFecha()">
+      Fecha &#9660;
+    </button>
+    <button mat-raised-button *ngIf="isPlayed1" color="warn" class="boton" (click)="ordenarFecha()">
+      Fecha &#9650;
+    </button>
+
+    <mat-form-field class="input-buscar">
+      <mat-label class="input">Buscar</mat-label>
+      <input matInput [(ngModel)]="palabraBuscar" /> </mat-form-field
+    >&nbsp;&nbsp;
+    <button mat-raised-button color="primary" (click)="buscar(palabraBuscar)" class="boton-buscar">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
   <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
   <div class="div-cards" style="overflow-y: auto;">
     <div *ngFor="let sec of secuencias" fxLayout="row">
@@ -18,8 +40,8 @@
             <mat-card-subtitle class="card-text">{{ acc.nombre }}</mat-card-subtitle>
             <img />
           </mat-card>
-          <br />
-          <mat-icon *ngIf="calcularFlecha(sec, acc)">arrow_forward</mat-icon>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-icon *ngIf="calcularFlecha(sec, acc)">double_arrow</mat-icon>
         </div>
         <div fxLayout="column" fxLayoutAlign="end end" fxFlex="20">
           <button

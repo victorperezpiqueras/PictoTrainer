@@ -62,7 +62,7 @@ export class LoadBarComponent implements OnInit {
       color: '#ED6A5A',
       trailColor: '#eee',
       trailWidth: this.width,
-      svgStyle: { width: '100%', height: '100%' },
+      svgStyle: { width: '100%', height: '100%', border: '1px solid black' },
       from: { color: this.barColor.colorInicial },
       to: { color: this.barColor.colorFinal },
       step: (state: any, bar: any) => {

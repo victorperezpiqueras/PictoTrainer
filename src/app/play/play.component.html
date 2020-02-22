@@ -35,12 +35,6 @@
     </div>
 
     <div fxLayout="row" fxFlex="15" fxFill fxLayoutAlign="center center">
-      <button class="done-button" mat-raised-button (click)="done()" [color]="'done'">
-        <mat-icon class="icon">
-          done
-        </mat-icon>
-      </button>
-
       <button *ngIf="!isPlayed" class="play-button" mat-raised-button (click)="play()" [color]="'success'">
         <mat-icon class="icon">
           play_arrow
@@ -50,6 +44,12 @@
       <button *ngIf="isPlayed" class="play-button" mat-raised-button (click)="pause()" color="warn">
         <mat-icon class="icon">
           pause
+        </mat-icon>
+      </button>
+
+      <button class="done-button" mat-raised-button (click)="done()" [color]="'done'">
+        <mat-icon class="icon">
+          fast_forward
         </mat-icon>
       </button>
     </div>

@@ -10,7 +10,7 @@ require('dotenv').config();
 
 /* ES UN POOL DE CONNECTIONS */
 var connection = mysql.createPool({
-  connectionLimit: 30,
+  connectionLimit: 100,
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,

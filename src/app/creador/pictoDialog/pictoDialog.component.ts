@@ -10,9 +10,8 @@ import { Pictograma } from '@app/models/pictogramas';
 })
 export class PictoDialogComponent implements OnInit {
   form: FormGroup;
-  minutos: number;
   segundos: number;
-
+  minutos = 1;
   mode: string;
   nombreBoton: string;
 
@@ -43,8 +42,12 @@ export class PictoDialogComponent implements OnInit {
   ngOnInit() {
     for (var i = 0; i < 60; i++) {
       this.listaMin.push(i);
-      this.listaSeg.push(i);
     }
+    for (var j = 0; j < 60; j++) {
+      this.listaSeg.push(j);
+      j = j + 4;
+    }
+
     if (this.mode == 'edit') {
       this.mode = 'Edita';
       this.nombreBoton = 'Guardar';

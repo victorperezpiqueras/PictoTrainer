@@ -18,8 +18,15 @@ import { ImageExpandComponent } from '@app/play/image-expand/imageExpand.compone
 })
 export class BibliotecaComponent implements OnInit {
   secuencias: Secuencia[] = [];
+  isPlayed: boolean;
+  isPlayed1: boolean;
   isLoading: boolean = false;
   dialogRef: MatDialogRef<any>;
+  ordenadoFecha: Secuencia[] = [];
+  secuenciaBuscada1: Secuencia[] = [];
+
+  secuenciaBuscada: Secuencia[] = [];
+  buscador: boolean;
 
   constructor(
     public dialog: MatDialog,
@@ -33,10 +40,49 @@ export class BibliotecaComponent implements OnInit {
     this.actualizarSecuencias();
   }
 
+  ordenarNombreAsc() {
+    this.secuencias = this.secuencias.sort((a: any, b: any) => a.nombre.localeCompare(b.nombre));
+    this.isPlayed = true;
+  }
+  ordenarNombreDesc() {
+    this.secuencias = this.secuencias.sort((a: any, b: any) => b.nombre.localeCompare(a.nombre));
+    this.isPlayed = false;
+  }
+
+  ordenarFecha() {
+    this.secuencias = this.secuencias.reverse();
+    if (this.isPlayed1 == true) {
+      this.isPlayed1 = false;
+    } else {
+      this.isPlayed1 = true;
+    }
+  }
+
+  buscar(palabraBuscar: any) {
+    if (palabraBuscar == '' || !palabraBuscar) {
+      this.secuencias = this.secuenciaBuscada1;
+    } else {
+      this.buscador = false;
+      console.log(this.secuencias);
+      this.secuencias = [];
+      for (var sec of this.secuenciaBuscada) {
+        if (sec.nombre == palabraBuscar) {
+          this.secuencias.push(sec);
+        }
+      }
+      console.log(this.secuencias);
+    }
+  }
+
   actualizarSecuencias() {
     this.isLoading = true;
     this.usuariosService.getSecuenciasAcciones(this.idusuario).subscribe(secuencias => {
       this.secuencias = secuencias;
+      this.ordenadoFecha = secuencias;
+      this.secuenciaBuscada1 = secuencias;
+      this.secuenciaBuscada = secuencias;
+      console.log(this.secuencias);
+
       for (var sec of this.secuencias) {
         for (var ac of sec.acciones) {
           ac.src = Buffer.from(ac.src, 'base64').toString();
