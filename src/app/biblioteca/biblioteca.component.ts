@@ -81,6 +81,7 @@ export class BibliotecaComponent implements OnInit {
       this.ordenadoFecha = secuencias;
       this.secuenciaBuscada1 = secuencias;
       this.secuenciaBuscada = secuencias;
+      this.ordenarNombreAsc();
       console.log(this.secuencias);
 
       for (var sec of this.secuencias) {
