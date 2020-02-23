@@ -1,7 +1,7 @@
 .container {
   text-align: center;
-  padding: 1rem;
-  background-color: white;
+  padding: 5%;
+  background-color: rgba(0, 0, 0, 0.705);
 }
 
 .mat-icon {
@@ -16,13 +16,21 @@
 }
 .h1 {
   font-family: "Luckiest Guy", cursive;
-  font-size: 26px;
+  font-size: 23px;
   margin-right: 10%;
 }
 
 .card {
-  width: 250px;
-  height: 120px;
+  width: fit-content;
+  height: fit-content;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 3%;
+}
+
+.card1 {
+  width: fit-content;
+  height: fit-content;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 3%;
@@ -37,6 +45,7 @@ h1,
   font-family: "Luckiest Guy", cursive;
 }
 .titulo {
+  color: black;
   font-size: xxx-large;
   padding-bottom: 3%;
 }

@@ -40,6 +40,12 @@ export class LoadBarComponent implements OnInit {
   started: boolean = false;
   interval: any;
   paused: boolean = false;
+  audio: any;
+  alarma: any;
+  uno: any;
+  dos: any;
+  tres: any;
+  sonido: false;
 
   constructor() {}
 
@@ -53,9 +59,33 @@ export class LoadBarComponent implements OnInit {
     //calcular longitud de la barra en funcion del tiempo: NO VA
     //this.longitud=(this.accion.duracion/this.duracionTotal)*100*70;
     //console.log("longitud",this.longitud)
+    var sond;
+    sond = localStorage.getItem('sonido');
+    this.sonido = JSON.parse(sond);
+    if (this.sonido) {
+      this.audio = new Audio('/assets/sonido/sinfinal.mp3');
+      this.alarma = new Audio('/assets/sonido/alarma6s.mp3');
+      this.uno = new Audio('/assets/sonido/uno.mp3');
+      this.dos = new Audio('/assets/sonido/dos.mp3');
+      this.tres = new Audio('/assets/sonido/tres.mp3');
+    }
+
+    /*reproducir() {
+      const audio = new Audio('assets/Hola.mp3');
+      audio.play();
+  }*/
 
     this.barColor = localStorage.getItem('bar-color');
     this.barColor = JSON.parse(this.barColor);
+    console.log(this.barColor);
+
+    /*BUG SOLVED: Petaba si no escogias color cuando haces log por primera vez*/
+
+    if (this.barColor == null) {
+      var ob = { colorInicial: '#00ff00', colorFinal: '#ff0000' };
+      localStorage.setItem('bar-color', JSON.stringify(ob));
+    }
+
     this.bar = new ProgressBar.Line(document.getElementById('container'), {
       strokeWidth: this.width,
       duration: this.duracion,
@@ -73,8 +103,10 @@ export class LoadBarComponent implements OnInit {
 
   iniciar() {
     console.log('iniciar()', this.duracion);
+    //this.duracion=190
     this.started = true;
     this.bar.animate(1);
+    this.audio.play();
     /* setTimeout(() => {//comprueba si sigue iniciada la cuenta para enviar el evento finished
           // console.log("timeout",this.started)
           if (this.started && !this.paused) {
@@ -94,6 +126,22 @@ export class LoadBarComponent implements OnInit {
     this.interval = null;
     this.interval = setInterval(() => {
       if (this.started && !this.paused) {
+        if (this.sonido) {
+          if (this.duracionActual == (this.duracion / 100) * (3 / 4)) {
+            this.uno.play();
+          }
+          if (this.duracionActual == (this.duracion / 100) * (1 / 2)) {
+            this.dos.play();
+          }
+          if (this.duracionActual == (this.duracion / 100) * (1 / 4)) {
+            this.tres.play();
+          }
+
+          if (this.duracionActual < 50) {
+            this.audio.pause();
+            this.alarma.play();
+          }
+        }
         if (this.duracionActual > 0) {
           this.duracionActual--;
         } else {
@@ -113,9 +161,16 @@ export class LoadBarComponent implements OnInit {
     this.duracion = this.accion.duracion * 1000;
     this.duracionActual = this.accion.duracion * 10;
     this.bar.set(0);
+    this.audio.pause();
   }
 
   done(nombreAccion: any) {
+    if (this.sonido) {
+      this.audio.pause();
+      if (this.alarma.play()) {
+        this.alarma.pause();
+      }
+    }
     if (this.started) {
       // console.log("done() bar",this.nombreAccion)
       this.started = false;
@@ -125,6 +180,12 @@ export class LoadBarComponent implements OnInit {
   }
 
   pause() {
+    if (this.sonido) {
+      this.audio.pause();
+      if (this.alarma.play()) {
+        this.alarma.pause();
+      }
+    }
     console.log('paused:', this.nombreAccion, ',duracion', this.duracionActual * 100);
     this.paused = true;
     this.bar.stop();
@@ -132,6 +193,9 @@ export class LoadBarComponent implements OnInit {
   }
 
   unPause() {
+    if (this.sonido) {
+      this.audio.play();
+    }
     this.paused = false;
     this.bar.animate(1, { duration: this.duracionActual * 100 });
     console.log('unPause', this.duracionActual * 100);
