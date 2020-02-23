@@ -1,12 +1,18 @@
-<div class="container" fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="3rem">
+<div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1%">
   <div id="container"></div>
-  <!--  <mat-card>
-    <h1>
-      <mat-card-title translate>APP_NAME</mat-card-title>
-    </h1>
+  <h1 class="titulo">Opciones</h1>
+  <br /><br />
+  <mat-card class="card">
     <mat-card-content>
-      <mat-icon>code</mat-icon>
-      <span translate>Version</span> {{ version }}
+      <div>
+        <label class="h1">Sonido:</label>
+        <button mat-raised-button *ngIf="!isOn" color="warn" class="boton" (click)="state1()">
+          Activado
+        </button>
+        <button mat-raised-button *ngIf="isOn" color="warn" class="boton" (click)="state1()">
+          Desactivado
+        </button>
+      </div>
     </mat-card-content>
-  </mat-card> -->
+  </mat-card>
 </div>

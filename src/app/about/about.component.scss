@@ -1,9 +1,42 @@
 .container {
   text-align: center;
   padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.705);
+  background-color: white;
 }
 
 .mat-icon {
   vertical-align: middle;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+.h1 {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 26px;
+  margin-right: 10%;
+}
+
+.card {
+  width: 250px;
+  height: 120px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 3%;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+h1,
+.boton,
+.boton-flecha {
+  font-family: "Luckiest Guy", cursive;
+}
+.titulo {
+  font-size: xxx-large;
+  padding-bottom: 3%;
 }
