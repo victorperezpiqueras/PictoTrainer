@@ -2,6 +2,8 @@
 
 .container {
   padding: 3%;
+  padding-bottom: 0%;
+  overflow-x: hidden;
 }
 .div-titulo {
   background-color: rgba(175, 175, 175, 0.705);
@@ -21,6 +23,7 @@ h1,
 .div-cards {
   padding-bottom: 50px;
   width: 100%;
+  height: 100%;
 }
 .card-text {
   font-size: small;
@@ -32,6 +35,12 @@ h1,
   overflow-x: auto;
   overflow-y: hidden;
   margin-bottom: 2%;
+}
+.card-title {
+  font-size: 3vw;
+}
+.card-text {
+  font-size: 1.3vw;
 }
 .icon-card {
   height: 100px;
@@ -70,4 +79,12 @@ h1,
   margin-left: 2%;
   width: 150px;
   height: 70px;
+  font-size: 3vw;
+}
+
+.boton-buscar {
+  width: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }

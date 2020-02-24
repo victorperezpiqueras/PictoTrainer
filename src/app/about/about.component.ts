@@ -14,7 +14,11 @@ export class AboutComponent implements OnInit {
   isOn = false;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    var sonido: any;
+    sonido = localStorage.getItem('sonido');
+    this.isOn = JSON.parse(sonido);
+  }
 
   state1() {
     if (!this.isOn) {
@@ -22,5 +26,9 @@ export class AboutComponent implements OnInit {
     } else {
       this.isOn = false;
     }
+    console.log(this.isOn);
+    console.log(JSON.stringify(this.isOn));
+
+    localStorage.setItem('sonido', JSON.stringify(this.isOn));
   }
 }

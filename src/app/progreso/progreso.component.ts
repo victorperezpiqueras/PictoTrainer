@@ -12,6 +12,7 @@ import { Pictograma } from '@app/models/pictogramas';
 import { ImageExpandComponent } from '@app/play/image-expand/imageExpand.component';
 
 import * as Highcharts from 'highcharts';
+import HC_exporting from 'highcharts/modules/exporting';
 
 @Component({
   selector: 'app-progreso',
@@ -19,6 +20,11 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./progreso.component.scss']
 })
 export class ProgresoComponent implements OnInit {
+  dialogRef: MatDialogRef<any>;
+
+  progresos: boolean = true;
+  isLoading: boolean = false;
+
   Highcharts: typeof Highcharts = Highcharts;
 
   charts: [] = [];
@@ -34,9 +40,21 @@ export class ProgresoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.usuariosService.getSecuenciasRegistros(this.idusuario).subscribe(secuencias => {
-      this.secuencias = secuencias;
-      this.generarGraficos();
+      this.usuariosService.getSecuenciasAcciones(this.idusuario).subscribe(secuenciasAcciones => {
+        this.secuencias = secuencias;
+        for (var i = 0; i < this.secuencias.length; i++) {
+          this.secuencias[i].acciones = secuenciasAcciones[i].acciones;
+          for (var ac of this.secuencias[i].acciones) {
+            ac.src = Buffer.from(ac.src, 'base64').toString();
+          }
+        }
+        console.log(this.secuencias);
+        this.generarGraficos();
+        if (!this.secuencias.length) this.progresos = false;
+      });
+      this.isLoading = false;
     });
   }
 
@@ -55,6 +73,13 @@ export class ProgresoComponent implements OnInit {
         var options = {
           chart: {
             backgroundColor: '#ffebdb'
+            /*  events: {
+              load: function() {
+                const chart = this
+                // Export chart one second after initial load
+                setTimeout(() => chart.exportChart({ type: 'application/pdf' }, 1000))
+              }
+            } */
           },
           title: {
             text: 'Progreso de la tarea: ' + sec.nombre
@@ -94,5 +119,25 @@ export class ProgresoComponent implements OnInit {
   get idusuario(): number | null {
     const credentials = this.credentialsService.credentials;
     return credentials ? credentials.id : null;
+  }
+
+  calcularFlecha(secuencia: any, accion: any) {
+    if (secuencia.acciones.indexOf(accion) < secuencia.acciones.length - 1) return true;
+    else return false;
+  }
+
+  ampliarPicto(accion: Pictograma) {
+    const dialogConfig = new MatDialogConfig();
+    //dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    // dialogConfig.position = {right:"200px", top: "100px"};
+    dialogConfig.width = '70%';
+    dialogConfig.data = {
+      src: accion.src,
+      nombre: accion.nombre
+    };
+    this.dialogRef = this.dialog.open(ImageExpandComponent, dialogConfig);
+
+    this.dialogRef.afterClosed().subscribe(data => {});
   }
 }

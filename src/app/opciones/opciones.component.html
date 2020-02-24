@@ -12,14 +12,25 @@
     <input [(colorPicker)]="colorFinal" [style.background-color]="colorFinal" />
   </div>
 
-  <button
-    class="mat-display-2 boton-guardar"
-    mat-raised-button
-    [color]="'success'"
-    (click)="guardar()"
-    routerLink="/home"
-    routerLinkActive="active"
-  >
-    GUARDAR
-  </button>
+  <div fxLayout="row" fxFlex="10" fxFill fxLayoutAlign="center center">
+    <button
+      class="mat-display-2 boton-guardar"
+      mat-raised-button
+      [color]="'warn'"
+      routerLink="/about"
+      routerLinkActive="active"
+    >
+      VOLVER
+    </button>
+    <button
+      class="mat-display-2 boton-guardar"
+      mat-raised-button
+      [color]="'success'"
+      (click)="guardar()"
+      routerLink="/about"
+      routerLinkActive="active"
+    >
+      GUARDAR
+    </button>
+  </div>
 </div>

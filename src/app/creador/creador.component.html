@@ -84,24 +84,26 @@
       backgroundColor="accent"
       style="height: calc(100% - 100px); min-height: calc(100% - 100px); min-width: 50%; width: 80%; margin: 0px;"
       ><!-- class="mat-elevation-z1" -->
+
       <mat-tab label="Pictogramas">
         <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10px">
-          <div fxLayout="row">
+          <div fxLayout="row" fxFill>
             <!-- <form class="example-form"> -->
             <!--  <mat-form-field class="example-full-width">
                 <mat-label>Buscar</mat-label>
                 <input matInput placeholder="Buscar" [(ngModel)]="palabraBuscar"/>
               </mat-form-field> -->
             <mat-form-field class="input-buscar">
-              <mat-label class="input">Buscar</mat-label>
+              <mat-label class="input">Busca una palabra</mat-label>
               <input matInput [(ngModel)]="palabraBuscar" />
             </mat-form-field>
             <button mat-raised-button color="primary" (click)="buscar(palabraBuscar)" class="boton-buscar">
               <mat-icon>search</mat-icon>
             </button>
             <!--  </form> -->
+            <app-loader class="inline-loader" [isLoading]="isLoading" [size]="0.5" [width]="0.5"></app-loader>
           </div>
-          <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
+
           <!--  <mat-grid-tile>
             <div fxLayout="column" fxFlex="70">
               <img mat-card-image src="../../assets/pictos/test.PNG">
@@ -114,105 +116,36 @@
             <mat-card-subtitle>{{ busqueda.nombre }}</mat-card-subtitle>
           </mat-card>
           <h4 *ngIf="found == 1">No encontrado</h4>
-          <!-- </mat-grid-tile> -->
-          <!--  <mat-grid-tile *ngFor="let picto of pictos">
-            <mat-card class="card" (click)="seleccionarPicto(picto)">
-              <img mat-card-image src="../../assets/pictos/{{ picto.src }}" />
-              <mat-card-subtitle>{{ picto.nombre }}</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile> -->
-
-          <!--     <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile> 
-          <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-card>
-              <img mat-card-image src="../../assets/pictos/test.PNG">
-              <mat-card-subtitle>Texto</mat-card-subtitle>
-            </mat-card>
-          </mat-grid-tile> -->
         </mat-grid-list>
-
-        <!--  <mat-card fxFlex="50">
-          <img mat-card-image src="../../assets/pictos/test.PNG">
-          <mat-card-subtitle>Texto</mat-card-subtitle>
-        </mat-card>
-        <mat-card fxFlex="50">
-          <img mat-card-image src="../../assets/pictos/test.PNG">
-        </mat-card>
-        <mat-card fxFlex="50">
-          <img mat-card-image src="../../assets/pictos/test.PNG">
-        </mat-card>
-        <mat-card fxFlex="50">
-          <img mat-card-image src="../../assets/pictos/test.PNG">
-        </mat-card> -->
       </mat-tab>
       <mat-tab label="Mis imágenes">
-        <img [src]="imageSrc" style="max-width:300px;max-height:300px" />
-        <input name="imageUrl" type="file" accept="image/*" (change)="onFileSelected($event)" />
-        <mat-form-field>
-          <input matInput required placeholder="Nombre de la imagen" [(ngModel)]="nombreImagen" />
-        </mat-form-field>
-        <button class="boton-guardar-imagen" mat-raised-button [color]="'success'" (click)="sendImage()">
-          Guardar imagen
-        </button>
+        <div *ngIf="uploadFileMode">
+          <img [src]="imageSrc" style="max-width:300px;max-height:300px" />
+          <input name="imageUrl" type="file" accept="image/*" (change)="onFileSelected($event)" />
+          <mat-form-field>
+            <input matInput required placeholder="Nombre de la imagen" [(ngModel)]="nombreImagen" />
+          </mat-form-field>
+          <div fxLayout="row">
+            <button class="boton-guardar-imagen" mat-raised-button [color]="'primary'" (click)="cargarImagen()">
+              Cancelar
+            </button>
+            <button
+              class="boton-guardar-imagen"
+              mat-raised-button
+              [color]="'success'"
+              [disabled]="!nombreImagen || nombreImagen == ''"
+              (click)="sendImage()"
+            >
+              Guardar imagen
+            </button>
+          </div>
+        </div>
+        <div *ngIf="!uploadFileMode">
+          <button class="boton-cargar-imagen" mat-raised-button [color]="'primary'" (click)="cargarImagen()">
+            Cargar imagen
+          </button>
+        </div>
+        <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
         <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10px">
           <!-- <div fxLayout="row">
             <mat-form-field class="input-buscar">
@@ -223,7 +156,7 @@
               <mat-icon>search</mat-icon>
             </button>
           </div> -->
-          <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
+
           <mat-card *ngFor="let im of imagenesPropias" class="card" (click)="seleccionarPicto(im)">
             <img mat-card-image [src]="this.sanitizer.bypassSecurityTrustResourceUrl(im.src)" />
             <mat-card-subtitle>{{ im.nombre }}</mat-card-subtitle>

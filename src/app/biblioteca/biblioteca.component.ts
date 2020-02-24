@@ -18,8 +18,8 @@ import { ImageExpandComponent } from '@app/play/image-expand/imageExpand.compone
 })
 export class BibliotecaComponent implements OnInit {
   secuencias: Secuencia[] = [];
-  isPlayed: boolean;
-  isPlayed1: boolean;
+  isPlayed: boolean = false;
+  isPlayed1: boolean = false;
   isLoading: boolean = false;
   dialogRef: MatDialogRef<any>;
   ordenadoFecha: Secuencia[] = [];
@@ -27,6 +27,8 @@ export class BibliotecaComponent implements OnInit {
 
   secuenciaBuscada: Secuencia[] = [];
   buscador: boolean;
+
+  palabraBuscar: string;
 
   constructor(
     public dialog: MatDialog,
@@ -51,11 +53,12 @@ export class BibliotecaComponent implements OnInit {
 
   ordenarFecha() {
     this.secuencias = this.secuencias.reverse();
-    if (this.isPlayed1 == true) {
+    /* if (this.isPlayed1 == true) {
       this.isPlayed1 = false;
     } else {
       this.isPlayed1 = true;
-    }
+    } */
+    this.isPlayed1 = !this.isPlayed1;
   }
 
   buscar(palabraBuscar: any) {
@@ -66,7 +69,7 @@ export class BibliotecaComponent implements OnInit {
       console.log(this.secuencias);
       this.secuencias = [];
       for (var sec of this.secuenciaBuscada) {
-        if (sec.nombre == palabraBuscar) {
+        if (sec.nombre.includes(palabraBuscar)) {
           this.secuencias.push(sec);
         }
       }
