@@ -94,7 +94,7 @@
                 <input matInput placeholder="Buscar" [(ngModel)]="palabraBuscar"/>
               </mat-form-field> -->
             <mat-form-field class="input-buscar">
-              <mat-label class="input">Buscar</mat-label>
+              <mat-label class="input">Busca una palabra</mat-label>
               <input matInput [(ngModel)]="palabraBuscar" />
             </mat-form-field>
             <button mat-raised-button color="primary" (click)="buscar(palabraBuscar)" class="boton-buscar">
@@ -206,14 +206,33 @@
         </mat-card> -->
       </mat-tab>
       <mat-tab label="Mis imágenes">
-        <img [src]="imageSrc" style="max-width:300px;max-height:300px" />
-        <input name="imageUrl" type="file" accept="image/*" (change)="onFileSelected($event)" />
-        <mat-form-field>
-          <input matInput required placeholder="Nombre de la imagen" [(ngModel)]="nombreImagen" />
-        </mat-form-field>
-        <button class="boton-guardar-imagen" mat-raised-button [color]="'success'" (click)="sendImage()">
-          Guardar imagen
-        </button>
+        <div *ngIf="uploadFileMode">
+          <img [src]="imageSrc" style="max-width:300px;max-height:300px" />
+          <input name="imageUrl" type="file" accept="image/*" (change)="onFileSelected($event)" />
+          <mat-form-field>
+            <input matInput required placeholder="Nombre de la imagen" [(ngModel)]="nombreImagen" />
+          </mat-form-field>
+          <div fxLayout="row">
+            <button class="boton-guardar-imagen" mat-raised-button [color]="'primary'" (click)="cargarImagen()">
+              Cancelar
+            </button>
+            <button
+              class="boton-guardar-imagen"
+              mat-raised-button
+              [color]="'success'"
+              [disabled]="!nombreImagen || nombreImagen == ''"
+              (click)="sendImage()"
+            >
+              Guardar imagen
+            </button>
+          </div>
+        </div>
+        <div *ngIf="!uploadFileMode">
+          <button class="boton-cargar-imagen" mat-raised-button [color]="'primary'" (click)="cargarImagen()">
+            Cargar imagen
+          </button>
+        </div>
+
         <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10px">
           <!-- <div fxLayout="row">
             <mat-form-field class="input-buscar">

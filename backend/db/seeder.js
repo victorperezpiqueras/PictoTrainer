@@ -29,7 +29,7 @@ connection.query(
             console.log('Tabla ACCIONES creada');
             connection.query(
               'CREATE TABLE registros (idregistro int AUTO_INCREMENT PRIMARY KEY, fecha DATETIME NOT NULL, duracionTotal INT,idusuario INT NOT NULL,idsecuencia INT NOT NULL,' +
-                ' foreign key(idusuario) REFERENCES usuarios(idusuario),foreign key(idsecuencia) REFERENCES secuencias(idsecuencia));',
+                ' foreign key(idusuario) REFERENCES usuarios(idusuario),foreign key(idsecuencia) REFERENCES secuencias(idsecuencia) ON DELETE CASCADE);',
               function(err, result) {
                 if (err) throw err;
                 console.log('Tabla REGISTROS creada');

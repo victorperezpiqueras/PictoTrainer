@@ -60,6 +60,7 @@ export class PlayComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.index = 0;
     this.activeRoute.params.subscribe(routeParams => {
       this.secuenciasService.getSecuenciaAccionesId(routeParams.idsecuencia).subscribe(secuencia => {
@@ -81,6 +82,7 @@ export class PlayComponent implements OnInit {
         this.generarImagenAnterior();
         this.generarImagenActual();
         this.generarImagenSiguiente();
+        this.isLoading = false;
       });
     });
   }

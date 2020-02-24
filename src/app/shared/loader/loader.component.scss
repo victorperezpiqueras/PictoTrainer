@@ -1,6 +1,11 @@
 .mat-progress-spinner {
   display: inline-block;
   vertical-align: middle;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 50%;
 }
 
 .message {

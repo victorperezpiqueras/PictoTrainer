@@ -70,11 +70,6 @@ export class LoadBarComponent implements OnInit {
       this.tres = new Audio('/assets/sonido/tres.mp3');
     }
 
-    /*reproducir() {
-      const audio = new Audio('assets/Hola.mp3');
-      audio.play();
-  }*/
-
     this.barColor = localStorage.getItem('bar-color');
     this.barColor = JSON.parse(this.barColor);
     console.log(this.barColor);
@@ -92,7 +87,7 @@ export class LoadBarComponent implements OnInit {
       color: '#ED6A5A',
       trailColor: '#eee',
       trailWidth: this.width,
-      svgStyle: { width: '100%', height: '100%', border: '1px solid black' },
+      svgStyle: { width: '100%', height: '100%', border: '1px solid #d6d6d6' },
       from: { color: this.barColor.colorInicial },
       to: { color: this.barColor.colorFinal },
       step: (state: any, bar: any) => {
@@ -101,12 +96,30 @@ export class LoadBarComponent implements OnInit {
     });
   }
 
+  reproducirAudio() {
+    if (this.sonido) this.audio.play();
+  }
+  reproducirAlarma() {
+    if (this.sonido) this.alarma.play();
+  }
+  reproducirUno() {
+    if (this.sonido) this.uno.play();
+  }
+  reproducirDos() {
+    if (this.sonido) this.dos.play();
+  }
+  reproducirTres() {
+    if (this.sonido) this.tres.play();
+  }
+
   iniciar() {
     console.log('iniciar()', this.duracion);
     //this.duracion=190
     this.started = true;
     this.bar.animate(1);
-    this.audio.play();
+    //this.audio.play();
+    this.reproducirAudio();
+
     /* setTimeout(() => {//comprueba si sigue iniciada la cuenta para enviar el evento finished
           // console.log("timeout",this.started)
           if (this.started && !this.paused) {
@@ -128,18 +141,18 @@ export class LoadBarComponent implements OnInit {
       if (this.started && !this.paused) {
         if (this.sonido) {
           if (this.duracionActual == (this.duracion / 100) * (3 / 4)) {
-            this.uno.play();
+            this.reproducirUno();
           }
           if (this.duracionActual == (this.duracion / 100) * (1 / 2)) {
-            this.dos.play();
+            this.reproducirDos();
           }
           if (this.duracionActual == (this.duracion / 100) * (1 / 4)) {
-            this.tres.play();
+            this.reproducirTres();
           }
 
           if (this.duracionActual < 50) {
             this.audio.pause();
-            this.alarma.play();
+            this.reproducirAlarma();
           }
         }
         if (this.duracionActual > 0) {
@@ -161,7 +174,7 @@ export class LoadBarComponent implements OnInit {
     this.duracion = this.accion.duracion * 1000;
     this.duracionActual = this.accion.duracion * 10;
     this.bar.set(0);
-    this.audio.pause();
+    if (this.sonido) this.audio.pause();
   }
 
   done(nombreAccion: any) {

@@ -1,35 +1,64 @@
 <div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1%">
-  <mat-card fxLayout="row" fxFill fxFlex="20" class="div-titulo mat-elevation-z2">
-    <h1 class="titulo" fxFlex="80">MIS TAREAS</h1>
+  <mat-card fxLayout="column" fxFill fxFlex="25" class="div-titulo mat-elevation-z2">
+    <div fxLayout="row">
+      <h1 class="titulo" fxFlex="80">MIS TAREAS</h1>
 
-    <button mat-raised-button [color]="'success'" class="boton-crear" routerLink="/creador" routerLinkActive="active">
-      <mat-icon>add_circle</mat-icon>&nbsp;CREAR
-    </button>
+      <button mat-raised-button [color]="'success'" class="boton-crear" routerLink="/creador" routerLinkActive="active">
+        <mat-icon>add_circle</mat-icon>&nbsp;CREAR
+      </button>
+    </div>
+    <div fxLayout="row">
+      <div fxLayout="row">
+        <div fxLayout="row">
+          <div *ngIf="!isPlayed">
+            <button mat-raised-button *ngIf="!isPlayed" color="warn" class="boton" (click)="ordenarNombreAsc()">
+              Nombre &#9660;
+            </button>
+          </div>
+          <div *ngIf="isPlayed">
+            <button mat-raised-button *ngIf="isPlayed" color="primary" class="boton" (click)="ordenarNombreDesc()">
+              Nombre &#9650;
+            </button>
+          </div>
+
+          <div *ngIf="isPlayed1">
+            <button mat-raised-button *ngIf="isPlayed1" color="warn" class="boton" (click)="ordenarFecha()">
+              Fecha &#9660;
+            </button>
+          </div>
+          <div *ngIf="!isPlayed1">
+            <button mat-raised-button *ngIf="!isPlayed1" color="primary" class="boton" (click)="ordenarFecha()">
+              Fecha &#9650;
+            </button>
+          </div>
+        </div>
+
+        <!-- 
+         <button mat-raised-button *ngIf="!isPlayed" color="warn" class="boton" (click)="ordenarNombreAsc()">
+           Nombre &#9660;
+         </button>
+         <button mat-raised-button *ngIf="isPlayed" color="warn" class="boton" (click)="ordenarNombreDesc()">
+           Nombre &#9650;
+         </button>
+         <button mat-raised-button *ngIf="!isPlayed1" color="warn" class="boton" (click)="ordenarFecha()">
+           Fecha &#9660;
+         </button>
+         <button mat-raised-button *ngIf="isPlayed1" color="warn" class="boton" (click)="ordenarFecha()">
+           Fecha &#9650;
+         </button> -->
+
+        <mat-form-field class="input-buscar">
+          <mat-label class="input">Filtrar por nombre</mat-label>
+          <input matInput [(ngModel)]="palabraBuscar" /> </mat-form-field
+        >&nbsp;&nbsp;
+        <button mat-raised-button color="primary" (click)="buscar(palabraBuscar)" class="boton-buscar">
+          <mat-icon>search</mat-icon>
+        </button>
+        <!--  <mat-divider></mat-divider> -->
+      </div>
+    </div>
   </mat-card>
 
-  <div>
-    <button mat-raised-button *ngIf="!isPlayed" color="warn" class="boton" (click)="ordenarNombreAsc()">
-      Nombre &#9660;
-    </button>
-    <button mat-raised-button *ngIf="isPlayed" color="warn" class="boton" (click)="ordenarNombreDesc()">
-      Nombre &#9650;
-    </button>
-    <button mat-raised-button *ngIf="!isPlayed1" color="warn" class="boton" (click)="ordenarFecha()">
-      Fecha &#9660;
-    </button>
-    <button mat-raised-button *ngIf="isPlayed1" color="warn" class="boton" (click)="ordenarFecha()">
-      Fecha &#9650;
-    </button>
-
-    <mat-form-field class="input-buscar">
-      <mat-label class="input">Buscar</mat-label>
-      <input matInput [(ngModel)]="palabraBuscar" /> </mat-form-field
-    >&nbsp;&nbsp;
-    <button mat-raised-button color="primary" (click)="buscar(palabraBuscar)" class="boton-buscar">
-      <mat-icon>search</mat-icon>
-    </button>
-    <mat-divider></mat-divider>
-  </div>
   <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
   <div class="div-cards" style="overflow-y: auto;">
     <div *ngFor="let sec of secuencias" fxLayout="row">

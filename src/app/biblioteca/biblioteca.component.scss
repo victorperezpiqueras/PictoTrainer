@@ -2,6 +2,8 @@
 
 .container {
   padding: 3%;
+  padding-bottom: 0%;
+  overflow-x: hidden;
 }
 .div-titulo {
   background-color: rgba(175, 175, 175, 0.705);
@@ -71,4 +73,11 @@ h1,
   margin-left: 2%;
   width: 150px;
   height: 70px;
+}
+
+.boton-buscar {
+  width: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }

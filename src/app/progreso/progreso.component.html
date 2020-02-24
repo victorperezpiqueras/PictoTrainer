@@ -10,10 +10,25 @@
     <h1 class="titulo" fxFlex="80">Progreso</h1>
   </mat-card>
   <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
+  <mat-card *ngIf="!progresos" class="card">
+    <h1>No hay progresos registrados para mostrar</h1>
+  </mat-card>
   <div class="div-secuencias" fxFill style="overflow-y: auto;">
     <div *ngFor="let sec of secuencias">
       <mat-card *ngIf="sec.options" class="card">
-        <h1>{{ sec.nombre }}</h1>
+        <div class="cabecera" fxLayout="row" fxLayoutGap="20px">
+          <h1>{{ sec.nombre }}</h1>
+          <div class="acciones" fxLayout="row" fxLayoutAlign="start center" *ngFor="let acc of sec.acciones">
+            <mat-card class="icon-card" (click)="ampliarPicto(acc)">
+              <img mat-card-image src="{{ acc.src }}" class="icon-imagen" />
+              <mat-card-subtitle class="card-text">{{ acc.nombre }}</mat-card-subtitle>
+              <img />
+            </mat-card>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-icon *ngIf="calcularFlecha(sec, acc)">double_arrow</mat-icon>
+          </div>
+        </div>
+
         <highcharts-chart
           *ngIf="sec.options"
           [Highcharts]="Highcharts"

@@ -28,6 +28,8 @@ export class CreadorComponent implements OnInit {
   editMode: boolean;
   idSec: number;
 
+  uploadFileMode: boolean = false;
+
   isLoading = false;
   dialogRef: MatDialogRef<any>;
   pictos: Pictograma[] = [];
@@ -269,6 +271,7 @@ export class CreadorComponent implements OnInit {
   } */
 
   sendImage() {
+    this.isLoading = true;
     //console.log(this.image);
     if (this.imageSrc && this.nombreImagen) {
       var imagen = {
@@ -282,6 +285,7 @@ export class CreadorComponent implements OnInit {
         this.nombreImagen = '';
         this.imageSrc = '';
         this.actualizarImagenes();
+        this.isLoading = false;
       });
     }
   }
@@ -327,6 +331,10 @@ export class CreadorComponent implements OnInit {
       console.log(this.imagenesPropias);
       this.isLoading = false;
     });
+  }
+
+  cargarImagen() {
+    this.uploadFileMode = !this.uploadFileMode;
   }
 
   /* 
