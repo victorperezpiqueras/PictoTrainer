@@ -1,5 +1,5 @@
 <div [hidden]="!isLoading">
-  <mat-progress-spinner mode="indeterminate" [strokeWidth]="10" [diameter]="150"></mat-progress-spinner>
+  <mat-progress-spinner mode="indeterminate" [strokeWidth]="10 * width" [diameter]="150 * size"></mat-progress-spinner>
   <!-- [diameter]="32 * size" -->
   <span class="message">{{ message }}</span>
 </div>

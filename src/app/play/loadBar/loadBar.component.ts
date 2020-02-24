@@ -70,16 +70,16 @@ export class LoadBarComponent implements OnInit {
       this.tres = new Audio('/assets/sonido/tres.mp3');
     }
 
-    this.barColor = localStorage.getItem('bar-color');
-    this.barColor = JSON.parse(this.barColor);
-    console.log(this.barColor);
-
     /*BUG SOLVED: Petaba si no escogias color cuando haces log por primera vez*/
-
+    this.barColor = localStorage.getItem('bar-color');
     if (this.barColor == null) {
       var ob = { colorInicial: '#00ff00', colorFinal: '#ff0000' };
       localStorage.setItem('bar-color', JSON.stringify(ob));
     }
+
+    this.barColor = localStorage.getItem('bar-color');
+    this.barColor = JSON.parse(this.barColor);
+    console.log(this.barColor);
 
     this.bar = new ProgressBar.Line(document.getElementById('container'), {
       strokeWidth: this.width,
