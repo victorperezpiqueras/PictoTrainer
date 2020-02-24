@@ -28,6 +28,8 @@ export class BibliotecaComponent implements OnInit {
   secuenciaBuscada: Secuencia[] = [];
   buscador: boolean;
 
+  palabraBuscar: string;
+
   constructor(
     public dialog: MatDialog,
     public credentialsService: CredentialsService,
