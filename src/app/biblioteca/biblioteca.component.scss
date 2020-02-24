@@ -22,7 +22,7 @@ h1,
 }
 .div-cards {
   padding-bottom: 50px;
-  width: 130%;
+  width: 100%;
   height: 100%;
 }
 .card-text {
@@ -35,6 +35,12 @@ h1,
   overflow-x: auto;
   overflow-y: hidden;
   margin-bottom: 2%;
+}
+.card-title {
+  font-size: 3vw;
+}
+.card-text {
+  font-size: 1.5vw;
 }
 .icon-card {
   height: 100px;
@@ -73,6 +79,7 @@ h1,
   margin-left: 2%;
   width: 150px;
   height: 70px;
+  font-size: 3vw;
 }
 
 .boton-buscar {

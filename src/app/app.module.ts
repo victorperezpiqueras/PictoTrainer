@@ -38,6 +38,7 @@ import { ProgresoModule } from './progreso/progreso.module';
 
 import { HighchartsChartModule } from 'highcharts-angular';
 import { LoadBarComponent } from './play/loadBar/loadBar.component';
+import { FinDialogComponent } from './play/finDialog/finDialog.component';
 
 @NgModule({
   imports: [
@@ -68,7 +69,7 @@ import { LoadBarComponent } from './play/loadBar/loadBar.component';
 
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent, ProyectoDialogComponent, PictoDialogComponent, ImageExpandComponent],
+  declarations: [AppComponent, ProyectoDialogComponent, PictoDialogComponent, ImageExpandComponent, FinDialogComponent],
   providers: [
     HolaMundoService,
     LoginService,
@@ -78,7 +79,13 @@ import { LoadBarComponent } from './play/loadBar/loadBar.component';
     SecuenciaService,
     ImagenService
   ],
-  entryComponents: [ProyectoDialogComponent, PictoDialogComponent, ImageExpandComponent, LoadBarComponent],
+  entryComponents: [
+    ProyectoDialogComponent,
+    PictoDialogComponent,
+    ImageExpandComponent,
+    LoadBarComponent,
+    FinDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

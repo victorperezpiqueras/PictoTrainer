@@ -1,0 +1,21 @@
+<div class="container" fxLayoutAlign="center center" fxLayout="column" fxFill>
+  <div fxLayoutAlign="center center">
+    <h1>¡Has acabado la tarea!</h1>
+  </div>
+
+  <div fxLayoutAlign="center center" fxLayoutGap="5%" fxLayout="row">
+    <button
+      class="boton-volver"
+      mat-raised-button
+      [color]="'primary'"
+      routerLink="/home"
+      routerLinkActive="active"
+      (click)="cerrar()"
+    >
+      Salir
+    </button>
+    <button class="boton-reiniciar" mat-raised-button [color]="'success'" (click)="cerrar()">
+      Reintentar
+    </button>
+  </div>
+</div>

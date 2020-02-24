@@ -3,7 +3,14 @@
     <div fxLayout="row">
       <h1 class="titulo" fxFlex="80">MIS TAREAS</h1>
 
-      <button mat-raised-button [color]="'success'" class="boton-crear" routerLink="/creador" routerLinkActive="active">
+      <button
+        mat-raised-button
+        [color]="'success'"
+        class="boton-crear"
+        routerLink="/creador"
+        routerLinkActive="active"
+        fxFlex="20"
+      >
         <mat-icon>add_circle</mat-icon>&nbsp;CREAR
       </button>
     </div>
@@ -64,7 +71,7 @@
     <div *ngFor="let sec of secuencias" fxLayout="row">
       <mat-card class="card" fxLayout="row" fxLayoutGap="10px">
         <div fxLayoutAlign="center center">
-          <h1>{{ sec.nombre | uppercase }}</h1>
+          <h1 class="card-title">{{ sec.nombre | uppercase }}</h1>
         </div>
         <div class="acciones" fxLayout="row" fxLayoutAlign="end center" *ngFor="let acc of sec.acciones" fxFlex>
           <mat-card class="icon-card" (click)="ampliarPicto(acc)">

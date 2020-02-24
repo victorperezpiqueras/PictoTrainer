@@ -13,6 +13,7 @@ import { Secuencia } from '@app/models/secuencias';
 import { LoadBarComponent } from './loadBar/loadBar.component';
 import { ImageExpandComponent } from './image-expand/imageExpand.component';
 import { Registro } from '@app/models/registros';
+import { FinDialogComponent } from './finDialog/finDialog.component';
 
 export interface Pictograma {
   nombre: string;
@@ -144,6 +145,7 @@ export class PlayComponent implements OnInit {
     this.index = 0;
     this.loadBar.toArray().forEach(loadBar => loadBar.reset());
     this.actualizarImagenes();
+    this.mostrarFin();
   }
 
   pause() {
@@ -157,6 +159,17 @@ export class PlayComponent implements OnInit {
   done() {
     console.log('done()', this.secuencia.acciones[this.index].nombre);
     this.loadBar.toArray()[this.index].done();
+  }
+
+  mostrarFin() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '340px';
+    this.dialogRef = this.dialog.open(FinDialogComponent, dialogConfig);
+
+    this.dialogRef.afterClosed().subscribe(data => {
+      // if(data.volver)
+    });
   }
 
   generarTiempo() {
