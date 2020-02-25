@@ -2,7 +2,7 @@
 
 .container {
   text-align: center;
-  padding: 10%;
+  padding-top: 10vmin;
   background-color: rgba(0, 0, 0, 0.705);
 }
 
@@ -30,15 +30,14 @@ q {
 }
 .boton-play {
   background-color: rgb(41, 214, 84);
-  font-size: 7.5rem;
+  font-size: 5vmin;
   white-space: normal !important;
   word-wrap: break-word;
   font-family: "Luckiest Guy", cursive;
-  padding: 0.5em;
-  min-height: 10rem;
-  min-width: 20rem;
-  width: 600px;
-  height: 200px;
+
+  width: 100vmin;
+  height: 30vmin;
+  margin-top: 20vmax;
 }
 
 .mat-success {
@@ -49,12 +48,10 @@ q {
 .boton {
   white-space: normal !important;
   word-wrap: break-word;
-  font-size: 3.5rem;
+  font-size: 10vmin;
   font-family: "Luckiest Guy", cursive;
   /* font-size: larger; */
-  padding: 0.5em;
-  min-height: 10rem;
-  min-width: 20rem;
-  width: 600px;
-  height: 200px;
+  padding: 4vmin;
+  width: 100vmin;
+  height: 30vmin;
 }

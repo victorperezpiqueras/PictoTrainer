@@ -7,6 +7,8 @@
 }
 .div-titulo {
   background-color: rgba(175, 175, 175, 0.705);
+  padding: 3vmin;
+  padding-bottom: 0;
 }
 h1,
 .boton,
@@ -25,39 +27,40 @@ h1,
   width: 100%;
   height: 100%;
 }
-.card-text {
-  font-size: small;
-}
+
 .card {
   background-color: #f5bd8f;
-  width: 800px;
-  height: 150px;
+  width: 165vmin;
+  height: 2vmin;
   overflow-x: auto;
   overflow-y: hidden;
-  margin-bottom: 2%;
+  margin-bottom: 3vmin;
 }
 .card-title {
-  font-size: 3vmin;
+  font-size: 5vmin;
 }
 .card-text {
-  font-size: 1.3vmin;
+  font-size: 3vmin;
+  width: fit-content;
+  height: fit-content;
 }
 .icon-card {
-  height: 100px;
-  width: 100px;
+  height: 15vmin;
+  width: 15vmin;
   cursor: pointer;
 }
 
 .icon-imagen {
-  max-width: 70%;
-  max-height: 70%;
-  margin: 10px;
+  width: 14vmin;
+  height: 12.5vmin;
 }
 .boton {
-  width: 100px;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-right: 2vmin;
+  margin-left: 1vmin;
+  margin-top: 2vmin;
+  margin-bottom: 2vmin;
+  height: 9vmin;
+  width: 15vmin;
 }
 
 .boton-play {
@@ -66,6 +69,7 @@ h1,
   margin-left: 50px;
   margin-bottom: 10px;
   margin-top: 10px;
+  font-size: 10vmin;
 }
 
 .mat-success {
@@ -74,12 +78,8 @@ h1,
 }
 .boton-crear {
   font-family: "Luckiest Guy", cursive;
-  font-size: xx-large;
-  margin-right: 2%;
-  margin-left: 2%;
-  width: 150px;
-  height: 70px;
-  font-size: 3vw;
+
+  font-size: 5vmin;
 }
 
 .boton-buscar {

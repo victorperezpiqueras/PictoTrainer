@@ -2,40 +2,38 @@
 
 .container {
   background-color: rgba(0, 0, 0, 0.705);
-  padding: 4%;
+  padding: 3%;
 }
 
 h1 {
   font-family: "Luckiest Guy", cursive;
   color: white;
-  font-size: xxx-large;
+  font-size: 11vmin;
+  padding-bottom: 7vmin;
 }
 h4 {
   font-family: "Luckiest Guy", cursive;
   color: white;
-  font-size: x-large;
+  font-size: 6vmin;
 }
 
 .img {
-  width: 200px;
-  max-height: 200px;
-  max-width: 200px;
-  margin-left: 10%;
-  margin-right: 10%;
+  width: 30vmin;
+  margin-left: 15vmin;
+  margin-right: 15vmin;
   cursor: pointer;
 }
 
 .img-small {
-  width: 100px;
-  max-height: 100px;
-  max-width: 100px;
+  width: 15vmin;
+  height: 15vmin;
+
   opacity: 50%;
 }
 
 .container-load {
   padding-left: 2%;
   padding-right: 2%;
-  padding-top: 2%;
 }
 
 .mat-done {
@@ -54,19 +52,22 @@ h4 {
 }
 
 .play-button {
-  height: 100px;
-  width: 100px;
+  height: 15vmin;
+  width: 15vmin;
+  font-size: 12vmin;
 }
 
 .done-button {
-  margin-left: 20%;
-  height: 100px;
-  width: 100px;
+  margin-left: 25vmin;
+  height: 15vmin;
+  width: 15vmin;
+  font-size: 12vmin;
 }
 
 .icon {
   /* font-size: 100px;
   margin-right: 200px;
   padding-bottom: 100px; */
-  transform: scale(4);
+  /*transform: scale(3);*/
+  /*display: inherit;*/
 }

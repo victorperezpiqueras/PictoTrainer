@@ -1,5 +1,5 @@
 <div class="container mat-typography" fxFill fxLayout="row" fxLayoutAlign="center center">
-  <div *ngIf="secuencia" fxLayout="column" fxFill fxLayoutAlign="start center" fxLayoutGap="2%">
+  <div *ngIf="secuencia" fxLayout="column" fxFill fxLayoutAlign="start center" fxLayoutGap="1%">
     <h1 fxFlex="5">{{ secuencia.nombre }}</h1>
     <div fxLayout="row" fxFlex="40" fxFill fxLayoutAlign="center center">
       <!--  <div class="acciones" fxLayout="row" fxLayoutAlign="center start" *ngFor="let acc of secuencia.acciones" fxFlex> -->
@@ -34,21 +34,23 @@
       </div>
     </div>
 
-    <div fxLayout="row" fxFlex="15" fxFill fxLayoutAlign="center center">
-      <button *ngIf="!isPlayed" class="play-button" mat-raised-button (click)="play()" [color]="'success'">
-        <mat-icon class="icon">
-          play_arrow
-        </mat-icon>
-      </button>
+    <div fxLayout="row" fxFlex="20" fxFill fxLayoutAlign="center center">
+      <div>
+        <button *ngIf="!isPlayed" class="play-button" mat-raised-button (click)="play()" [color]="'success'">
+          <mat-icon inline="true">
+            play_arrow
+          </mat-icon>
+        </button>
+      </div>
 
       <button *ngIf="isPlayed" class="play-button" mat-raised-button (click)="pause()" color="warn">
-        <mat-icon class="icon">
+        <mat-icon inline="true">
           pause
         </mat-icon>
       </button>
 
       <button class="done-button" mat-raised-button (click)="done()" [color]="'done'">
-        <mat-icon class="icon">
+        <mat-icon inline="true">
           fast_forward
         </mat-icon>
       </button>
