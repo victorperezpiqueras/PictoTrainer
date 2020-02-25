@@ -10,8 +10,8 @@ import { Pictograma } from '@app/models/pictogramas';
 })
 export class PictoDialogComponent implements OnInit {
   form: FormGroup;
-  segundos: number;
-  minutos = 1;
+  segundos: number = 0;
+  minutos: number = 1;
   mode: string;
   nombreBoton: string;
 
@@ -36,6 +36,9 @@ export class PictoDialogComponent implements OnInit {
       this.minutos = Number((this.duracion / 60).toFixed());
       this.segundos = this.duracion % 60;
       console.log(this.minutos);
+    } else {
+      this.minutos = 0;
+      this.segundos = 0;
     }
   }
 

@@ -45,6 +45,8 @@ export class PlayComponent implements OnInit {
 
   index: number;
 
+  isInit: boolean = true;
+
   isPlayed: boolean = false;
   isPaused: boolean = false;
 
@@ -158,7 +160,19 @@ export class PlayComponent implements OnInit {
 
   done() {
     console.log('done()', this.secuencia.acciones[this.index].nombre);
-    this.loadBar.toArray()[this.index].done();
+    if (this.isInit) {
+      this.isInit = false;
+      this.isPlayed = true;
+      if (!this.isPaused) {
+        this.loadBar.toArray()[0].iniciar();
+      } else {
+        this.loadBar.toArray()[this.index].unPause();
+      }
+      this.startTime = new Date();
+    } else {
+      this.isPlayed = true;
+      this.loadBar.toArray()[this.index].done();
+    }
   }
 
   mostrarFin() {
@@ -170,6 +184,7 @@ export class PlayComponent implements OnInit {
     this.dialogRef.afterClosed().subscribe(data => {
       // if(data.volver)
     });
+    this.isInit = true;
   }
 
   generarTiempo() {

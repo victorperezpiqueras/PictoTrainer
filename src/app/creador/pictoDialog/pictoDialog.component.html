@@ -8,20 +8,20 @@
   <div fxLayoutAlign="center center" fxLayoutGap="30px">
     <div mat-dialog-content>
       <mat-form-field>
-        <input matInput required placeholder="Nombre" [(ngModel)]="nombre" value="{{ nombre }}" />
+        <input matInput required placeholder="Nombre" [(ngModel)]="nombre" [value]="nombre" />
       </mat-form-field>
       <br />
       <mat-form-field>
         <mat-label>Minutos</mat-label>
-        <mat-select [(value)]="minutos">
-          <mat-option *ngFor="let min of listaMin" value="{{ min }}">{{ min }}</mat-option>
+        <mat-select [(ngModel)]="minutos">
+          <mat-option *ngFor="let min of listaMin" [value]="min">{{ min }}</mat-option>
         </mat-select>
       </mat-form-field>
       <br />
       <mat-form-field>
         <mat-label>Segundos</mat-label>
-        <mat-select [(value)]="segundos">
-          <mat-option *ngFor="let seg of listaSeg" value="{{ seg }}">{{ seg }}</mat-option>
+        <mat-select [(ngModel)]="segundos">
+          <mat-option *ngFor="let seg of listaSeg" [value]="seg">{{ seg }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -32,7 +32,7 @@
         mat-raised-button
         (click)="save()"
         [color]="'success'"
-        [disabled]="!segundos || !minutos"
+        [disabled]="minutos + segundos == 0"
       >
         {{ nombreBoton }}
       </button>

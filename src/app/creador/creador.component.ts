@@ -189,19 +189,23 @@ export class CreadorComponent implements OnInit {
   }
 
   buscar(palabra: string) {
-    this.isLoading = true;
-    console.log('palabra:', palabra);
-    this.pictoService.buscarPicto(palabra).subscribe(picto => {
-      this.isLoading = false;
-      console.log('picto:', picto);
-      if (picto.src == 'x;font-size:120px;margin-top:80px;margin-bottom:80px; text-align:center"><font>ER') {
-        this.busqueda = false;
-        this.found = 1;
-      } else {
-        this.busqueda = picto;
-        this.found = 2;
-      }
-    });
+    if (palabra == '' || palabra == null) {
+      this.found = 1;
+    } else {
+      this.isLoading = true;
+      console.log('palabra:', palabra);
+      this.pictoService.buscarPicto(palabra).subscribe(picto => {
+        this.isLoading = false;
+        console.log('picto:', picto);
+        if (picto.src == 'x;font-size:120px;margin-top:80px;margin-bottom:80px; text-align:center"><font>ER') {
+          this.busqueda = false;
+          this.found = 1;
+        } else {
+          this.busqueda = picto;
+          this.found = 2;
+        }
+      });
+    }
   }
 
   /*  buscarPropia(palabra: string) {

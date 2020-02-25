@@ -1,7 +1,6 @@
 <div class="container mat-typography" fxFill fxLayout="row" fxLayoutAlign="center center">
   <div *ngIf="secuencia" fxLayout="column" fxFill fxLayoutAlign="start center" fxLayoutGap="2%">
-    <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
-    <h1>{{ secuencia.nombre }}</h1>
+    <h1 fxFlex="5">{{ secuencia.nombre }}</h1>
     <div fxLayout="row" fxFlex="40" fxFill fxLayoutAlign="center center">
       <!--  <div class="acciones" fxLayout="row" fxLayoutAlign="center start" *ngFor="let acc of secuencia.acciones" fxFlex> -->
       <!--  <mat-card class="icon-card"> -->
@@ -23,7 +22,7 @@
       <h4>{{ imagenActual.nombre }}</h4>
       <!--  <h1>{{tiempoActual}}</h1> -->
     </div>
-
+    <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
     <div fxLayout="row" fxFlex="40" fxFill class="container-load">
       <div *ngFor="let acc of secuencia.acciones">
         <app-loadBar
