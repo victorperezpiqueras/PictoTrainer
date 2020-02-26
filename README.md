@@ -28,5 +28,7 @@ Se debe crear un fichero `.env` dentro de la carpeta backend con las siguientes 
 - DB_DATABASE = nombredb
 
 
-Ejecutar `ng serve` y abrir el navegador en la dirección `http://localhost:4200/`. 
+En el directorio raíz: 
+- Para arrancar el cliente ejecutar `ng serve` y abrir el navegador en la dirección `http://localhost:4200/`. 
+- Para arrancar el servidor ejecutar `npm run dev`.
 
