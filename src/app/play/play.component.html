@@ -1,5 +1,5 @@
 <div class="container mat-typography" fxFill fxLayout="row" fxLayoutAlign="center center">
-  <div *ngIf="secuencia" fxLayout="column" fxFill fxLayoutAlign="start center" fxLayoutGap="1%">
+  <div *ngIf="secuencia" fxLayout="column" fxFill fxLayoutAlign="center center" fxLayoutGap="1vmin">
     <h1 fxFlex="5">{{ secuencia.nombre }}</h1>
     <div fxLayout="row" fxFlex="40" fxFill fxLayoutAlign="center center">
       <!--  <div class="acciones" fxLayout="row" fxLayoutAlign="center start" *ngFor="let acc of secuencia.acciones" fxFlex> -->
@@ -18,12 +18,12 @@
       <!-- </div> -->
     </div>
 
-    <div fxLayout="column" fxFlex="5">
+    <div fxLayout="column" fxFlex="5" fxShow.sm="false" fxShow.gt-md="true" fxShow="true">
       <h4>{{ imagenActual.nombre }}</h4>
       <!--  <h1>{{tiempoActual}}</h1> -->
     </div>
     <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
-    <div fxLayout="row" fxFlex="40" fxFill class="container-load">
+    <div fxLayout="row" fxFlex="40vmin" fxFill class="container-load">
       <div *ngFor="let acc of secuencia.acciones">
         <app-loadBar
           [width]="width"
@@ -41,13 +41,18 @@
             play_arrow
           </mat-icon>
         </button>
+
+        <button *ngIf="isPlayed" class="play-button" mat-raised-button (click)="pause()" color="warn">
+          <mat-icon inline="true">
+            pause
+          </mat-icon>
+        </button>
       </div>
 
-      <button *ngIf="isPlayed" class="play-button" mat-raised-button (click)="pause()" color="warn">
-        <mat-icon inline="true">
-          pause
-        </mat-icon>
-      </button>
+      <div style="margin-left: 20vmin;" fxShow.sm="true" fxShow.gt-md="false" fxShow="false">
+        <h4>{{ imagenActual.nombre }}</h4>
+        <!--  <h1>{{tiempoActual}}</h1> -->
+      </div>
 
       <button class="done-button" mat-raised-button (click)="done()" [color]="'done'">
         <mat-icon inline="true">
