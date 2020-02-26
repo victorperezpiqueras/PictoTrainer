@@ -37,7 +37,7 @@
     <div fxLayout="row" fxFlex="20" fxFill fxLayoutAlign="center center">
       <div>
         <button *ngIf="!isPlayed" class="play-button" mat-raised-button (click)="play()" [color]="'success'">
-          <mat-icon inline="true">
+          <mat-icon [inline]="true">
             play_arrow
           </mat-icon>
         </button>

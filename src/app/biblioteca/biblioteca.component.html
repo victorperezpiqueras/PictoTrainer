@@ -13,14 +13,19 @@
           routerLinkActive="active"
           fxFlex="20"
         >
-          <div style="font-size: 3.5vw;"><mat-icon style="font-size: 3.5vw;">add_circle</mat-icon> &nbsp;CREAR</div>
+          <div style="font-size: 4vmin;" fxHide.lt-sm="true">
+            <mat-icon style="font-size: 3.5vmin;">add_circle</mat-icon> &nbsp;CREAR
+          </div>
+          <div style="font-size: 4vmin;" fxHide.gt-xs="true">
+            <mat-icon style="font-size: 5vmin;">add_circle</mat-icon>
+          </div>
         </button>
       </div>
-      <div fxLayout="row">
-        <div fxLayout="row">
+      <div fxLayout.gt-xs="row" fxLayout.lt-sm="column">
+        <div fxLayout.gt-xs="row" fxLayout.lt-sm="column">
           <div *ngIf="!isPlayed">
             <button
-              style="height: 6vmin; ;width: 15vmin; font-size: 2.5vmin;"
+              style="height: 6vmin; ;width: 17vmin; font-size: 2.5vmin;"
               mat-raised-button
               *ngIf="!isPlayed"
               color="warn"
@@ -32,10 +37,10 @@
           </div>
           <div *ngIf="isPlayed">
             <button
-              style="height: 6vmin; ;width: 15vmin; font-size: 2.2vmin;"
+              style="height: 6vmin; ;width: 17vmin; font-size: 2.5vmin;"
               mat-raised-button
               *ngIf="isPlayed"
-              color="primary"
+              color="accent"
               class="boton"
               (click)="ordenarNombreDesc()"
             >
@@ -45,7 +50,7 @@
 
           <div *ngIf="isPlayed1">
             <button
-              style="height: 6vmin; ;width: 15vmin;font-size: 2.5vmin;"
+              style="height: 6vmin; ;width: 17vmin;font-size: 2.5vmin;"
               mat-raised-button
               *ngIf="isPlayed1"
               color="warn"
@@ -57,10 +62,10 @@
           </div>
           <div *ngIf="!isPlayed1">
             <button
-              style="height: 6vmin;width: 15vmin;font-size: 2.5vmin;"
+              style="height: 6vmin;width: 17vmin;font-size: 2.5vmin;"
               mat-raised-button
               *ngIf="!isPlayed1"
-              color="primary"
+              color="accent"
               class="boton"
               (click)="ordenarFecha()"
             >
@@ -77,7 +82,7 @@
             <button
               style="height: 6vmin;width: 8vmin;"
               mat-raised-button
-              color="primary"
+              color="accent"
               (click)="buscar(palabraBuscar)"
             >
               <mat-icon>search</mat-icon>
@@ -129,7 +134,7 @@
             </div>
           </div>
         </mat-card>
-        <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="center center" style="font-size: 9vmin;">
           <button
             mat-fab
             [color]="'success'"
@@ -138,7 +143,7 @@
             routerLinkActive="active"
             style="height: 12vmin;width: 12vmin;font-size: 9vmin;"
           >
-            <mat-icon inline="true">
+            <mat-icon [inline]="true">
               play_arrow
             </mat-icon>
           </button>
