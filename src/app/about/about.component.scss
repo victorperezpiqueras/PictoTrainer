@@ -1,7 +1,7 @@
 .container {
-  text-align: center;
+  text-align: start;
   padding: 5%;
-  background-color: rgba(0, 0, 0, 0.705);
+  /* background-color: rgba(0, 0, 0, 0.705); */
 }
 
 .mat-icon {
@@ -10,8 +10,8 @@
 
 .example-section {
   display: flex;
-  align-content: center;
-  align-items: center;
+  align-content: start;
+  align-items: start;
   height: 60px;
 }
 .h1 {
@@ -21,11 +21,12 @@
 }
 
 .card {
-  width: fit-content;
+  width: 100%;
   height: fit-content;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 3%;
+  background-color: #ffebdb;
 }
 
 .card1 {
@@ -44,10 +45,15 @@ h1,
 .boton-flecha {
   font-family: "Luckiest Guy", cursive;
 }
+.div-titulo {
+  background-color: rgb(132, 185, 255);
+}
+
 .titulo {
   color: black;
   font-size: xxx-large;
-  padding-bottom: 3%;
+  /*  margin-bottom: 5%;
+  margin-top: 1%; */
 }
 
 .mat-success {

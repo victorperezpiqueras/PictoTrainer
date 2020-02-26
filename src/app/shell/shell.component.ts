@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { filter } from 'rxjs/operators';
 
 import { untilDestroyed } from '@app/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-shell',

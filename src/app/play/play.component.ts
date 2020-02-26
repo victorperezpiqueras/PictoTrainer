@@ -131,6 +131,7 @@ export class PlayComponent implements OnInit {
   }
 
   play() {
+    if (this.isInit) this.isInit = false;
     this.isPlayed = true;
     if (!this.isPaused) {
       this.loadBar.toArray()[0].iniciar();
@@ -160,10 +161,12 @@ export class PlayComponent implements OnInit {
 
   done() {
     console.log('done()', this.secuencia.acciones[this.index].nombre);
+    console.log(this.isInit);
     if (this.isInit) {
       this.isInit = false;
       this.isPlayed = true;
       if (!this.isPaused) {
+        console.log('if');
         this.loadBar.toArray()[0].iniciar();
       } else {
         this.loadBar.toArray()[this.index].unPause();

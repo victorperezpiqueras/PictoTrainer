@@ -7,6 +7,8 @@
   text-align: center;
   padding: 10%;
   background-color: rgba(0, 0, 0, 0.705);
+  background-image: url(https://c.pxhere.com/images/f1/26/d0feaf6584027138fdfa4fb8ce06-1417923.jpg!d);
+  background-size: cover;
 }
 
 .inline-loader {
@@ -17,13 +19,13 @@
   margin: 0;
 }
 .title-card {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(17, 102, 71);
   width: 800px;
   height: 150px;
 }
 .mat-card-title {
   font-family: "Luckiest Guy", cursive;
-  font-size: 100px;
+  font-size: 7vmin;
   color: rgb(255, 255, 255);
 }
 

@@ -1,48 +1,45 @@
-<div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="3%">
-  <mat-card class="card1">
-    <mat-card-content>
-      <h1 class="titulo">Opciones</h1>
-    </mat-card-content>
+<div class="container mat-typography" fxFill fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="3%">
+  <mat-card fxLayout="row" fxFill fxFlex="15" class="div-titulo mat-elevation-z2">
+    <h1 class="titulo">Opciones</h1>
   </mat-card>
+
   <mat-card class="card">
-    <mat-card-content>
-      <div>
-        <label class="h1">Sonido:</label>
-        <button mat-raised-button *ngIf="isOn" [color]="'success'" class="boton" (click)="state1()">
-          <mat-icon>volume_up</mat-icon>
-          Activado
-        </button>
-        <button mat-raised-button *ngIf="!isOn" color="warn" class="boton" (click)="state1()">
-          <mat-icon>volume_off</mat-icon>
-          Desactivado
-        </button>
-        <br />
-        <br />
-        <mat-divider></mat-divider>
-        <br />
-      </div>
-    </mat-card-content>
-
-    <mat-card-content>
-      <div>
-        <button mat-raised-button color="primary" routerLink="/opciones" routerLinkActive="active">
-          <span class="h1" translate>Configurar colores del temporizador</span>
-        </button>
-        <br />
+    <div>
+      <label class="h1">Sonido:</label>
+      <button mat-raised-button *ngIf="isOn" [color]="'success'" class="boton" (click)="state1()">
+        <mat-icon>volume_up</mat-icon>
+        Activado
+      </button>
+      <button mat-raised-button *ngIf="!isOn" color="warn" class="boton" (click)="state1()">
+        <mat-icon>volume_off</mat-icon>
+        Desactivado
+      </button>
+      <!--         <br />
         <br />
         <mat-divider></mat-divider>
-      </div>
-    </mat-card-content>
+        <br /> -->
+    </div>
+  </mat-card>
 
-    <mat-card-content>
-      <div>
-        <button mat-raised-button color="accent" routerLink="/home" routerLinkActive="active">
-          <mat-icon>menu_book</mat-icon> <span class="h1" translate>&nbsp;&nbsp;GUIA</span>
-        </button>
-        <!-- <br />
+  <mat-card class="card">
+    <div>
+      <button mat-raised-button color="primary" routerLink="/opciones" routerLinkActive="active">
+        <span class="h1" translate>Configurar colores del temporizador</span>
+      </button>
+      <!--       <br />
         <br />
         <mat-divider></mat-divider> -->
-      </div>
-    </mat-card-content>
+    </div>
+  </mat-card>
+
+  <mat-card class="card">
+    <div>
+      <button mat-raised-button color="accent" routerLink="/home" routerLinkActive="active">
+        <mat-icon>menu_book</mat-icon> <span class="h1" translate>&nbsp;&nbsp;GUÍA</span>
+      </button>
+      <!-- <br />
+        <br />
+        <mat-divider></mat-divider> -->
+    </div>
   </mat-card>
 </div>

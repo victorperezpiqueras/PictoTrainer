@@ -1,13 +1,21 @@
 <div class="container mat-typography" fxFill fxLayout="row" fxLayoutAlign="center center">
   <div fxLayout="column" fxLayoutAlign="center center" fxFlex="50" fxFill class="left-div">
-    <div fxLayout="row" fxLayoutAlign="center center" fxFlex="20">
+    <mat-card fxLayout="row" fxFill fxFlex="10" class="div-titulo mat-elevation-z2">
       <h1 class="titulo">TAREA:</h1>
       &nbsp;&nbsp;&nbsp;
       <mat-form-field>
         <mat-label class="input">Introduce un nombre</mat-label>
         <input matInput [(ngModel)]="nombreSecuencia" />
       </mat-form-field>
-    </div>
+    </mat-card>
+    <!--  <div fxLayout="row" fxLayoutAlign="center center" fxFlex="20">
+      <h1 class="titulo">TAREA:</h1>
+      &nbsp;&nbsp;&nbsp;
+      <mat-form-field>
+        <mat-label class="input">Introduce un nombre</mat-label>
+        <input matInput [(ngModel)]="nombreSecuencia" />
+      </mat-form-field>
+    </div> -->
 
     <div class="bottom-div" fxLayout="column" fxLayoutAlign="end" fxFlex="80" fxLayoutGap="7%" class="right-div">
       <div class="bottom-div-card" fxLayout="row" fxLayoutAlign="center center">

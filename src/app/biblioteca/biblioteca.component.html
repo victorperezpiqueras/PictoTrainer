@@ -23,7 +23,7 @@
             </button>
           </div>
           <div *ngIf="isPlayed">
-            <button mat-raised-button *ngIf="isPlayed" color="primary" class="boton" (click)="ordenarNombreDesc()">
+            <button mat-raised-button *ngIf="isPlayed" color="accent" class="boton" (click)="ordenarNombreDesc()">
               Nombre &#9650;
             </button>
           </div>
@@ -34,7 +34,7 @@
             </button>
           </div>
           <div *ngIf="!isPlayed1">
-            <button mat-raised-button *ngIf="!isPlayed1" color="primary" class="boton" (click)="ordenarFecha()">
+            <button mat-raised-button *ngIf="!isPlayed1" color="accent" class="boton" (click)="ordenarFecha()">
               Fecha &#9650;
             </button>
           </div>
@@ -58,7 +58,7 @@
           <mat-label class="input">Filtrar por nombre</mat-label>
           <input matInput [(ngModel)]="palabraBuscar" /> </mat-form-field
         >&nbsp;&nbsp;
-        <button mat-raised-button color="primary" (click)="buscar(palabraBuscar)" class="boton-buscar">
+        <button mat-raised-button color="accent" (click)="buscar(palabraBuscar)" class="boton-buscar">
           <mat-icon>search</mat-icon>
         </button>
         <!--  <mat-divider></mat-divider> -->

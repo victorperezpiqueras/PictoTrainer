@@ -19,6 +19,7 @@ import { ImageUploadModule } from 'angular2-image-upload';
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
+
     CreadorRoutingModule,
     FormsModule,
     ImageUploadModule.forRoot()
