@@ -2,7 +2,7 @@
 
 # PictoTrainer
 
-Aplicación web destinada a facilitar las actividades de entrenamiento y rehabilitación de las personas con diversidad funcional, implementando un sistema de creación de tareas con pictogramas y un entorno de visualización con temporizadores. La aplicación permite ajustar varios parámetros del temporizador, así como buscar pictogramas en la base de datos de [Arasaac](https://beta.arasaac.org/developers/api).
+Aplicación web destinada a facilitar las actividades de entrenamiento y rehabilitación de las personas con diversidad funcional que encuentran dificultades a la hora de entender y comprender los pasos de una secuencia de tareas. La aplicación implementa un sistema de creación de tareas con pictogramas y un entorno de visualización con temporizadores. También permite ajustar varios parámetros del temporizador, así como buscar pictogramas en la base de datos de [Arasaac](https://beta.arasaac.org/developers/api) o subir imágenes propias.
 
 # Estructura
 
