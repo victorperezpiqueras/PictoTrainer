@@ -5,6 +5,7 @@ var controllerUsuarios = require('../controllers/usuarios');
 var controllerSecuencias = require('../controllers/secuencias');
 var controllerAcciones = require('../controllers/acciones');
 var controllerImagenes = require('../controllers/imagenes');
+const { encodeBase64, decodeBase64 } = require('bcryptjs');
 
 /* CONTROLLER USUARIOS */
 
@@ -281,17 +282,17 @@ router.delete('/acciones/:id', function(req, res, next) {
 });
 
 router.get('/picto/:nombre', function(req, res) {
-  request('http://sesat.fdi.ucm.es:8080/servicios/rest/pictograma/palabra/' + req.params.nombre, function(
-    error,
-    response,
-    body
-  ) {
-    console.log('error:', error); // Print the error if one occurred and handle it
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log(body);
-    var cadena1 = body.slice(22, -16);
-    console.log(cadena1);
-    res.send({ nombre: req.params.nombre, src: cadena1 });
+  request('https://api.arasaac.org/api/pictograms/es/bestsearch/' + req.params.nombre, function(error, response, body) {
+    var pictoId = JSON.parse(body)[0]._id;
+
+    res.send({
+      nombre: req.params.nombre,
+      src: 'https://api.arasaac.org/api/pictograms/' + pictoId + '?download=false'
+    });
+
+    /*var cadena1 = body.slice(22, -16);
+    console.log(cadena1);*/
+    //res.send({ nombre: req.params.nombre, src: body });
   });
 });
 

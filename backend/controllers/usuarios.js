@@ -249,7 +249,7 @@ ControllerUsuarios.registroUsuario = function(usuario) {
         /* connection.end(function(err) {
           console.log('Error DB');
         }); */
-        reject({ error: 'Error' });
+        reject({ error: err });
       } else {
         console.log(result);
         if (result.length <= 0) {
